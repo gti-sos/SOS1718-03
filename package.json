@@ -1,7 +1,7 @@
 {
-  "name": "sos1718l04",
+  "name": "sos1718-03",
   "version": "0.0.0",
-  "description": "my first module in js",
+  "description": "\"my first hello\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gti-sos/SOS1718.git"
+    "url": "git+https://github.com/gti-sos/sos1718-03.git"
   },
-  "author": "adan franco",
+  "author": "JoseMariaBarreroOlmedo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gti-sos/SOS1718/issues"
+    "url": "https://github.com/gti-sos/sos1718-03/issues"
   },
-  "homepage": "https://github.com/gti-sos/SOS1718#readme",
+  "homepage": "https://github.com/gti-sos/sos1718-03#readme",
   "dependencies": {
     "express": "^4.16.2"
   }
