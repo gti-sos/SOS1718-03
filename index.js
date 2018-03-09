@@ -9,18 +9,44 @@
 //index Lab05 
 
 var express = require("express");
+var bodyParser = require("body-parser");
+
+
 var port = (process.env.PORT || 1607);
+var BASE_API_PATH = "/api/v1";
 
 var app = express();
+app.use("/",express.static(__dirname+"/public"));
+app.use(bodyParser.json());
 
-app.use("/",express.static("/home/ubuntu/workspace/SOS1718-03/sos1718-03/public"));
-
-
-app.get("/time",(req,res)=>{
-    console.log("new request to /time");
-    res.send(new Date());
+var cities = [
+    
+    {"name"  :  "Ciudad Real",
+    "name solar plants" :"Parque fotovoltaico Puertollano"}
+   
+    ];
+app.delete(BASE_API_PATH+"/cities/city",(req,res)=>{ 
+    var city = req.body;
+    cities.pop(city);
+    res.sendStatus(200);
+});   
+    
+app.get(BASE_API_PATH+"/cities",(req,res)=>{
+    
+    res.send(cities);
     
 });
+   
+      
+   
+app.post(BASE_API_PATH+"/cities",(req,res)=>{  
+   
+     var city = req.body;
+     cities.push(city);
+     res.sendStatus(201);
+    
+});
+   
    
    
 app.listen(port,()=>{
