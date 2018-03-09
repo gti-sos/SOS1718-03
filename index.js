@@ -21,28 +21,35 @@ app.use(bodyParser.json());
 
 var cities = [
     
-    {"name"  :  "Ciudad Real",
-    "name solar plants" :"Parque fotovoltaico Puertollano"},
+    {"name"  :  "Ciudad_Real",
+    "name solar plants" :"Parque fotovoltaico Puertollano",
+    "year" : 2016
+    },
     
      {"name"  :  "Cuenca",
-    "name solar plants" :"Parque fotovoltaico Olmedilla de Alarcón"}
+    "name solar plants" :"Parque fotovoltaico Olmedilla de Alarcón"},
+    
+     {"name"  :  "Cuenca",
+    "name solar plants" :"Parque fotovoltaico Olmedilla de Alarcón2"}
    
     ];
-    
 //GET al conjunto de recursos    
 app.get(BASE_API_PATH+"/cities",(req,res)=>{
     
     res.send(cities);
 });
 
+ 
+//GET a un recurso concreto
  app.get(BASE_API_PATH+"/cities/:name",(req,res)=>{
     var name = req.params.name;
     
     var filteredCities = cities.filter((c)=>{
         return c.name === name;
 });
-   res.send(filteredCities[0]);
+   res.send(filteredCities);
  });   
+
    
 // POST al conjunto de recursos   
 app.post(BASE_API_PATH+"/cities",(req,res)=>{  
@@ -52,8 +59,6 @@ app.post(BASE_API_PATH+"/cities",(req,res)=>{
      res.sendStatus(201);
     
 });
-
-
 
 //DELETE a un recurso concreto
 app.delete(BASE_API_PATH+"/cities/city",(req,res)=>{ 
