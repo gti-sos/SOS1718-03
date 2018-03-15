@@ -55,7 +55,6 @@ app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
     }];
     initialCities=inicializacion;
     console.log("Initializing data"); 
-    cities.push(initialCities);
     res.send(initialCities);
     res.sendStatus(201);
     console.log("Data initialized");
@@ -198,7 +197,7 @@ app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
      }];
     initialCities=inicializacion;
         console.log("Initializing data"); 
-        cities.push(initialCities);
+    
      res.send(initialCities);
      res.sendStatus(201);
      console.log("Data initialized");
