@@ -10,12 +10,12 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
-var DataStore = require("nedb");
+
 
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
-var dbFileName = __dirname+"cities.db";
+
 
 var app = express();
 app.use("/",express.static(__dirname+"/public"));
@@ -50,14 +50,7 @@ var cities = [
    
     ];
 
-var db = new DataStore({
-    
-    filename: dbFileName,
-    autoload: true
-    
-});
 
-    
     
 //--------------------------------------------------------------------------------    
     
