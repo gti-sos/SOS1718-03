@@ -107,27 +107,27 @@ var cities = [
     
     {"name"  :  "Ciudad-Real",
     "solarPlant" :"Parque-fotovoltaico-Puertollano",
-    "year" : "2010"
+    "year" : 2010
     },
     
      {"name"  :  "Cuenca",
     "solarPlant" :"Parque-fotovoltaico-Olmedilla-de-Alarcon",
-     "year" : "2010"
+     "year" : 2010
      },
     
      {"name"  :  "Caceres",
     "solarPlant" :"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla",
-    "year" : "2010"     
+    "year" : 2010     
      },
      
      {"name"  :  "La-Rioja",
     "solarPlant" :"Planta-solar-Arnedo",
-    "year" : "2010"     
+    "year" : 2010     
      },
      
       {"name"  :  "Cuenca",
     "solarPlant" :"Planta-solar-Osa-de-la-Vega",
-    "year" : "2010"     
+    "year" : 2010    
      }
    
     ];
@@ -135,7 +135,26 @@ var cities = [
 
     
 //--------------------------------------------------------------------------------    
+
+
+app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
+     var inicializacion = [{
+    "name"  :  "Cuenca",
+    "solarPlant" :"Planta-solar-Osa-de-la-Vega",
+    "year" : 2010
+    },
     
+    {"name"  :  "La-Rioja",
+    "solarPlant" :"Planta-solar-Arnedo",
+    "year" : 2010     
+     }];
+    initialCities=inicializacion;
+        console.log("Initializing data"); 
+        cities.push(initialCities);
+     res.send(initialCities);
+     res.sendStatus(201);
+     console.log("Data initialized");
+});
     
 //GET al conjunto de recursos    
 app.get(BASE_API_PATH+"/cities",(req,res)=>{
