@@ -133,7 +133,155 @@ app.put(BASE_API_PATH+"/cities/:station",(req,res)=>{
     res.sendStatus(200);
 });
 
+// -----------ANTONIO-----------
+
+var cities = [
+    
+    {"name"  :  "Ciudad-Real",
+    "solarPlant" :"Parque-fotovoltaico-Puertollano",
+    "year" : 2010
+    },
+    
+     {"name"  :  "Cuenca",
+    "solarPlant" :"Parque-fotovoltaico-Olmedilla-de-Alarcon",
+     "year" : 2010
+     },
+    
+     {"name"  :  "Caceres",
+    "solarPlant" :"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla",
+    "year" : 2010     
+     },
+     
+     {"name"  :  "La-Rioja",
+    "solarPlant" :"Planta-solar-Arnedo",
+    "year" : 2010     
+     },
+     
+      {"name"  :  "Cuenca",
+    "solarPlant" :"Planta-solar-Osa-de-la-Vega",
+    "year" : 2010    
+     }
+   
+    ];
+
+
+    
+//--------------------------------------------------------------------------------    
+
+
+app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
+     var inicializacion = [{
+    "name"  :  "Cuenca",
+    "solarPlant" :"Planta-solar-Osa-de-la-Vega",
+    "year" : 2010
+    },
+    
+    {"name"  :  "La-Rioja",
+    "solarPlant" :"Planta-solar-Arnedo",
+    "year" : 2010     
+     }];
+    initialCities=inicializacion;
+        console.log("Initializing data"); 
+        cities.push(initialCities);
+     res.send(initialCities);
+     res.sendStatus(201);
+     console.log("Data initialized");
+});
+    
+//GET al conjunto de recursos    
+app.get(BASE_API_PATH+"/cities",(req,res)=>{
+    console.log(Date() + " - GET /cities");
+    res.send(cities);
+});
+
+
+
+//GET a un recurso concreto /name_solar_plants
+ app.get(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
+     
+    var solarPlant = req.params.solarPlant;
+     console.log(Date() + " - GET /cities/"+ solarPlant);
+    var filteredCities = cities.filter((c)=>{
+        return (c.solarPlant == solarPlant);
+});
+
+   res.send(filteredCities);
+ });
  
+//--------------------------------------------------------------------------------
+
+   
+// POST al conjunto de recursos   
+app.post(BASE_API_PATH+"/cities",(req,res)=>{ 
+    console.log(Date() + " - POST /cities");
+     var city = req.body;
+     cities.push(city);
+     res.sendStatus(201);
+    
+});
+
+
+//POST a un recurso
+app.post(BASE_API_PATH + "/cities/:solarPlant",(req,res)=>{
+    var solarPlant = req.params.solarPlant;
+     console.log(Date() + " - GET /cities/"+ solarPlant);
+    res.sendStatus(405);
+}); 
+
+//--------------------------------------------------------------------------------
+
+
+//DELETE a un conjunto recursos
+app.delete(BASE_API_PATH+"/cities",(req,res)=>{
+    console.log(Date() + " - DELETE /cities");
+    cities = [];
+    res.sendStatus(200);
+ });
+
+
+//DELETE a un recurso concreto
+app.delete(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
+    var solarPlant = req.params.solarPlant;
+    console.log(Date() + " - DELETE /cities/"+ solarPlant);
+    cities = cities.filter((c)=>{
+        return c.solarPlant != solarPlant;
+    });
+   res.sendStatus(200);
+}); 
+
+//--------------------------------------------------------------------------------
+
+
+//PUT a un conjunto
+app.put(BASE_API_PATH+"/cities",(req,res)=>{
+    console.log(Date() + " - PUT /cities");
+    res.sendStatus(405);
+});  
+
+//PUT a un recurso concreto
+app.put(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
+    var solarPlant = req.params.solarPlant;
+    var updateCities = req.body;
+    
+    console.log(Date() + " - PUT /cities/"+solarPlant);
+    
+    if(solarPlant != updateCities.solarPlant){
+        res.sendStatus(409);
+        return;
+    }
+   
+   cities = cities.map((c)=>{
+       if (c.solarPlant == updateCities.solarPlant){
+           return updateCities;
+       }else{
+           return c;
+       }
+   });
+    res.sendStatus(200);
+});
+   
+   
+
    
 app.listen(port,()=>{
     
