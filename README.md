@@ -9,6 +9,6 @@ List of Projects registered in the course of **Service Oriented Systems** (2017/
   - [Jose Maria Barrero Olmedo](https://github.com/josbarolm)
   - [Adan Manuel Franco Moreno](https://github.com/adaframor)
   - [Antonio José Perea Guadix](https://github.com/antpergua)
-- **Project description**: Tarea 11 del backlog para el F01
+- **Project description**: This work is related to the pollution of cities, global warming and sea level rise.
 - **Repository**: [gti-sos/SOS1718-03](https://github.com/gti-sos/SOS1718-03)
 - **URL**: [TBD](#)
