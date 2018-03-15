@@ -43,7 +43,23 @@ var cities = [
    
     ];
     
+app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
+     var inicializacion = [{"city"  :  "madrid",
+    "station" :"fernandez-ladreda-oporto",
+    "year" : "2014"
+    },
     
+     {"city"  :  "barcelona",
+    "station" :"l-eixample",
+    "year" : "2014"
+    }];
+    initialCities=inicializacion;
+    console.log("Initializing data"); 
+    cities.push(initialCities);
+    res.send(initialCities);
+    res.sendStatus(201);
+    console.log("Data initialized");
+});    
     
     
 //GET al conjunto de recursos    
