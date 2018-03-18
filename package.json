@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-    "deploy": "git add . ; git commit -m 'deploy to heroku'; git push heroku"
   },
   "repository": {
     "type": "git",
