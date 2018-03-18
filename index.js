@@ -1,5 +1,5 @@
 
-//IndexLab06
+//IndexLab6
 
 var express = require("express");
 var bodyParser = require("body-parser");
