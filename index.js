@@ -150,7 +150,7 @@ app.put(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
 
 // -----------ANTONIO-----------
 
-var cities = [
+var globalWarmings = [
     
     {"name"  :  "Ciudad-Real",
     "solarPlant" :"Parque-fotovoltaico-Puertollano",
@@ -184,7 +184,7 @@ var cities = [
 //--------------------------------------------------------------------------------    
 
 
-app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
+app.get(BASE_API_PATH + "/globalWarmings/loadInitialData", function (req, res){
      var inicializacion = [{
     "name"  :  "Cuenca",
     "solarPlant" :"Planta-solar-Osa-de-la-Vega",
@@ -195,28 +195,28 @@ app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
     "solarPlant" :"Planta-solar-Arnedo",
     "year" : 2010     
      }];
-    cities=inicializacion;
+    globalWarmings=inicializacion;
         console.log("Initializing data"); 
     
-     res.send(cities);
+     res.send(globalWarmings);
      res.sendStatus(201);
      console.log("Data initialized");
 });
     
 //GET al conjunto de recursos    
-app.get(BASE_API_PATH+"/cities",(req,res)=>{
-    console.log(Date() + " - GET /cities");
-    res.send(cities);
+app.get(BASE_API_PATH+"/globalWarmings",(req,res)=>{
+    console.log(Date() + " - GET /globalWarmings");
+    res.send(globalWarmings);
 });
 
 
 
 //GET a un recurso concreto /name_solar_plants
- app.get(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
+ app.get(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
      
     var solarPlant = req.params.solarPlant;
-     console.log(Date() + " - GET /cities/"+ solarPlant);
-    var filteredCities = cities.filter((c)=>{
+     console.log(Date() + " - GET /globalWarmings/"+ solarPlant);
+    var filteredCities = globalWarmings.filter((c)=>{
         return (c.solarPlant == solarPlant);
 });
 
@@ -227,19 +227,19 @@ app.get(BASE_API_PATH+"/cities",(req,res)=>{
 
    
 // POST al conjunto de recursos   
-app.post(BASE_API_PATH+"/cities",(req,res)=>{ 
-    console.log(Date() + " - POST /cities");
+app.post(BASE_API_PATH+"/globalWarmings",(req,res)=>{ 
+    console.log(Date() + " - POST /globalWarmings");
      var city = req.body;
-     cities.push(city);
+     globalWarmings.push(city);
      res.sendStatus(201);
     
 });
 
 
 //POST a un recurso
-app.post(BASE_API_PATH + "/cities/:solarPlant",(req,res)=>{
+app.post(BASE_API_PATH + "/globalWarmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
-     console.log(Date() + " - GET /cities/"+ solarPlant);
+     console.log(Date() + " - GET /globalWarmings/"+ solarPlant);
     res.sendStatus(405);
 }); 
 
@@ -247,18 +247,18 @@ app.post(BASE_API_PATH + "/cities/:solarPlant",(req,res)=>{
 
 
 //DELETE a un conjunto recursos
-app.delete(BASE_API_PATH+"/cities",(req,res)=>{
-    console.log(Date() + " - DELETE /cities");
-    cities = [];
+app.delete(BASE_API_PATH+"/globalWarmings",(req,res)=>{
+    console.log(Date() + " - DELETE /globalWarmings");
+    globalWarmings = [];
     res.sendStatus(200);
  });
 
 
 //DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
+app.delete(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
-    console.log(Date() + " - DELETE /cities/"+ solarPlant);
-    cities = cities.filter((c)=>{
+    console.log(Date() + " - DELETE /globalWarmings/"+ solarPlant);
+    globalWarmings = globalWarmings.filter((c)=>{
         return c.solarPlant != solarPlant;
     });
    res.sendStatus(200);
@@ -268,24 +268,24 @@ app.delete(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
 
 
 //PUT a un conjunto
-app.put(BASE_API_PATH+"/cities",(req,res)=>{
-    console.log(Date() + " - PUT /cities");
+app.put(BASE_API_PATH+"/globalWarmings",(req,res)=>{
+    console.log(Date() + " - PUT /globalWarmings");
     res.sendStatus(405);
 });  
 
 //PUT a un recurso concreto
-app.put(BASE_API_PATH+"/cities/:solarPlant",(req,res)=>{
+app.put(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
     var updateCities = req.body;
     
-    console.log(Date() + " - PUT /cities/"+solarPlant);
+    console.log(Date() + " - PUT /globalWarmings/"+solarPlant);
     
     if(solarPlant != updateCities.solarPlant){
         res.sendStatus(409);
         return;
     }
    
-   cities = cities.map((c)=>{
+   globalWarmings = globalWarmings.map((c)=>{
        if (c.solarPlant == updateCities.solarPlant){
            return updateCities;
        }else{
