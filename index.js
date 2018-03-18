@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 
 // -------------ADAN---------------
-var cities = [
+var pollutionCities = [
     
      {"city"  :  "madrid",
     "station" :"fernandez-ladreda-oporto",
@@ -43,7 +43,7 @@ var cities = [
    
     ];
     
-app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
+app.get(BASE_API_PATH + "/pollutionCities/loadInitialData", function (req, res){
      var inicializacion = [{"city"  :  "madrid",
     "station" :"fernandez-ladreda-oporto",
     "year" : "2014"
@@ -53,28 +53,28 @@ app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
     "station" :"l-eixample",
     "year" : "2014"
     }];
-    cities=inicializacion;
+    pollutionCities=inicializacion;
     console.log("Initializing data"); 
-    res.send(cities);
+    res.send(pollutionCities);
     res.sendStatus(201);
     console.log("Data initialized");
 });    
     
     
 //GET al conjunto de recursos    
-app.get(BASE_API_PATH+"/cities",(req,res)=>{
-    console.log(Date() + " - GET /cities");
-    res.send(cities);
+app.get(BASE_API_PATH+"/pollutionCities",(req,res)=>{
+    console.log(Date() + " - GET /pollutionCities");
+    res.send(pollutionCities);
 });
 
 
 
 //GET a un recurso concreto /station
-app.get(BASE_API_PATH+"/cities/:station",(req,res)=>{
+app.get(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
      
     var station = req.params.station;
-     console.log(Date() + " - GET /cities/"+ station);
-    var filteredCities = cities.filter((c)=>{
+     console.log(Date() + " - GET /pollutionCities/"+ station);
+    var filteredCities = pollutionCities.filter((c)=>{
         return (c.station == station);
     });
 
@@ -82,8 +82,8 @@ app.get(BASE_API_PATH+"/cities/:station",(req,res)=>{
 });
 
 // POST al conjunto de recursos   
-app.post(BASE_API_PATH+"/cities",(req,res)=>{ 
-    console.log(Date() + " - POST /cities");
+app.post(BASE_API_PATH+"/pollutionCities",(req,res)=>{ 
+    console.log(Date() + " - POST /pollutionCities");
     var city = req.body;
     cities.push(city);
      
@@ -91,27 +91,27 @@ app.post(BASE_API_PATH+"/cities",(req,res)=>{
 });
 
 //POST a un recurso
-app.post(BASE_API_PATH + "/cities/:station",(req,res)=>{
+app.post(BASE_API_PATH + "/pollutionCities/:station",(req,res)=>{
     var station = req.params.station;
-     console.log(Date() + " - GET /cities/"+ station);
+     console.log(Date() + " - GET /pollutionCities/"+ station);
     res.sendStatus(405);
 }); 
 
 
 
 //DELETE a un conjunto recursos
-app.delete(BASE_API_PATH+"/cities",(req,res)=>{
-    console.log(Date() + " - DELETE /cities");
-    cities = [];
+app.delete(BASE_API_PATH+"/pollutionCities",(req,res)=>{
+    console.log(Date() + " - DELETE /pollutionCities");
+    pollutionCities = [];
     res.sendStatus(200);
  });
 
 
 //DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/cities/:station",(req,res)=>{
+app.delete(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
     var station = req.params.station;
-    console.log(Date() + " - DELETE /cities/"+ station);
-    cities = cities.filter((c)=>{
+    console.log(Date() + " - DELETE /pollutionCities/"+ station);
+    pollutionCities = pollutionCities.filter((c)=>{
         return c.station != station;
     });
    res.sendStatus(200);
@@ -121,24 +121,24 @@ app.delete(BASE_API_PATH+"/cities/:station",(req,res)=>{
 
 
 //PUT a un conjunto
-app.put(BASE_API_PATH+"/cities",(req,res)=>{
-    console.log(Date() + " - PUT /cities");
+app.put(BASE_API_PATH+"/pollutionCities",(req,res)=>{
+    console.log(Date() + " - PUT /pollutionCities");
     res.sendStatus(405);
 });  
 
 //PUT a un recurso concreto
-app.put(BASE_API_PATH+"/cities/:station",(req,res)=>{
+app.put(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
     var station = req.params.station;
     var updateCities = req.body;
     
-    console.log(Date() + " - PUT /cities/"+station);
+    console.log(Date() + " - PUT /pollutionCities/"+station);
     
     if(station != updateCities.station){
         res.sendStatus(409);
         return;
     }
    
-   cities = cities.map((c)=>{
+   pollutionCities = pollutionCities.map((c)=>{
        if (c.station == updateCities.station){
            return updateCities;
        }else{
