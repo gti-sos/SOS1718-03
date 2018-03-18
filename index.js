@@ -53,9 +53,9 @@ app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
     "station" :"l-eixample",
     "year" : "2014"
     }];
-    initialCities=inicializacion;
+    cities=inicializacion;
     console.log("Initializing data"); 
-    res.send(initialCities);
+    res.send(cities);
     res.sendStatus(201);
     console.log("Data initialized");
 });    
@@ -195,10 +195,10 @@ app.get(BASE_API_PATH + "/cities/loadInitialData", function (req, res){
     "solarPlant" :"Planta-solar-Arnedo",
     "year" : 2010     
      }];
-    initialCities=inicializacion;
+    cities=inicializacion;
         console.log("Initializing data"); 
     
-     res.send(initialCities);
+     res.send(cities);
      res.sendStatus(201);
      console.log("Data initialized");
 });
