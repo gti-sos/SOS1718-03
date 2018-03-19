@@ -79,7 +79,7 @@ app.get(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
         return (c.station == station);
     });
 
-   res.send(filteredCities);
+   res.send(filteredCities[0]);
 });
 
 // POST al conjunto de recursos   
@@ -221,7 +221,7 @@ app.get(BASE_API_PATH+"/globalWarmings",(req,res)=>{
         return (c.solarPlant == solarPlant);
 });
 
-   res.send(filteredCities);
+   res.send(filteredCities[0]);
  });
  
 //--------------------------------------------------------------------------------
