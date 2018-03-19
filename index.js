@@ -185,6 +185,11 @@ var globalWarmings = [
 //--------------------------------------------------------------------------------    
 
 
+
+app.get("/test", function (req, res){
+    res.send("test");
+});
+
 app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      var inicializacion = [{
     "name"  :  "Cuenca",
