@@ -44,7 +44,7 @@ var pollutionCities = [
    
     ];
     
-app.get(BASE_API_PATH + "/pollutionCities/loadInitialData", function (req, res){
+app.get(BASE_API_PATH + "/pollution-cities/loadInitialData", function (req, res){
      var inicializacion = [{"city"  :  "madrid",
     "station" :"fernandez-ladreda-oporto",
     "year" : "2014"
@@ -63,18 +63,18 @@ app.get(BASE_API_PATH + "/pollutionCities/loadInitialData", function (req, res){
     
     
 //GET al conjunto de recursos    
-app.get(BASE_API_PATH+"/pollutionCities",(req,res)=>{
-    console.log(Date() + " - GET /pollutionCities");
+app.get(BASE_API_PATH+"/pollution-cities",(req,res)=>{
+    console.log(Date() + " - GET /pollution-cities");
     res.send(pollutionCities);
 });
 
 
 
 //GET a un recurso concreto /station
-app.get(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
+app.get(BASE_API_PATH+"/pollution-cities/:station",(req,res)=>{
      
     var station = req.params.station;
-     console.log(Date() + " - GET /pollutionCities/"+ station);
+     console.log(Date() + " - GET /pollution-cities/"+ station);
     var filteredCities = pollutionCities.filter((c)=>{
         return (c.station == station);
     });
@@ -83,8 +83,8 @@ app.get(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
 });
 
 // POST al conjunto de recursos   
-app.post(BASE_API_PATH+"/pollutionCities",(req,res)=>{ 
-    console.log(Date() + " - POST /pollutionCities");
+app.post(BASE_API_PATH+"/pollution-cities",(req,res)=>{ 
+    console.log(Date() + " - POST /pollution-cities");
     var city = req.body;
     pollutionCities.push(city);
      
@@ -92,26 +92,26 @@ app.post(BASE_API_PATH+"/pollutionCities",(req,res)=>{
 });
 
 //POST a un recurso
-app.post(BASE_API_PATH + "/pollutionCities/:station",(req,res)=>{
+app.post(BASE_API_PATH + "/pollution-cities/:station",(req,res)=>{
     var station = req.params.station;
-     console.log(Date() + " - GET /pollutionCities/"+ station);
+     console.log(Date() + " - GET /pollution-cities/"+ station);
     res.sendStatus(405);
 }); 
 
 
 
 //DELETE a un conjunto recursos
-app.delete(BASE_API_PATH+"/pollutionCities",(req,res)=>{
-    console.log(Date() + " - DELETE /pollutionCities");
+app.delete(BASE_API_PATH+"/pollution-cities",(req,res)=>{
+    console.log(Date() + " - DELETE /pollution-cities");
     pollutionCities = [];
     res.sendStatus(200);
  });
 
 
 //DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
+app.delete(BASE_API_PATH+"/pollution-cities/:station",(req,res)=>{
     var station = req.params.station;
-    console.log(Date() + " - DELETE /pollutionCities/"+ station);
+    console.log(Date() + " - DELETE /pollution-cities/"+ station);
     pollutionCities = pollutionCities.filter((c)=>{
         return c.station != station;
     });
@@ -122,17 +122,17 @@ app.delete(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
 
 
 //PUT a un conjunto
-app.put(BASE_API_PATH+"/pollutionCities",(req,res)=>{
-    console.log(Date() + " - PUT /pollutionCities");
+app.put(BASE_API_PATH+"/pollution-cities",(req,res)=>{
+    console.log(Date() + " - PUT /pollution-cities");
     res.sendStatus(405);
 });  
 
 //PUT a un recurso concreto
-app.put(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
+app.put(BASE_API_PATH+"/pollution-cities/:station",(req,res)=>{
     var station = req.params.station;
     var updateCities = req.body;
     
-    console.log(Date() + " - PUT /pollutionCities/"+station);
+    console.log(Date() + " - PUT /pollution-cities/"+station);
     
     if(station != updateCities.station){
         res.sendStatus(409);
@@ -185,7 +185,7 @@ var globalWarmings = [
 //--------------------------------------------------------------------------------    
 
 
-app.get(BASE_API_PATH + "/globalWarmings/loadInitialData", function (req, res){
+app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      var inicializacion = [{
     "name"  :  "Cuenca",
     "solarPlant" :"Planta-solar-Osa-de-la-Vega",
@@ -205,18 +205,18 @@ app.get(BASE_API_PATH + "/globalWarmings/loadInitialData", function (req, res){
 });
     
 //GET al conjunto de recursos    
-app.get(BASE_API_PATH+"/globalWarmings",(req,res)=>{
-    console.log(Date() + " - GET /globalWarmings");
+app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
+    console.log(Date() + " - GET /global-warmings");
     res.send(globalWarmings);
 });
 
 
 
 //GET a un recurso concreto /name_solar_plants
- app.get(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
+ app.get(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
      
     var solarPlant = req.params.solarPlant;
-     console.log(Date() + " - GET /globalWarmings/"+ solarPlant);
+     console.log(Date() + " - GET /global-warmings/"+ solarPlant);
     var filteredCities = globalWarmings.filter((c)=>{
         return (c.solarPlant == solarPlant);
 });
@@ -228,8 +228,8 @@ app.get(BASE_API_PATH+"/globalWarmings",(req,res)=>{
 
    
 // POST al conjunto de recursos   
-app.post(BASE_API_PATH+"/globalWarmings",(req,res)=>{ 
-    console.log(Date() + " - POST /globalWarmings");
+app.post(BASE_API_PATH+"/global-warmings",(req,res)=>{ 
+    console.log(Date() + " - POST /global-warmings");
      var city = req.body;
      globalWarmings.push(city);
      res.sendStatus(201);
@@ -238,9 +238,9 @@ app.post(BASE_API_PATH+"/globalWarmings",(req,res)=>{
 
 
 //POST a un recurso
-app.post(BASE_API_PATH + "/globalWarmings/:solarPlant",(req,res)=>{
+app.post(BASE_API_PATH + "/global-warmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
-     console.log(Date() + " - GET /globalWarmings/"+ solarPlant);
+     console.log(Date() + " - GET /global-warmings/"+ solarPlant);
     res.sendStatus(405);
 }); 
 
@@ -248,17 +248,17 @@ app.post(BASE_API_PATH + "/globalWarmings/:solarPlant",(req,res)=>{
 
 
 //DELETE a un conjunto recursos
-app.delete(BASE_API_PATH+"/globalWarmings",(req,res)=>{
-    console.log(Date() + " - DELETE /globalWarmings");
+app.delete(BASE_API_PATH+"/global-warmings",(req,res)=>{
+    console.log(Date() + " - DELETE /global-warmings");
     globalWarmings = [];
     res.sendStatus(200);
  });
 
 
 //DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
+app.delete(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
-    console.log(Date() + " - DELETE /globalWarmings/"+ solarPlant);
+    console.log(Date() + " - DELETE /global-warmings/"+ solarPlant);
     globalWarmings = globalWarmings.filter((c)=>{
         return c.solarPlant != solarPlant;
     });
@@ -269,17 +269,17 @@ app.delete(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
 
 
 //PUT a un conjunto
-app.put(BASE_API_PATH+"/globalWarmings",(req,res)=>{
-    console.log(Date() + " - PUT /globalWarmings");
+app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
+    console.log(Date() + " - PUT /global-warmings");
     res.sendStatus(405);
 });  
 
 //PUT a un recurso concreto
-app.put(BASE_API_PATH+"/globalWarmings/:solarPlant",(req,res)=>{
+app.put(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
     var updateCities = req.body;
     
-    console.log(Date() + " - PUT /globalWarmings/"+solarPlant);
+    console.log(Date() + " - PUT /global-warmings/"+solarPlant);
     
     if(solarPlant != updateCities.solarPlant){
         res.sendStatus(409);
