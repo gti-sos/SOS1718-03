@@ -20,10 +20,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-<<<<<<< HEAD
-    "heroku": "^0.2.0"
-=======
     "nedb": "^1.8.0"
->>>>>>> 8d536a9cc77d1e3555df83742caf0add15661031
+    "heroku": "^0.2.0"
   }
 }
