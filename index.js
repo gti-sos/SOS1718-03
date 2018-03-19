@@ -3,11 +3,11 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
-var DataStore = require("nedb");
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
-var dbFileName = __dirname+"/iglobalWarmings.db"
+
+
 
 var app = express();
 app.use("/",express.static(__dirname+"/public"));
@@ -180,30 +180,7 @@ var globalWarmings = [
    
     ];
 
-var db = new DataStore({
     
-    Filename: dbFileName,
-    autoload: true
-    
-    });
-    
-db.find({},(err,iglobalWarmings)=>{
-    if(err){
-        console.error("Error accesing DB");
-        process.exit(1);
-    }
-    
-    if(iglobalWarmings.length == 0){
-        console.log("Empty DB");
-        db.insert(globalWarmings);
-        
-    }else{
-        console.log("DB initialized with "+iglobalWarmings.length+" globalWarmings");
-        
-        
-    }
-    
-});    
     
 //--------------------------------------------------------------------------------    
 
