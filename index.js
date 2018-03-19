@@ -8,7 +8,7 @@ var DataStore = require("nedb");
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
-var dbFileName = __dirname+"iglobalWarmings.db";
+var dbFileName = __dirname+"/iglobalWarmings.db"
 
 var app = express();
 app.use("/",express.static(__dirname+"/public"));
