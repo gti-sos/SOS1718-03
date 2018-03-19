@@ -5,7 +5,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var DataStore = require("nedb");
 
-
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
 var dbFileName = __dirname+"/iglobalWarmings.db"
@@ -87,7 +86,7 @@ app.get(BASE_API_PATH+"/pollutionCities/:station",(req,res)=>{
 app.post(BASE_API_PATH+"/pollutionCities",(req,res)=>{ 
     console.log(Date() + " - POST /pollutionCities");
     var city = req.body;
-    cities.push(city);
+    pollutionCities.push(city);
      
     res.sendStatus(201);
 });
