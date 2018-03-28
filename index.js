@@ -3,9 +3,11 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
+var DataStore = require("nedb");
 
 var port = (process.env.PORT || 1607);
 var BASE_API_PATH = "/api/v1";
+var dbFileName = __dirname + "/globalwarmings.db";
 
 
 
@@ -151,7 +153,7 @@ app.put(BASE_API_PATH+"/pollution-cities/:station",(req,res)=>{
 
 // -----------ANTONIO-----------
 
-var globalWarmings = [
+var initialGlobalWarmings = [
     
     {"name"  :  "Ciudad-Real",
     "solarPlant" :"Parque-fotovoltaico-Puertollano",
@@ -180,7 +182,26 @@ var globalWarmings = [
    
     ];
 
-    
+  var db = new DataStore({
+    filename: dbFileName,
+    autoload: true
+});
+
+db.find({}, (err, globalWarmings) => {
+    if (err) {
+        console.error("Error accesing DB");
+        process.exit(1);
+    }
+
+    if (globalWarmings.length == 0) {
+        console.log("Empty DB");
+        db.insert(initialGlobalWarmings);
+    }
+    else {
+        console.log("DB initialized with " + globalWarmings.length + " globalWarmings");
+    }
+
+});  
     
 //--------------------------------------------------------------------------------    
 
@@ -191,15 +212,29 @@ app.get("/test", function (req, res){
 });
 
 app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
-     var inicializacion = [{
-    "name"  :  "Cuenca",
-    "solarPlant" :"Planta-solar-Osa-de-la-Vega",
+     var inicializacion = [ {"name"  :  "Ciudad-Real",
+    "solarPlant" :"Parque-fotovoltaico-Puertollano",
     "year" : 2010
     },
     
-    {"name"  :  "La-Rioja",
+     {"name"  :  "Cuenca",
+    "solarPlant" :"Parque-fotovoltaico-Olmedilla-de-Alarcon",
+     "year" : 2010
+     },
+    
+     {"name"  :  "Caceres",
+    "solarPlant" :"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla",
+    "year" : 2010     
+     },
+     
+     {"name"  :  "La-Rioja",
     "solarPlant" :"Planta-solar-Arnedo",
     "year" : 2010     
+     },
+     
+      {"name"  :  "Cuenca",
+    "solarPlant" :"Planta-solar-Osa-de-la-Vega",
+    "year" : 2010    
      }];
     globalWarmings=inicializacion;
         console.log("Initializing data"); 
@@ -212,22 +247,42 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
 //GET al conjunto de recursos    
 app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
     console.log(Date() + " - GET /global-warmings");
+   
+    db.find({}, (err, globalWarmings) => {
+    if (err) {
+        console.error("Error accesing DB");
+        res.sendStatus(500);
+         return;
+    }
+   
     res.send(globalWarmings);
+    });
 });
-
 
 
 //GET a un recurso concreto /name_solar_plants
  app.get(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
      
     var solarPlant = req.params.solarPlant;
-     console.log(Date() + " - GET /global-warmings/"+ solarPlant);
+    console.log(Date() + " - GET /global-warmings/"+ solarPlant);
+     
+    db.find({}, (err, globalWarmings) => {
+   
     var filteredCities = globalWarmings.filter((c)=>{
         return (c.solarPlant == solarPlant);
 });
 
+    if (err) {
+            console.error(" Error accesing DB");
+            res.sendStatus(500);
+            return;
+        }
+
    res.send(filteredCities[0]);
+        
+    });
  });
+     
  
 //--------------------------------------------------------------------------------
 
@@ -236,7 +291,7 @@ app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
 app.post(BASE_API_PATH+"/global-warmings",(req,res)=>{ 
     console.log(Date() + " - POST /global-warmings");
      var city = req.body;
-     globalWarmings.push(city);
+     db.insert(city);
      res.sendStatus(201);
     
 });
@@ -255,7 +310,12 @@ app.post(BASE_API_PATH + "/global-warmings/:solarPlant",(req,res)=>{
 //DELETE a un conjunto recursos
 app.delete(BASE_API_PATH+"/global-warmings",(req,res)=>{
     console.log(Date() + " - DELETE /global-warmings");
-    globalWarmings = [];
+    db.find({}, (err, globalWarmings) => {
+        for (var i = 0; i < globalWarmings.length; i++) {
+            db.remove({});
+        }
+    });
+    
     res.sendStatus(200);
  });
 
@@ -264,9 +324,10 @@ app.delete(BASE_API_PATH+"/global-warmings",(req,res)=>{
 app.delete(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
     var solarPlant = req.params.solarPlant;
     console.log(Date() + " - DELETE /global-warmings/"+ solarPlant);
-    globalWarmings = globalWarmings.filter((c)=>{
-        return c.solarPlant != solarPlant;
-    });
+    
+    db.remove({solarPlant: solarPlant});
+    
+    
    res.sendStatus(200);
 }); 
 
@@ -288,16 +349,14 @@ app.put(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
     
     if(solarPlant != updateCities.solarPlant){
         res.sendStatus(409);
+        console.warn(Date() + "  - Hacking attemp!");
         return;
     }
    
-   globalWarmings = globalWarmings.map((c)=>{
-       if (c.solarPlant == updateCities.solarPlant){
-           return updateCities;
-       }else{
-           return c;
-       }
-   });
+    db.update({"solarPlant": solarPlant}, updateCities, (err,numUpdated)=>{
+        console.log("Udapted: "+numUpdated);
+    });
+   
     res.sendStatus(200);
 });
    
@@ -310,5 +369,4 @@ app.listen(port,()=>{
     
 }).on("error", (e)=>{
     console.log("Server NOT READY:"+e);
-});
-
+ });
