@@ -5,44 +5,53 @@ module.exports = pollutionApi;
 pollutionApi.register = function(app, db) {
 
     console.log("Registering for index...");
-    
-    app.get(BASE_API_PATH + "/pollution-cities/loadInitialData", function (req, res){
-     var inicializacion =[
-    
-     {"city"  :  "madrid",
-    "station" :"fernandez-ladreda-oporto",
-    "year" : "2014"
-    },
-    
-     {"city"  :  "barcelona",
-    "station" :"l-eixample",
-    "year" : "2014"
-    },
-    
-     {"city"  :  "barcelona",
-    "station" :"gracia-sant-gervasi",
-    "year" : "2014"
-    },
-     
-     {"city"  :  "madrid",
-    "station" :"escuelas-aguirre",
-    "year" : "2014"
-    },
-     
-     {"city"  :  "valencia",
-    "station" :"pista-de-silla",
-    "year" : "2014"
-    }
-   
-    ];
-    var pollutionCities=inicializacion;
-    console.log("Initializing data"); 
-    res.send(pollutionCities);
-    res.sendStatus(201);
-    console.log("Data initialized");
-});  
-    
-    
+
+    app.get(BASE_API_PATH + "/pollution-cities/loadInitialData", function(req, res) {
+        var inicializacion = [
+
+            {
+                "city": "madrid",
+                "station": "fernandez-ladreda-oporto",
+                "year": "2014"
+            },
+
+            {
+                "city": "barcelona",
+                "station": "l-eixample",
+                "year": "2014"
+            },
+
+            {
+                "city": "barcelona",
+                "station": "gracia-sant-gervasi",
+                "year": "2014"
+            },
+
+            {
+                "city": "madrid",
+                "station": "escuelas-aguirre",
+                "year": "2014"
+            },
+
+            {
+                "city": "valencia",
+                "station": "pista-de-silla",
+                "year": "2014"
+            }
+
+        ];
+        var pollutionCities = inicializacion;
+        console.log("Initializing data");
+        res.send(pollutionCities);
+        res.sendStatus(201);
+        console.log("Data initialized");
+    });
+
+    app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
+
+    res.status(301).redirect("https://documenter.getpostman.com/view/4029231/sos1718-03-pollutioncities/RVtynWMv");
+
+});
 
     //GET al conjunto de recursos    
     app.get(BASE_API_PATH + "/pollution-cities", (req, res) => {
@@ -133,6 +142,8 @@ pollutionApi.register = function(app, db) {
         var updateCities = req.body;
 
         console.log(Date() + " - PUT /pollution-cities/" + station);
+
+       
 
         if (station != updateCities.station) {
             res.sendStatus(409);
