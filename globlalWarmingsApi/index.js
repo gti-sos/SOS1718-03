@@ -47,6 +47,13 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      console.log("Data initialized");
 });
 
+ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
+
+    res.status(301).redirect("https://documenter.getpostman.com/view/4029210/sos1718-03-globalwarmings/RVtynWMu");
+
+});
+
+
 
 //GET al conjunto de recursos    
 app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
@@ -146,10 +153,17 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
 
 //PUT a un recurso concreto
 app.put(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
+    var _id = req.params._id
     var solarPlant = req.params.solarPlant;
     var updateCities = req.body;
     
     console.log(Date() + " - PUT /global-warmings/"+solarPlant);
+    
+    if(_id != updateCities._id){
+        res.sendStatus(400);
+        console.warn(Date() + "  - Hacking attemp!");
+        return;
+    }
     
     if(solarPlant != updateCities.solarPlant){
         res.sendStatus(409);
