@@ -180,43 +180,11 @@ var initialGlobalWarmings = [
      res.sendStatus(201);
      console.log("Data initialized");
 });
-   
 
-//GET a un recurso concreto /name_solar_plants
- app.get(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
-     
-    var solarPlant = req.params.solarPlant;
-    console.log(Date() + " - GET /global-warmings/"+ solarPlant);
-     
-    db.find({}, (err, globalWarmings) => {
-   
-    var filteredCities = globalWarmings.filter((c)=>{
-        return (c.solarPlant == solarPlant);
-    });
-
-    if (err) {
-            console.error(" Error accesing DB");
-            res.sendStatus(500);
-            return;
-        }
-
-   res.send(filteredCities[0]);
-        
-    });
- });
-     
  
 //--------------------------------------------------------------------------------
 
    
-// POST al conjunto de recursos   
-app.post(BASE_API_PATH+"/global-warmings",(req,res)=>{ 
-    console.log(Date() + " - POST /global-warmings");
-     var city = req.body;
-     db.insert(city);
-     res.sendStatus(201);
-    
-});
 
 globlalWarmingsApi.register(app,db);//////////F05
 
