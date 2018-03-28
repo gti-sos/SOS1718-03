@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"name":"La-Rioja","solarPlant":"Planta-solar-Arnedo","year":2010,"_id":"9K0vN6kUCspHr29J"}
 {"name":"Caceres","solarPlant":"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla","year":2010,"_id":"AqPCSRF1WHD8AmzV"}
 {"city":"barcelona","station":"l-eixample","year":"2014","_id":"BsAieIKD2PviSF0I"}
@@ -18,3 +19,10 @@
 {"city":"barcelona","station":"gracia-sant-gervasi","year":"2014","_id":"UKsijMPPtWzEqDm4"}
 {"city":"madrid","station":"escuelas-aguirre","year":"2014","_id":"isgqj1Ab4GyyxhAq"}
 {"city":"valencia","station":"pista-de-silla","year":"2014","_id":"ftGvhGTXQarz45BG"}
+=======
+{"name":"Caceres","solarPlant":"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla","year":2010,"_id":"7i5A6EQOKO5q9Tez"}
+{"name":"Cuenca","solarPlant":"Parque-fotovoltaico-Olmedilla-de-Alarcon","year":2010,"_id":"F9IRuGsynYzwb8ZD"}
+{"name":"Cuenca","solarPlant":"Planta-solar-Osa-de-la-Vega","year":2010,"_id":"gGpnPiDinWvKL2sQ"}
+{"name":"La-Rioja","solarPlant":"Planta-solar-Arnedo","year":2020,"_id":"jNuTyWBMbgcDZtYU"}
+{"name":"Ciudad-Real","solarPlant":"Parque-fotovoltaico-Puertollano","year":2010,"_id":"l6PJEPYRpBtnrvzb"}
+>>>>>>> 53662fe08fb13becfcf973a656a3fb380dec6277

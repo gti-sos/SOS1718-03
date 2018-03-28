@@ -4,16 +4,18 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var DataStore = require("nedb");
+var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
 
 var pollutionApi =  require("./pollutionApi");
 var port = (process.env.PORT || 1607);
-var BASE_API_PATH = "/api/v1";
 var dbFileName = __dirname + "/globalwarmings.db";
 var dbFileNameA = __dirname + "/pollutionCities.db";
 
 
 
 var app = express();
+
+
 app.use("/",express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 
@@ -145,37 +147,8 @@ var initialGlobalWarmings = [
      }
    
     ];
-
-  var db = new DataStore({
-    filename: dbFileName,
-    autoload: true
-});
-
-db.find({}, (err, globalWarmings) => {
-    if (err) {
-        console.error("Error accesing DB");
-        process.exit(1);
-    }
-
-    if (globalWarmings.length == 0) {
-        console.log("Empty DB");
-        db.insert(initialGlobalWarmings);
-    }
-    else {
-        console.log("DB initialized with " + globalWarmings.length + " globalWarmings");
-    }
-
-});  
     
-//--------------------------------------------------------------------------------    
-
-
-
-app.get("/test", function (req, res){
-    res.send("test");
-});
-
-app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
+    app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      var inicializacion = [ {"name"  :  "Ciudad-Real",
     "solarPlant" :"Parque-fotovoltaico-Puertollano",
     "year" : 2010
@@ -207,23 +180,9 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      res.sendStatus(201);
      console.log("Data initialized");
 });
-    
-//GET al conjunto de recursos    
-app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
-    console.log(Date() + " - GET /global-warmings");
    
-    db.find({}, (err, globalWarmings) => {
-    if (err) {
-        console.error("Error accesing DB");
-        res.sendStatus(500);
-         return;
-    }
-   
-    res.send(globalWarmings);
-    });
-});
 
-
+<<<<<<< HEAD
 //GET a un recurso concreto /name_solar_plants
  app.get(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
      
@@ -258,57 +217,32 @@ app.post(BASE_API_PATH+"/global-warmings",(req,res)=>{
      db.insert(city);
      res.sendStatus(201);
     
+=======
+  var db = new DataStore({
+    filename: dbFileName,
+    autoload: true
+>>>>>>> 53662fe08fb13becfcf973a656a3fb380dec6277
 });
 
+globlalWarmingsApi.register(app,db);//////////F05
 
-//POST a un recurso
-app.post(BASE_API_PATH + "/global-warmings/:solarPlant",(req,res)=>{
-    var solarPlant = req.params.solarPlant;
-     console.log(Date() + " - GET /global-warmings/"+ solarPlant);
-    res.sendStatus(405);
-}); 
+db.find({}, (err, globalWarmings) => {
+    if (err) {
+        console.error("Error accesing DB");
+        process.exit(1);
+    }
 
-//--------------------------------------------------------------------------------
+    if (globalWarmings.length == 0) {
+        console.log("Empty DB");
+        db.insert(initialGlobalWarmings);
+    }
+    else {
+        console.log("DB initialized with " + globalWarmings.length + " globalWarmings");
+    }
 
-
-//DELETE a un conjunto recursos
-app.delete(BASE_API_PATH+"/global-warmings",(req,res)=>{
-    console.log(Date() + " - DELETE /global-warmings");
-    db.find({}, (err, globalWarmings) => {
-        for (var i = 0; i < globalWarmings.length; i++) {
-            db.remove({});
-        }
-    });
-    
-    res.sendStatus(200);
- });
-
-
-//DELETE a un recurso concreto
-app.delete(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
-    var solarPlant = req.params.solarPlant;
-    console.log(Date() + " - DELETE /global-warmings/"+ solarPlant);
-    
-    db.remove({solarPlant: solarPlant});
-    
-    
-   res.sendStatus(200);
-}); 
-
-//--------------------------------------------------------------------------------
-
-
-//PUT a un conjunto
-app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
-    console.log(Date() + " - PUT /global-warmings");
-    res.sendStatus(405);
 });  
-
-//PUT a un recurso concreto
-app.put(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
-    var solarPlant = req.params.solarPlant;
-    var updateCities = req.body;
     
+<<<<<<< HEAD
     console.log(Date() + " - PUT /global-warmings/"+solarPlant);
     
     if(solarPlant != updateCities.solarPlant){
@@ -325,6 +259,10 @@ app.put(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
 });
    
 */
+=======
+//--------------------------------------------------------------------------------    
+
+>>>>>>> 53662fe08fb13becfcf973a656a3fb380dec6277
 
    
 app.listen(port,()=>{
