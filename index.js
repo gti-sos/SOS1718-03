@@ -116,7 +116,7 @@ app.get(BASE_API_PATH + "/pollution-cities/loadInitialData", function (req, res)
 
 
 
-/*
+
 // -----------ANTONIO-----------
 
 var initialGlobalWarmings = [
@@ -182,7 +182,6 @@ var initialGlobalWarmings = [
 });
    
 
-<<<<<<< HEAD
 //GET a un recurso concreto /name_solar_plants
  app.get(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
      
@@ -217,11 +216,6 @@ app.post(BASE_API_PATH+"/global-warmings",(req,res)=>{
      db.insert(city);
      res.sendStatus(201);
     
-=======
-  var db = new DataStore({
-    filename: dbFileName,
-    autoload: true
->>>>>>> 53662fe08fb13becfcf973a656a3fb380dec6277
 });
 
 globlalWarmingsApi.register(app,db);//////////F05
@@ -242,27 +236,8 @@ db.find({}, (err, globalWarmings) => {
 
 });  
     
-<<<<<<< HEAD
-    console.log(Date() + " - PUT /global-warmings/"+solarPlant);
-    
-    if(solarPlant != updateCities.solarPlant){
-        res.sendStatus(409);
-        console.warn(Date() + "  - Hacking attemp!");
-        return;
-    }
-   
-    db.update({"solarPlant": solarPlant}, updateCities, (err,numUpdated)=>{
-        console.log("Udapted: "+numUpdated);
-    });
-   
-    res.sendStatus(200);
-});
-   
-*/
-=======
 //--------------------------------------------------------------------------------    
 
->>>>>>> 53662fe08fb13becfcf973a656a3fb380dec6277
 
    
 app.listen(port,()=>{
