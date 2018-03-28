@@ -13,6 +13,41 @@ app.get("/test", function (req, res){
     res.send("test");
 });
 
+
+app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
+     var inicializacion = [ {"name"  :  "Ciudad-Real",
+    "solarPlant" :"Parque-fotovoltaico-Puertollano",
+    "year" : 2010
+    },
+    
+     {"name"  :  "Cuenca",
+    "solarPlant" :"Parque-fotovoltaico-Olmedilla-de-Alarcon",
+     "year" : 2010
+     },
+    
+     {"name"  :  "Caceres",
+    "solarPlant" :"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla",
+    "year" : 2010     
+     },
+     
+     {"name"  :  "La-Rioja",
+    "solarPlant" :"Planta-solar-Arnedo",
+    "year" : 2010     
+     },
+     
+      {"name"  :  "Cuenca",
+    "solarPlant" :"Planta-solar-Osa-de-la-Vega",
+    "year" : 2010    
+     }];
+    var globalWarmings=inicializacion;
+        console.log("Initializing data"); 
+    
+     res.send(globalWarmings);
+     res.sendStatus(201);
+     console.log("Data initialized");
+});
+
+
 //GET al conjunto de recursos    
 app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
     console.log(Date() + " - GET /global-warmings");
