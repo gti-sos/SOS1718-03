@@ -85,6 +85,9 @@ pollutionApi.register = function(app, db) {
                 res.sendStatus(500);
                 return;
             }
+            if (filteredCities.length==0){
+                res.sendStatus(404);
+            }
 
             res.send(filteredCities[0]);
         });
@@ -94,8 +97,32 @@ pollutionApi.register = function(app, db) {
     app.post(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - POST /pollution-cities");
         var city = req.body;
-        db.insert(city);
-        res.sendStatus(201);
+        if (Object.keys(city).length > 4 ||!city.hasOwnProperty("city")|| !city.hasOwnProperty("station") ||
+            !city.hasOwnProperty("year") || !city.hasOwnProperty("_id")){
+            res.sendStatus(400);
+            return;
+        }else{
+            db.find({}, (err, pollutionCities) => {
+
+            var filteredCities = pollutionCities.filter((c) => {
+                return (c.station == city.station);
+            });
+
+            if (err) {
+                console.error(" Error accesing DB");
+                res.sendStatus(500);
+                return;
+            }
+            if (filteredCities.length==0){
+                db.insert(city);
+                res.sendStatus(201);
+            }else{
+                res.sendStatus(409);
+            }
+            });
+           
+        }
+        
     });
 
     //POST a un recurso
@@ -145,11 +172,17 @@ pollutionApi.register = function(app, db) {
 
        
 
-        if (station != updateCities.station) {
+        
+        
+        if (Object.keys(updateCities).length > 4 ||!updateCities.hasOwnProperty("city")|| !updateCities.hasOwnProperty("station") ||
+            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("_id")){
+            res.sendStatus(400);
+            return;
+        }else if (station != updateCities.station) {
             res.sendStatus(409);
             return;
         }
-
+        
         db.update({ "station": station }, updateCities, (err, numUpdated) => {
             console.log("Updated: " + numUpdated);
         });
