@@ -178,7 +178,7 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
 
   //PUT a un recurso concreto
     app.put(BASE_API_PATH + "/global-warmings/:solarPlant", (req, res) => {
-        var solarPlant = req.params.station;
+        var solarPlant = req.params.solarPlant;
         var updateCities = req.body;
 
         console.log(Date() + " - PUT /global-warmings/" + solarPlant);
