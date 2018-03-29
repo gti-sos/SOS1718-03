@@ -47,13 +47,6 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      console.log("Data initialized");
 });
 
- app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
-
-    res.status(301).redirect("https://documenter.getpostman.com/view/4029210/sos1718-03-globalwarmings/RVtynWMu");
-
-});
-
-
 
 //GET al conjunto de recursos    
 app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
@@ -70,6 +63,11 @@ app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
     });
 });
 
+app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
+
+    res.status(301).redirect("https://documenter.getpostman.com/view/4029210/sos1718-03-globalwarmings/RVtynWMu");
+
+});
 
 //GET a un recurso concreto /name_solar_plants
  app.get(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
@@ -88,6 +86,10 @@ app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
             res.sendStatus(500);
             return;
         }
+    
+     if (filteredCities.length==0){
+                res.sendStatus(404);
+            }
 
    res.send(filteredCities[0]);
         
@@ -98,14 +100,37 @@ app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
 //--------------------------------------------------------------------------------
 
    
-// POST al conjunto de recursos   
-app.post(BASE_API_PATH+"/global-warmings",(req,res)=>{ 
-    console.log(Date() + " - POST /global-warmings");
-     var city = req.body;
-     db.insert(city);
-     res.sendStatus(201);
-    
-});
+ // POST al conjunto de recursos   
+    app.post(BASE_API_PATH + "/global-warmings", (req, res) => {
+        console.log(Date() + " - POST /global-warmings");
+        var city = req.body;
+        if (Object.keys(city).length > 4 ||!city.hasOwnProperty("name")|| !city.hasOwnProperty("solarPlant") ||
+            !city.hasOwnProperty("year") || !city.hasOwnProperty("_id")){
+            res.sendStatus(400);
+            return;
+        }else{
+            db.find({}, (err, globalWarmings) => {
+
+            var filteredCities = globalWarmings.filter((c) => {
+                return (c.solarPlant == city.solarPlant);
+            });
+
+            if (err) {
+                console.error(" Error accesing DB");
+                res.sendStatus(500);
+                return;
+            }
+            if (filteredCities.length==0){
+                db.insert(city);
+                res.sendStatus(201);
+            }else{
+                res.sendStatus(409);
+            }
+            });
+           
+        }
+        
+    });
 
 
 //POST a un recurso
@@ -151,32 +176,32 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
     res.sendStatus(405);
 });  
 
-//PUT a un recurso concreto
-app.put(BASE_API_PATH+"/global-warmings/:solarPlant",(req,res)=>{
-    var _id = req.params._id
-    var solarPlant = req.params.solarPlant;
-    var updateCities = req.body;
-    
-    console.log(Date() + " - PUT /global-warmings/"+solarPlant);
-    
-    if(_id != updateCities._id){
-        res.sendStatus(400);
-        console.warn(Date() + "  - Hacking attemp!");
-        return;
-    }
-    
-    if(solarPlant != updateCities.solarPlant){
-        res.sendStatus(409);
-        console.warn(Date() + "  - Hacking attemp!");
-        return;
-    }
-   
-    db.update({"solarPlant": solarPlant}, updateCities, (err,numUpdated)=>{
-        console.log("Udapted: "+numUpdated);
+  //PUT a un recurso concreto
+    app.put(BASE_API_PATH + "/global-warmings/:solarPlant", (req, res) => {
+        var solarPlant = req.params.station;
+        var updateCities = req.body;
+
+        console.log(Date() + " - PUT /global-warmings/" + solarPlant);
+
+       
+
+        
+        
+        if (Object.keys(updateCities).length > 4 ||!updateCities.hasOwnProperty("name")|| !updateCities.hasOwnProperty("solarPlant") ||
+            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("_id")){
+            res.sendStatus(400);
+            return;
+        }else if (solarPlant != updateCities.solarPlant) {
+            res.sendStatus(409);
+            return;
+        }
+        
+        db.update({ "solarPlant": solarPlant }, updateCities, (err, numUpdated) => {
+            console.log("Updated: " + numUpdated);
+        });
+
+        res.sendStatus(200);
     });
-   
-    res.sendStatus(200);
-});
    
    
 
