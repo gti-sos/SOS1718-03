@@ -55,8 +55,8 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
             else {
               
                 if (globalWarmings.length > 0) {
-                    console.log('The database has already been initialized with : ' + globalWarmings.length);
-                    res.sendStatus(409); 
+                    res.send('The database has already been initialized with : ' + globalWarmings.length);
+                    res.send(globalWarmings); 
                 }
                 else {
                
