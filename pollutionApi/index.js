@@ -40,11 +40,27 @@ pollutionApi.register = function(app, db) {
             }
 
         ];
-        var pollutionCities = inicializacion;
-        console.log("Initializing data");
-        db.insert(pollutionCities);
-        res.sendStatus(201);
-        console.log("Data initialized");
+     db.find({},(err, pollutionCities)=> {
+            
+            if (err) {
+                res.sendStatus(500);
+            }
+            else {
+              
+                if (pollutionCities.length > 0) {
+                    res.send('The database has already been initialized: ' + pollutionCities.length + 'elements');
+                }
+                else {
+               
+                    db.insert(inicializacion);
+                    res.send(inicializacion);
+                    res.sendStatus(201); 
+
+
+                    console.log("DataBase initialized.");
+                }
+            }
+        });
     });
 
     app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
