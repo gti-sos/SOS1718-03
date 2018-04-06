@@ -49,7 +49,7 @@ pollutionApi.register = function(app, db) {
 
     app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
 
-    res.status(301).redirect("https://documenter.getpostman.com/view/4029231/sos1718-03-pollutioncities/RVtynWMv");
+    res.status(301).redirect("https://documenter.getpostman.com/view/4029231/collection/RVu4FpHU");
 
 });
 
