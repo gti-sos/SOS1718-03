@@ -65,8 +65,8 @@ app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
 
 app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
 
-    res.status(301).redirect("https://documenter.getpostman.com/view/4029210/sos1718-03-globalwarmings/RVtynWMu");
-
+    res.status(301).redirect("https://documenter.getpostman.com/view/4029210/sos1718-03-globalwarmings-heroku/RVu1HWcv");
+                                
 });
 
 //GET a un recurso concreto /name_solar_plants
