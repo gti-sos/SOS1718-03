@@ -41,7 +41,7 @@ pollutionApi.register = function(app, db) {
 
         ];
                
-               
+             
         db.find({},(err, pollutionCities)=> {
             
             if (err) {
@@ -53,12 +53,9 @@ pollutionApi.register = function(app, db) {
                     res.send('The database has already been initialized: ' + pollutionCities.length + 'elements');
                 }
                 else {
-               
-                    db.insert(inicializacion);
-                    res.send(inicializacion);
+                    var pollutionCities = inicializacion;
+                    db.insert(pollutionCities);
                     res.sendStatus(201); 
-
-
                     console.log("DataBase initialized.");
                 }
             }
