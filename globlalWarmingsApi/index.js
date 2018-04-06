@@ -47,7 +47,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      }];
     
     
-        db.find({}).toArray((err, globalWarmings)=> {
+        db.find({},(err, globalWarmings)=> {
             
             if (err) {
                 res.sendStatus(500);
