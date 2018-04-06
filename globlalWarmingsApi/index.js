@@ -45,12 +45,18 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
     "year" : 2010,
     "_id" : 00005    
      }];
+    
+    if(globalWarmings.length==0){
+    
     var globalWarmings=inicializacion;
         console.log("Initializing data"); 
     
      db.insert(globalWarmings);
      res.sendStatus(201);
      console.log("Data initialized");
+    }else{
+       res.send("Data base initialized yet");
+    }
 });
 
 
