@@ -40,17 +40,6 @@ pollutionApi.register = function(app, db) {
             }
 
         ];
-     db.find({},(err, pollutionCities)=> {
-            
-            if (err) {
-                res.sendStatus(500);
-            }
-            else {
-              
-                if (pollutionCities.length > 0) {
-                    res.send('The database has already been initialized: ' + pollutionCities.length + 'elements');
-                }
-                else {
                
                     db.insert(inicializacion);
                     res.send(inicializacion);
@@ -58,10 +47,10 @@ pollutionApi.register = function(app, db) {
 
 
                     console.log("DataBase initialized.");
-                }
-            }
-        });
-    });
+                
+            
+});
+    
 
     app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
 
