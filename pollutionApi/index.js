@@ -41,22 +41,36 @@ pollutionApi.register = function(app, db) {
 
         ];
                
+               
+        db.find({},(err, pollutionCities)=> {
+            
+            if (err) {
+                res.sendStatus(500);
+            }
+            else {
+              
+                if (pollutionCities.length > 0) {
+                    res.send('The database has already been initialized: ' + pollutionCities.length + 'elements');
+                }
+                else {
+               
                     db.insert(inicializacion);
                     res.send(inicializacion);
                     res.sendStatus(201); 
 
 
                     console.log("DataBase initialized.");
-                
-            
-});
+                }
+            }
+        });
+    });
     
 
     app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
 
     res.status(301).redirect("https://documenter.getpostman.com/view/4029231/collection/RVu4FpHU");
 
-});
+    });
 
     //GET al conjunto de recursos    
     app.get(BASE_API_PATH + "/pollution-cities", (req, res) => {
