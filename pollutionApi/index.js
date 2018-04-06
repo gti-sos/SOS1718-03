@@ -175,15 +175,12 @@ pollutionApi.register = function(app, db) {
         
         
         if (Object.keys(updateCities).length > 4 ||!updateCities.hasOwnProperty("city")|| !updateCities.hasOwnProperty("station") ||
-            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("_id")){
+            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("_id") || station != updateCities.station){
             res.sendStatus(400);
-            return;
-        }else if (station != updateCities.station) {
-            res.sendStatus(409);
             return;
         }
         
-        db.update({ "station": station }, updateCities, (err, numUpdated) => {
+        db.update({ "station": updateCities.station }, updateCities, (err, numUpdated) => {
             console.log("Updated: " + numUpdated);
         });
 
