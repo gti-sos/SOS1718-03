@@ -42,7 +42,7 @@ pollutionApi.register = function(app, db) {
         ];
         var pollutionCities = inicializacion;
         console.log("Initializing data");
-        res.send(pollutionCities);
+        db.insert(pollutionCities);
         res.sendStatus(201);
         console.log("Data initialized");
     });
