@@ -42,7 +42,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
     var globalWarmings=inicializacion;
         console.log("Initializing data"); 
     
-     res.send(globalWarmings);
+     db.insert(globalWarmings);
      res.sendStatus(201);
      console.log("Data initialized");
 });
