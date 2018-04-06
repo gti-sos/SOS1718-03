@@ -49,7 +49,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      }];
     
     
-        db.find({},(err, globalWarmings)=> {
+     db.find({},(err, globalWarmings)=> {
             
             if (err) {
                 res.sendStatus(500);
@@ -60,18 +60,14 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                     res.send('The database has already been initialized: ' + globalWarmings.length + 'elements');
                 }
                 else {
-               
-                    db.insert(inicializacion);
-                    res.send(inicializacion);
+                    var globalWarmings1 = inicializacion;
+                    db.insert(globalWarmings1);
                     res.sendStatus(201); 
-
-
                     console.log("DataBase initialized.");
                 }
-                
             }
         });
-    });
+    })
 
 
 
