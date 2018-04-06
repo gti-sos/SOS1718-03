@@ -60,7 +60,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                 else {
                
                     db.insert(inicializacion);
-                    res.send(globalWarmings);
+                    
                     res.sendStatus(201); 
 
 
