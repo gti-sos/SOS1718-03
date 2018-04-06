@@ -127,7 +127,7 @@ var db1 = new DataStore({
 
 globlalWarmingsApi.register(app,db1);//////////F05
 
-db1.find({}, (err, globalWarmings) => {
+/*db1.find({}, (err, globalWarmings) => {
     if (err) {
         console.error("Error accesing DB");
         process.exit(1);
@@ -141,7 +141,7 @@ db1.find({}, (err, globalWarmings) => {
         console.log("DB initialized with " + globalWarmings.length + " globalWarmings");
     }
 
-});  
+});  */
     
 
 //--------------------------------------------------------------------------------    
