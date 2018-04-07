@@ -93,7 +93,7 @@ pollutionApi.register = function(app, db) {
         var station = req.params.station;
         console.log(Date() + " - GET /pollution-cities/" + station);
 
-        db.find({}, (err, pollutionCities) => {
+        db.find({"station": station}).toArray((err, pollutionCities) => {
 
             var filteredCities = pollutionCities.filter((c) => {
                 return (c.station == station);
@@ -107,8 +107,12 @@ pollutionApi.register = function(app, db) {
             if (filteredCities.length==0){
                 res.sendStatus(404);
             }
+            
+            res.send(filteredCities.map((c) => {
+                delete c._id;
+                return c;
+            })[0]);
 
-            res.send(filteredCities[0]);
         });
     });
 
