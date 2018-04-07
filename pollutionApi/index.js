@@ -62,30 +62,47 @@ pollutionApi.register = function(app, db) {
         });
     });
     
-
-    app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
-
-    res.status(301).redirect("https://documenter.getpostman.com/view/4029231/collection/RVu4FpHU");
-
-    });
-
-    //GET al conjunto de recursos    
+   
     app.get(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - GET /pollution-cities");
+        var url = req.query;
+        var limit = parseInt(url.limit);
+        var offset = parseInt(url.offset);
+        var aux2 = [];
+        if (limit > 0 && offset >= 0) {
+            db.find({}).toArray((err, pollutionCities) => {
 
-        db.find({}).toArray((err, pollutionCities) => {
-            if (err) {
-                console.error("Error accesing DB");
-                res.sendStatus(500);
-                return;
-            }
-
-            res.send(pollutionCities.map((c) => {
-                delete c._id;
-                return c;
-            }));
-        });
-
+                if (err) {
+                    console.error("Error accesing DB");
+                    res.sendStatus(500);
+                    return;
+                }
+                
+                var filteredCities = pollutionCities.filter((c) => {
+                    delete c._id;
+                    return c;
+                });
+                
+                if (filteredCities.length > 0) {
+                    aux2 = filteredCities.slice(offset, offset + limit);
+                        res.send(aux2);
+                }
+                
+            });
+        }else {
+            db.find({}).toArray((err, pollutionCities) => {
+                if (err) {
+                    console.error("Error accesing DB");
+                    res.sendStatus(500);
+                    return;
+                }
+                
+                res.send(pollutionCities.map((c) => {
+                    delete c._id;
+                    return c;
+                }));
+            });
+        }
     });
 
     //GET a un recurso concreto /station

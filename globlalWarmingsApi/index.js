@@ -72,25 +72,47 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
 
 
 //GET al conjunto de recursos    
-app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
-    console.log(Date() + " - GET /global-warmings");
-   
-   
-   
-    db.find({}).toArray((err, globalWarmings) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-            return;
+    app.get(BASE_API_PATH + "/global-warmings", (req, res) => {
+        console.log(Date() + " - GET /global-warmings");
+        var url = req.query;
+        var limit = parseInt(url.limit);
+        var offset = parseInt(url.offset);
+        var aux2 = [];
+        if (limit > 0 && offset >= 0) {
+            db.find({}).toArray((err, globalWarmings) => {
+
+                if (err) {
+                    console.error("Error accesing DB");
+                    res.sendStatus(500);
+                    return;
+                }
+                
+                var filteredCities = globalWarmings.filter((c) => {
+                    delete c._id;
+                    return c;
+                });
+                
+                if (filteredCities.length > 0) {
+                    aux2 = filteredCities.slice(offset, offset + limit);
+                        res.send(aux2);
+                }
+                
+            });
+        }else {
+            db.find({}).toArray((err, globalWarmings) => {
+                if (err) {
+                    console.error("Error accesing DB");
+                    res.sendStatus(500);
+                    return;
+                }
+                
+                res.send(globalWarmings.map((c) => {
+                    delete c._id;
+                    return c;
+                }));
+            });
         }
-
-        res.send(globalWarmings.map((c) => {
-            delete c._id;
-            return c;
-        }));
     });
-
-});
 
 app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
 
