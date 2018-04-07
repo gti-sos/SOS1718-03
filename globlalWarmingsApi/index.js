@@ -66,8 +66,8 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                     console.log("DataBase initialized.");
                 }
             }
-        });
     });
+});
 
 
 
@@ -104,25 +104,27 @@ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
     var solarPlant = req.params.solarPlant;
     console.log(Date() + " - GET /global-warmings/"+ solarPlant);
      
-    db.find({}, (err, globalWarmings) => {
-   
-    var filteredCities = globalWarmings.filter((c)=>{
-        return (c.solarPlant == solarPlant);
-});
+    db.find({"solarPlant": solarPlant}).toArray((err, globalWarmings) => {
 
-    if (err) {
-            console.error(" Error accesing DB");
-            res.sendStatus(500);
-            return;
-        }
-    
-     if (filteredCities.length==0){
+            var filteredCities = globalWarmings.filter((c) => {
+                return (c.solarPlant == solarPlant);
+            });
+
+            if (err) {
+                console.error(" Error accesing DB");
+                res.sendStatus(500);
+                return;
+            }
+            if (filteredCities.length==0){
                 res.sendStatus(404);
             }
+            
+            res.send(filteredCities.map((c) => {
+                delete c._id;
+                return c;
+            })[0]);
 
-   res.send(filteredCities[0]);
-        
-    });
+        });
  });
      
  
