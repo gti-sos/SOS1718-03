@@ -3,14 +3,16 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
-var DataStore = require("nedb");
-
+//var DataStore = require("nedb");
+var MongoClient = require("mongodb").MongoClient;
 
 var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
 var pollutionApi =  require("./pollutionApi");
 var port = (process.env.PORT || 1607);
-var dbFileName = __dirname + "/globalwarmings.db";
-var dbFileNameA = __dirname + "/pollutionCities.db";
+//var dbFileName = __dirname + "/globalwarmings.db";
+//var dbFileNameA = __dirname + "/pollutionCities.db";
+var mdbURL = "mongodb://<adaframor>:<adan123>@ds237489.mlab.com:37489/sos1718-amfm-sandbox";
+var mdbURL1 ="mongodb://<antpergua>:<AntonioJ90>@ds237489.mlab.com:37489/sos1718-ajpg-sandbox";
 
 
 
@@ -52,11 +54,20 @@ var initialPollutionCities = [
     ];
     
     
-var db = new DataStore({
+/*var db = new DataStore({
     filename: dbFileNameA,
     autoload: true
-});
+});*/
 
+MongoClient.connect(mdbURL,{native_parser:true}, (err, mlabs)=>{
+    if (err) {
+        console.error("Error accesing DB");
+        process.exit(1);
+    }else{
+        console.error("Connected to DB");
+    }
+});
+/*
 pollutionApi.register(app,db);
 
 db.find({}, (err, pollutionCities) => {
@@ -75,7 +86,7 @@ db.find({}, (err, pollutionCities) => {
 
 });  
     
-    
+*/   
     
   
     
@@ -115,7 +126,7 @@ var initialGlobalWarmings = [
    
     ];
     
-    
+/*    
 var db1 = new DataStore({
     filename: dbFileName,
     autoload: true
@@ -146,8 +157,8 @@ db1.find({}, (err, globalWarmings) => {
 
 //--------------------------------------------------------------------------------    
 
-
-   
+*/
+  
 app.listen(port,()=>{
     
     console.log(" Server ready on port "+port+"!");
