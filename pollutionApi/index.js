@@ -4,8 +4,8 @@ module.exports = pollutionApi;
 
 pollutionApi.register = function(app, db) {
 
-    console.log("Registering for index...");
-
+    console.log("Registering for pollutionApi...");
+    //loadInitialData
     app.get(BASE_API_PATH + "/pollution-cities/loadInitialData", function(req, res) {
         var inicializacion = [
 
@@ -62,11 +62,12 @@ pollutionApi.register = function(app, db) {
         });
     });
     
-   
+   //get al conjunto de todo
     app.get(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - GET /pollution-cities");
         var url = req.query;
         var limit = parseInt(url.limit);
+        var year = parseInt(url.year);
         var offset = parseInt(url.offset);
         var aux2 = [];
         if (limit > 0 && offset >= 0) {
@@ -83,9 +84,16 @@ pollutionApi.register = function(app, db) {
                     return c;
                 });
                 
+                
+                if (year){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (year == c.year);
+                    });
+                }
+                
                 if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
-                        res.send(aux2);
+                    res.send(aux2);
                 }
                 
             });
@@ -96,14 +104,22 @@ pollutionApi.register = function(app, db) {
                     res.sendStatus(500);
                     return;
                 }
-                
-                res.send(pollutionCities.map((c) => {
+                var filteredCities = pollutionCities.filter((c) => {
                     delete c._id;
                     return c;
-                }));
+                });
+                if (year){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (year == c.year);
+                    });
+                    res.send(filteredCities);
+                }else{
+                    res.send(filteredCities);
+                }
             });
         }
     });
+
 
     //GET a un recurso concreto /station
     app.get(BASE_API_PATH + "/pollution-cities/:station", (req, res) => {
