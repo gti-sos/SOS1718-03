@@ -10,8 +10,6 @@ var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
 var pollutionApi =  require("./pollutionApi");
 var port = (process.env.PORT || 1607);
 
-var mdbURL = "mongodb://<dbuser>:<dbpassword>@ds141068.mlab.com:41068/sos1718-03";
-
 
 var mdbURL = "mongodb://adan:adan123@ds141068.mlab.com:41608/sos1718-03";
 var mdbURL1 = "mongodb://global:global@ds237489.mlab.com:37489/sos1718-ajpg-sandbox";
