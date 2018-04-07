@@ -3,16 +3,16 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
-//var DataStore = require("nedb");
+
 var MongoClient = require("mongodb").MongoClient;
 
 var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
 var pollutionApi =  require("./pollutionApi");
 var port = (process.env.PORT || 1607);
-//var dbFileName = __dirname + "/globalwarmings.db";
-//var dbFileNameA = __dirname + "/pollutionCities.db";
-var mdbURL = "mongodb://<adaframor>:<adan123>@ds237489.mlab.com:37489/sos1718-amfm-sandbox";
-var mdbURL1 ="mongodb://<antpergua>:<AntonioJ90>@ds237489.mlab.com:37489/sos1718-ajpg-sandbox";
+
+var mdbURL = "mongodb://adan:adan123@ds141068.mlab.com:41608/sos1718-03";
+var mdbURL1 = "mongodb://global:global@ds237489.mlab.com:37489/sos1718-ajpg-sandbox";
+
 
 
 
@@ -59,12 +59,13 @@ var initialPollutionCities = [
     autoload: true
 });*/
 
-MongoClient.connect(mdbURL,{native_parser:true}, (err, mlabs)=>{
+MongoClient.connect(mdbURL,{native_parser:true}, function (err, mlabs) {
     if (err) {
-        console.error("Error accesing DB");
+        console.error("Error accesing DB" + err);
         process.exit(1);
     }else{
         console.error("Connected to DB");
+        process.exit(1);
     }
 });
 /*
@@ -131,11 +132,21 @@ var db1 = new DataStore({
     filename: dbFileName,
     autoload: true
 });
+*/
+
+MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
+    if (err) {
+        console.error("Error accesing DB" + err);
+        process.exit(1);
+    }else{
+        console.error("Connected to DB");
+    }
+});
  
 //--------------------------------------------------------------------------------
 
    
-
+/*
 globlalWarmingsApi.register(app,db1);//////////F05
 
 db1.find({}, (err, globalWarmings) => {
@@ -153,11 +164,11 @@ db1.find({}, (err, globalWarmings) => {
     }
 
 });  
-    
+   */ 
 
 //--------------------------------------------------------------------------------    
 
-*/
+
   
 app.listen(port,()=>{
     
