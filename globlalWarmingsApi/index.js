@@ -71,12 +71,13 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
 
 
 
-//GET al conjunto de recursos    
-   app.get(BASE_API_PATH + "/global-warmings", (req, res) => {
+ //get al conjunto de todo
+    app.get(BASE_API_PATH + "/global-warmings", (req, res) => {
         console.log(Date() + " - GET /global-warmings");
         var url = req.query;
         var limit = parseInt(url.limit);
         var year = parseInt(url.year);
+        var name = url.name;
         var offset = parseInt(url.offset);
         var aux2 = [];
         if (limit > 0 && offset >= 0) {
@@ -98,11 +99,16 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                     filteredCities = filteredCities.filter((c) => {
                     return (year == c.year);
                     });
+                }else if(city){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (city == c.city);
+                    });
                 }
-                
                 if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2);
+                }else{
+                    res.send("Not found");
                 }
                 
             });
@@ -121,10 +127,17 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                     filteredCities = filteredCities.filter((c) => {
                     return (year == c.year);
                     });
+                }else if(name){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (name == c.name);
+                    });
+                }
+                if (filteredCities.length > 0) {
                     res.send(filteredCities);
                 }else{
-                    res.send(filteredCities);
+                    res.send("Not found");
                 }
+                
             });
         }
     });
