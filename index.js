@@ -133,8 +133,8 @@ var initialGlobalWarmings = [
 var db1 = new DataStore({
     filename: dbFileName,
     autoload: true
-});
-*/
+});*/
+
 
 MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
     if (err) {
@@ -142,6 +142,7 @@ MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
         process.exit(1);
     }else{
         console.error("Connected to DB");
+        process.exit(1);
     }
 });
  
