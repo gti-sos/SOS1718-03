@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 
 var MongoClient = require("mongodb").MongoClient;
 
+
 var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
 var pollutionApi =  require("./pollutionApi");
 var port = (process.env.PORT || 1607);
@@ -61,17 +62,46 @@ var initialPollutionCities = [
     autoload: true
 });*/
 
-MongoClient.connect(mdbURL,{native_parser:true}, function (err, mlabs) {
+
+
+MongoClient.connect(mdbURL, {native_parser: true}, (err, mlabs) => {
     if (err) {
         console.error("Error accesing DB" + err);
         process.exit(1);
-    }else{
-        console.error("Connected to DB");
-        process.exit(1);
     }
+    
+    console.error("Connected to DB");
+    var dataBase = mlabs.db("sos1718-03");
+    var db = dataBase.collection("pollutionCities");
+    
+    
+
+    db.find({}).toArray((err, pollutionCities) => {
+    
+        if (pollutionCities.length == 0) {
+            console.log("Empty DB");
+            db.insert(initialPollutionCities);
+        }
+        else {
+            console.log("DB initialized with " + pollutionCities.length + " pollutionCities");
+        }
+
+    });
+    
+   pollutionApi.register(app,db);//////////F05
+    
+    app.listen(port,()=>{
+        
+        console.log(" Server ready on port "+port+"!");
+        
+    }).on("error", (e)=>{
+        console.log("Server NOT READY:"+e);
+    });
 });
+
+
 /*
-pollutionApi.register(app,db);
+
 
 db.find({}, (err, pollutionCities) => {
     if (err) {
@@ -141,12 +171,37 @@ MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
     if (err) {
         console.error("Error accesing DB" + err);
         process.exit(1);
-    }else{
-        console.error("Connected to DB");
-        process.exit(1);
     }
+    
+    console.error("Connected to DB");
+    var dataBase = mlabs.db("sos1718-ajpg-sandbox");
+    var db1 = dataBase.collection("globalWarmings");
+    
+    
+
+    db1.find({}).toArray((err, globalWarmings) => {
+    
+        if (globalWarmings.length == 0) {
+            console.log("Empty DB");
+            db1.insert(initialGlobalWarmings);
+        }
+        else {
+            console.log("DB initialized with " + globalWarmings.length + " globalWarmings");
+        }
+
+    });
+    
+    globlalWarmingsApi.register(app,db1);//////////F05
+    
+    app.listen(port,()=>{
+        
+        console.log(" Server ready on port "+port+"!");
+        
+    }).on("error", (e)=>{
+        console.log("Server NOT READY:"+e);
+    });
 });
- 
+
 //--------------------------------------------------------------------------------
 
    
@@ -173,11 +228,3 @@ db1.find({}, (err, globalWarmings) => {
 //--------------------------------------------------------------------------------    
 
 
-  
-app.listen(port,()=>{
-    
-    console.log(" Server ready on port "+port+"!");
-    
-}).on("error", (e)=>{
-    console.log("Server NOT READY:"+e);
-});
