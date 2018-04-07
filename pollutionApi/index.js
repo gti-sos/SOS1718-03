@@ -120,12 +120,12 @@ pollutionApi.register = function(app, db) {
     app.post(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - POST /pollution-cities");
         var city = req.body;
-        if (Object.keys(city).length > 4 ||!city.hasOwnProperty("city")|| !city.hasOwnProperty("station") ||
-            !city.hasOwnProperty("year") || !city.hasOwnProperty("_id")){
+        if (Object.keys(city).length > 3 ||!city.hasOwnProperty("city")|| !city.hasOwnProperty("station") ||
+            !city.hasOwnProperty("year")){
             res.sendStatus(400);
             return;
         }else{
-            db.find({}, (err, pollutionCities) => {
+            db.find({}).toArray((err, pollutionCities) => {
 
             var filteredCities = pollutionCities.filter((c) => {
                 return (c.station == city.station);

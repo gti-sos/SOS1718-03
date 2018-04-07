@@ -135,12 +135,12 @@ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
     app.post(BASE_API_PATH + "/global-warmings", (req, res) => {
         console.log(Date() + " - POST /global-warmings");
         var city = req.body;
-        if (Object.keys(city).length > 4 ||!city.hasOwnProperty("name")|| !city.hasOwnProperty("solarPlant") ||
-            !city.hasOwnProperty("year") || !city.hasOwnProperty("_id")){
+        if (Object.keys(city).length > 3 ||!city.hasOwnProperty("name")|| !city.hasOwnProperty("solarPlant") ||
+            !city.hasOwnProperty("year") ){
             res.sendStatus(400);
             return;
         }else{
-            db.find({}, (err, globalWarmings) => {
+            db.find({}).toArray((err, globalWarmings) => {
 
             var filteredCities = globalWarmings.filter((c) => {
                 return (c.solarPlant == city.solarPlant);
