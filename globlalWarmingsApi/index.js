@@ -177,7 +177,7 @@ app.post(BASE_API_PATH + "/global-warmings/:solarPlant",(req,res)=>{
 //DELETE a un conjunto recursos
 app.delete(BASE_API_PATH+"/global-warmings",(req,res)=>{
     console.log(Date() + " - DELETE /global-warmings");
-    db.find({}, (err, globalWarmings) => {
+    db.find({}).toArray((err, globalWarmings) => {
         for (var i = 0; i < globalWarmings.length; i++) {
             db.remove({});
         }

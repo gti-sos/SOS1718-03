@@ -160,7 +160,7 @@ pollutionApi.register = function(app, db) {
     //DELETE a un conjunto recursos
     app.delete(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - DELETE /pollution-cities");
-        db.find({}, (err, pollutionCities) => {
+        db.find({}).toArray((err, pollutionCities) => {
             for (var i = 0; i < pollutionCities.length; i++) {
                 db.remove({});
             }
