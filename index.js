@@ -136,12 +136,14 @@ var db1 = new DataStore({
 });
 */
 
+
 MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
     if (err) {
         console.error("Error accesing DB" + err);
         process.exit(1);
     }else{
         console.error("Connected to DB");
+        process.exit(1);
     }
 });
  
