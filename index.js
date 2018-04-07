@@ -11,8 +11,8 @@ var pollutionApi =  require("./pollutionApi");
 var port = (process.env.PORT || 1607);
 //var dbFileName = __dirname + "/globalwarmings.db";
 //var dbFileNameA = __dirname + "/pollutionCities.db";
-var mdbURL = "mongodb://<adaframor>:<adan123>@ds237489.mlab.com:37489/sos1718-amfm-sandbox";
-var mdbURL1 ="mongodb://<antpergua>:<AntonioJ90>@ds237489.mlab.com:37489/sos1718-ajpg-sandbox";
+var mdbURL = "mongodb://<dbuser>:<dbpassword>@ds141068.mlab.com:41068/sos1718-03";
+
 
 
 
@@ -61,7 +61,7 @@ var initialPollutionCities = [
 
 MongoClient.connect(mdbURL,{native_parser:true}, (err, mlabs)=>{
     if (err) {
-        console.error("Error accesing DB");
+        console.error("Error accesing DB" + err);
         process.exit(1);
     }else{
         console.error("Connected to DB");
