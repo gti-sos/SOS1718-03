@@ -67,7 +67,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                 }
             }
         });
-    })
+    });
 
 
 
@@ -75,15 +75,21 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
 app.get(BASE_API_PATH+"/global-warmings",(req,res)=>{
     console.log(Date() + " - GET /global-warmings");
    
-    db.find({}, (err, globalWarmings) => {
-    if (err) {
-        console.error("Error accesing DB");
-        res.sendStatus(500);
-         return;
-    }
    
-    res.send(globalWarmings);
+   
+    db.find({}).toArray((err, globalWarmings) => {
+        if (err) {
+            console.error("Error accesing DB");
+            res.sendStatus(500);
+            return;
+        }
+
+        res.send(globalWarmings.map((c) => {
+            delete c._id;
+            return c;
+        }));
     });
+
 });
 
 app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {

@@ -73,14 +73,17 @@ pollutionApi.register = function(app, db) {
     app.get(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - GET /pollution-cities");
 
-        db.find({}, (err, pollutionCities) => {
+        db.find({}).toArray((err, pollutionCities) => {
             if (err) {
                 console.error("Error accesing DB");
                 res.sendStatus(500);
                 return;
             }
 
-            res.send(pollutionCities);
+            res.send(pollutionCities.map((c) => {
+                delete c._id;
+                return c;
+            }));
         });
 
     });
