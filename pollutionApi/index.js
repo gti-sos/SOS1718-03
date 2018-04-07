@@ -197,8 +197,8 @@ pollutionApi.register = function(app, db) {
 
         
         
-        if (Object.keys(updateCities).length > 4 ||!updateCities.hasOwnProperty("city")|| !updateCities.hasOwnProperty("station") ||
-            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("_id") || station != updateCities.station){
+        if (Object.keys(updateCities).length > 3 ||!updateCities.hasOwnProperty("city")|| !updateCities.hasOwnProperty("station") ||
+            !updateCities.hasOwnProperty("year") || station != updateCities.station){
             res.sendStatus(400);
             return;
         }

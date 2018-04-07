@@ -215,8 +215,8 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
         console.log(Date() + " - PUT /global-warmings/" + solarPlant);
 
         
-        if (Object.keys(updateCities).length > 4 ||!updateCities.hasOwnProperty("name")|| !updateCities.hasOwnProperty("solarPlant") ||
-            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("_id")|| solarPlant != updateCities.solarPlant){
+        if (Object.keys(updateCities).length > 3 ||!updateCities.hasOwnProperty("name")|| !updateCities.hasOwnProperty("solarPlant") ||
+            !updateCities.hasOwnProperty("year") || solarPlant != updateCities.solarPlant){
             res.sendStatus(400);
             return;
                }
