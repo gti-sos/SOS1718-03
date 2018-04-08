@@ -12,31 +12,41 @@ pollutionApi.register = function(app, db) {
             {
                 "city": "madrid",
                 "station": "fernandez-ladreda-oporto",
-                "year": "2014"
+                "year": "2014",
+                "car": "3256265",
+                "nitrous": "53"
             },
 
             {
                 "city": "barcelona",
                 "station": "l-eixample",
-                "year": "2014"
+                "year": "2014",
+                "car": "2347766",
+                "nitrous": "52"
             },
 
             {
                 "city": "barcelona",
                 "station": "gracia-sant-gervasi",
-                "year": "2014"
+                "year": "2014",
+                "car": "2347766",
+                "nitrous": "52"
             },
 
             {
                 "city": "madrid",
                 "station": "escuelas-aguirre",
-                "year": "2014"
+                "year": "2014",
+                "car": "3256265",
+                "nitrous": "53"
             },
 
             {
                 "city": "valencia",
                 "station": "pista-de-silla",
-                "year": "2014"
+                "year": "2014",
+                "car": "170977",
+                "nitrous": "46"
             }
 
         ];
@@ -48,7 +58,6 @@ pollutionApi.register = function(app, db) {
                 res.sendStatus(500);
             }
             else {
-              
                 if (pollutionCities.length > 0) {
                     res.send('The database has already been initialized: ' + pollutionCities.length + 'elements');
                 }
@@ -65,12 +74,20 @@ pollutionApi.register = function(app, db) {
    //get al conjunto de todo
     app.get(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - GET /pollution-cities");
+        
+        
         var url = req.query;
+        var car = url.car;
+        var from = parseInt(url.from);
+        var to = parseInt(url.to);
+        var nitrous = url.nitrous;
         var limit = parseInt(url.limit);
         var year = parseInt(url.year);
         var city = url.city;
         var offset = parseInt(url.offset);
         var aux2 = [];
+        
+        
         if (limit > 0 && offset >= 0) {
             db.find({}).toArray((err, pollutionCities) => {
 
@@ -93,6 +110,18 @@ pollutionApi.register = function(app, db) {
                 }else if(city){
                     filteredCities = filteredCities.filter((c) => {
                     return (city == c.city);
+                    });
+                }else if(car){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (car == c.car);
+                    });
+                }else if(nitrous){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (nitrous == c.nitrous);
+                    });
+                }else if(from || to){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (from <= c.year && to >= c.year);
                     });
                 }
                 if (filteredCities.length > 0) {
@@ -121,6 +150,18 @@ pollutionApi.register = function(app, db) {
                 }else if(city){
                     filteredCities = filteredCities.filter((c) => {
                     return (city == c.city);
+                    });
+                }else if(car){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (car == c.car);
+                    });
+                }else if(nitrous){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (nitrous == c.nitrous);
+                    });
+                }else if(from || to){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (from <= c.year && to >= c.year);
                     });
                 }
                 if (filteredCities.length > 0) {
@@ -166,8 +207,10 @@ pollutionApi.register = function(app, db) {
     app.post(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - POST /pollution-cities");
         var city = req.body;
-        if (Object.keys(city).length > 3 ||!city.hasOwnProperty("city")|| !city.hasOwnProperty("station") ||
-            !city.hasOwnProperty("year")){
+        if (Object.keys(city).length > 5 ||!city.hasOwnProperty("city")|| !city.hasOwnProperty("station") ||
+            !city.hasOwnProperty("year")||
+            !city.hasOwnProperty("car")||
+            !city.hasOwnProperty("nitrous")){
             res.sendStatus(400);
             return;
         }else{
@@ -243,8 +286,10 @@ pollutionApi.register = function(app, db) {
 
         
         
-        if (Object.keys(updateCities).length > 3 ||!updateCities.hasOwnProperty("city")|| !updateCities.hasOwnProperty("station") ||
-            !updateCities.hasOwnProperty("year") || station != updateCities.station){
+        if (Object.keys(updateCities).length > 5 ||!updateCities.hasOwnProperty("city")|| !updateCities.hasOwnProperty("station") ||
+            !updateCities.hasOwnProperty("year") || station != updateCities.station ||
+            !updateCities.hasOwnProperty("car")||
+            !updateCities.hasOwnProperty("nitrous")){
             res.sendStatus(400);
             return;
         }
