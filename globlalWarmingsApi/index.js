@@ -90,7 +90,10 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
         var temperature = url.temperature;
         var peakPower = parseInt(url.peakPower);
         var offset = parseInt(url.offset);
+        var from = parseInt(url.from);
+        var to = parseInt(url.to);
         var aux2 = [];
+        
         if (limit > 0 && offset >= 0) {
             db.find({}).toArray((err, globalWarmings) => {
 
@@ -122,7 +125,13 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     filteredCities = filteredCities.filter((c) => {
                     return (peakPower == c.peakPower);
                     });
+                }else if(from || to){
+                    filteredCities = filteredCities.filter((c) => {
+                        return (from <= c.year && to >= c.year);
+                        
+                    });
                 }
+                
                 if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2);
@@ -157,6 +166,11 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                 }else if(peakPower){
                     filteredCities = filteredCities.filter((c) => {
                     return (peakPower == c.peakPower);
+                    });
+                }else if(from || to){
+                    filteredCities = filteredCities.filter((c) => {
+                        return(from <= c.year && to >= c.year);
+                
                     });
                 }
                 if (filteredCities.length > 0) {
@@ -212,8 +226,8 @@ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
     app.post(BASE_API_PATH + "/global-warmings", (req, res) => {
         console.log(Date() + " - POST /global-warmings");
         var city = req.body;
-        if (Object.keys(city).length > 3 ||!city.hasOwnProperty("name")|| !city.hasOwnProperty("solarPlant") ||
-            !city.hasOwnProperty("year") ){
+        if (Object.keys(city).length > 5 ||!city.hasOwnProperty("name")|| !city.hasOwnProperty("solarPlant") ||
+            !city.hasOwnProperty("year") || !city.hasOwnProperty("temperature") || !city.hasOwnProperty("peakPower")){
             res.sendStatus(400);
             return;
         }else{
@@ -292,8 +306,9 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
         console.log(Date() + " - PUT /global-warmings/" + solarPlant);
 
         
-        if (Object.keys(updateCities).length > 3 ||!updateCities.hasOwnProperty("name")|| !updateCities.hasOwnProperty("solarPlant") ||
-            !updateCities.hasOwnProperty("year") || solarPlant != updateCities.solarPlant){
+        if (Object.keys(updateCities).length > 5 ||!updateCities.hasOwnProperty("name")|| !updateCities.hasOwnProperty("solarPlant") ||
+            !updateCities.hasOwnProperty("year") || !updateCities.hasOwnProperty("temperature") || !updateCities.hasOwnProperty("peakPower") ||
+            solarPlant != updateCities.solarPlant){
             res.sendStatus(400);
             return;
                }
