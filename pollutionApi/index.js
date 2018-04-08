@@ -86,6 +86,8 @@ pollutionApi.register = function(app, db) {
         var city = url.city;
         var offset = parseInt(url.offset);
         var aux2 = [];
+        var boolean = false;
+        var station = url.station;
         
         
         if (limit > 0 && offset >= 0) {
@@ -123,12 +125,25 @@ pollutionApi.register = function(app, db) {
                     filteredCities = filteredCities.filter((c) => {
                     return (from <= c.year && to >= c.year);
                     });
-                }
-                if (filteredCities.length > 0) {
+                }else if(station){
+                    filteredCities = filteredCities.filter((c) => {
+                    boolean = true;
+                    return (station == c.station);
+                    });
+                }if (boolean == true){
+                     if (filteredCities.length > 0) {
+                    aux2 = filteredCities.slice(offset, offset + limit);
+                    res.send(aux2[0]);
+                    }else{
+                    res.send("Not found");
+                    }
+                }else{
+                     if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2);
-                }else{
+                    }else{
                     res.send("Not found");
+                    }
                 }
                 
             });
@@ -163,12 +178,25 @@ pollutionApi.register = function(app, db) {
                     filteredCities = filteredCities.filter((c) => {
                     return (from <= c.year && to >= c.year);
                     });
+                }else if(station){
+                    filteredCities = filteredCities.filter((c) => {
+                    boolean = true;
+                    return (station == c.station);
+                    });
                 }
-                if (filteredCities.length > 0) {
-                    res.send(filteredCities);
+                if(boolean==true){    
+                    if (filteredCities.length > 0) {
+                        res.send(filteredCities[0]);
+                    }else{
+                        res.send("Not found");
+                    }
                 }else{
-                    res.send("Not found");
-                }
+                    if (filteredCities.length > 0) {
+                        res.send(filteredCities);
+                    }else{
+                        res.send("Not found");
+                    }
+                } 
                 
             });
         }

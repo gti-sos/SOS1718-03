@@ -87,12 +87,14 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
         var limit = parseInt(url.limit);
         var year = parseInt(url.year);
         var name = url.name;
+        var solarPlant = url.solarPlant;
         var temperature = url.temperature;
         var peakPower = parseInt(url.peakPower);
         var offset = parseInt(url.offset);
         var from = parseInt(url.from);
         var to = parseInt(url.to);
         var aux2 = [];
+        var boolean = false;
         
         if (limit > 0 && offset >= 0) {
             db.find({}).toArray((err, globalWarmings) => {
@@ -130,14 +132,27 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                         return (from <= c.year && to >= c.year);
                         
                     });
-                }
-                
-                if (filteredCities.length > 0) {
+                }else if(solarPlant){
+                    filteredCities = filteredCities.filter((c) => {
+                    boolean = true;
+                    return (solarPlant == c.solarPlant);
+                    });
+                }if (boolean == true){
+                     if (filteredCities.length > 0) {
+                    aux2 = filteredCities.slice(offset, offset + limit);
+                    res.send(aux2[0]);
+                    }else{
+                    res.send("Not found");
+                    }
+                }else{
+                     if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2);
-                }else{
+                    }else{
                     res.send("Not found");
+                    }
                 }
+               
                 
             });
         }else {
@@ -172,13 +187,25 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                         return(from <= c.year && to >= c.year);
                 
                     });
+                }else if(solarPlant){
+                    filteredCities = filteredCities.filter((c) => {
+                    boolean = true;
+                    return (solarPlant == c.solarPlant);
+                    });
                 }
-                if (filteredCities.length > 0) {
-                    res.send(filteredCities);
+                if(boolean==true){    
+                    if (filteredCities.length > 0) {
+                        res.send(filteredCities[0]);
+                    }else{
+                        res.send("Not found");
+                    }
                 }else{
-                    res.send("Not found");
-                }
-                
+                    if (filteredCities.length > 0) {
+                        res.send(filteredCities);
+                    }else{
+                        res.send("Not found");
+                    }
+                } 
             });
         }
     });
