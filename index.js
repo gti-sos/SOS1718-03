@@ -89,7 +89,7 @@ MongoClient.connect(mdbURL, {native_parser: true}, (err, mlabs) => {
     });
     
    pollutionApi.register(app,db);//////////F05
-    
+   
     app.listen(port,()=>{
         
         console.log(" Server ready on port "+port+"!");
@@ -130,34 +130,47 @@ db.find({}, (err, pollutionCities) => {
 
 // -----------ANTONIO-----------
 
-var initialGlobalWarmings = [
+var initialGlobalWarmings = [ 
     
     {"name"  :  "Ciudad-Real",
     "solarPlant" :"Parque-fotovoltaico-Puertollano",
-    "year" : 2010
+    "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 70
     },
     
      {"name"  :  "Cuenca",
     "solarPlant" :"Parque-fotovoltaico-Olmedilla-de-Alarcon",
-     "year" : 2010
+     "year" : 2010,
+     "temperature" : 0.7,
+     "peakPower" : 60
+    
      },
     
      {"name"  :  "Caceres",
     "solarPlant" :"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla",
-    "year" : 2010     
+    "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 34.7
+         
      },
      
      {"name"  :  "La-Rioja",
     "solarPlant" :"Planta-solar-Arnedo",
-    "year" : 2010     
+    "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 30
+        
      },
      
       {"name"  :  "Cuenca",
     "solarPlant" :"Planta-solar-Osa-de-la-Vega",
-    "year" : 2010    
-     }
-   
-    ];
+    "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 30
+        
+     }];
+    ;
     
 /*    
 var db1 = new DataStore({
@@ -193,7 +206,7 @@ MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
     
     globlalWarmingsApi.register(app,db1);//////////F05
     
-    app.listen(port,()=>{
+     app.listen(port,()=>{
         
         console.log(" Server ready on port "+port+"!");
         

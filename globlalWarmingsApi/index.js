@@ -21,30 +21,39 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
     {"name"  :  "Ciudad-Real",
     "solarPlant" :"Parque-fotovoltaico-Puertollano",
     "year" : 2010,
-    
+    "temperature" : 0.7,
+    "peakPower" : 70
     },
     
      {"name"  :  "Cuenca",
     "solarPlant" :"Parque-fotovoltaico-Olmedilla-de-Alarcon",
      "year" : 2010,
+     "temperature" : 0.7,
+     "peakPower" : 60
     
      },
     
      {"name"  :  "Caceres",
     "solarPlant" :"Planta-solar-fotovoltaica-La-Magascona-y-La-Magasquilla",
     "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 34.7
          
      },
      
      {"name"  :  "La-Rioja",
     "solarPlant" :"Planta-solar-Arnedo",
     "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 30
         
      },
      
       {"name"  :  "Cuenca",
     "solarPlant" :"Planta-solar-Osa-de-la-Vega",
     "year" : 2010,
+    "temperature" : 0.7,
+    "peakPower" : 30
         
      }];
     
@@ -78,6 +87,8 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
         var limit = parseInt(url.limit);
         var year = parseInt(url.year);
         var name = url.name;
+        var temperature = url.temperature;
+        var peakPower = url.peakPower;
         var offset = parseInt(url.offset);
         var aux2 = [];
         if (limit > 0 && offset >= 0) {
@@ -99,9 +110,17 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                     filteredCities = filteredCities.filter((c) => {
                     return (year == c.year);
                     });
-                }else if(city){
+                }else if(name){
                     filteredCities = filteredCities.filter((c) => {
-                    return (city == c.city);
+                    return (name == c.name);
+                    });
+                }else if(temperature){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (temperature == c.temperature);
+                    });
+                }else if(peakPower){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (peakPower == c.peakPower);
                     });
                 }
                 if (filteredCities.length > 0) {
