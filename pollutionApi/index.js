@@ -42,7 +42,7 @@ pollutionApi.register = function(app, db) {
         ];
                
              
-        db.find({},(err, pollutionCities)=> {
+        db.find({}).toArray((err, pollutionCities)=> {
             
             if (err) {
                 res.sendStatus(500);

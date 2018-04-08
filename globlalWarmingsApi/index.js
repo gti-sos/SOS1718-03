@@ -14,7 +14,7 @@ app.get("/test", function (req, res){
 });
 
 
-app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
+app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
     
      var inicializacion = [ 
     
@@ -58,7 +58,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
      }];
     
     
-     db.find({},(err, globalWarmings)=> {
+     db.find({}).toArray((err, globalWarmings)=> {
             
             if (err) {
                 res.sendStatus(500);
@@ -88,7 +88,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
         var year = parseInt(url.year);
         var name = url.name;
         var temperature = url.temperature;
-        var peakPower = url.peakPower;
+        var peakPower = parseInt(url.peakPower);
         var offset = parseInt(url.offset);
         var aux2 = [];
         if (limit > 0 && offset >= 0) {
@@ -149,6 +149,14 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", function (req, res){
                 }else if(name){
                     filteredCities = filteredCities.filter((c) => {
                     return (name == c.name);
+                    });
+                }else if(temperature){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (temperature == c.temperature);
+                    });
+                }else if(peakPower){
+                    filteredCities = filteredCities.filter((c) => {
+                    return (peakPower == c.peakPower);
                     });
                 }
                 if (filteredCities.length > 0) {
