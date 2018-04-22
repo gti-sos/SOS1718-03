@@ -3,12 +3,14 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
+var path = require("path");
 
 var MongoClient = require("mongodb").MongoClient;
 
 
 var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
-var pollutionApi =  require("./pollutionApi");
+var pollutionApi =  require("./pollutionApi/v1");
+var pollutionApi2 =  require("./pollutionApi/v2");
 var port = (process.env.PORT || 1607);
 
 
@@ -22,7 +24,7 @@ var mdbURL1 = "mongodb://global:global@ds237489.mlab.com:37489/sos1718-ajpg-sand
 var app = express();
 
 
-app.use("/",express.static(__dirname+"/public"));
+app.use("/",express.static(path.join(__dirname+"/public")));
 app.use(bodyParser.json());
 
 
@@ -31,27 +33,37 @@ var initialPollutionCities = [
     
      {"city"  :  "madrid",
     "station" :"fernandez-ladreda-oporto",
-    "year" : "2014"
+    "year" : "2014",
+    "car" : "3256265",
+    "nitrous" : "53"
     },
     
      {"city"  :  "barcelona",
     "station" :"l-eixample",
-    "year" : "2014"
+    "year" : "2014",
+    "car" : "2347766",
+    "nitrous" : "52"
     },
     
      {"city"  :  "barcelona",
     "station" :"gracia-sant-gervasi",
-    "year" : "2014"
+    "year" : "2014",
+    "car" : "2347766",
+    "nitrous" : "52"
     },
      
      {"city"  :  "madrid",
     "station" :"escuelas-aguirre",
-    "year" : "2014"
+    "year" : "2014",
+    "car" : "3256265",
+    "nitrous" : "53"
     },
      
      {"city"  :  "valencia",
     "station" :"pista-de-silla",
-    "year" : "2014"
+    "year" : "2014",
+    "car" : "170977",
+    "nitrous" : "46"
     }
    
     ];
@@ -89,6 +101,7 @@ MongoClient.connect(mdbURL, {native_parser: true}, (err, mlabs) => {
     });
     
    pollutionApi.register(app,db);//////////F05
+   pollutionApi2.register(app,db);
    
     app.listen(port,()=>{
         

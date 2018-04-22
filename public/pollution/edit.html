@@ -1,0 +1,26 @@
+<h1>Pollution Cities List to Edit</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Station</th>
+            <th>City</th>
+            <th>Year</th>
+            <th>Car</th>
+            <th>Nitrous</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{updatedPollution.station}}</td>
+            <td><input class="form-control" ng-model="updatedPollution.city" /></td>
+            <td><input class="form-control" ng-model="updatedPollution.year" /></td>
+            <td><input class="form-control" ng-model="updatedPollution.car" /></td>
+            <td><input class="form-control" ng-model="updatedPollution.nitrous" /></td>
+
+            <td><button class="button btn-primary" ng-click="updatePollution()"> Update</button></td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
+<b><i>{{status}}</i></b>

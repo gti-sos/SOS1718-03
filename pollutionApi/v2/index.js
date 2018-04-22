@@ -1,5 +1,5 @@
 var pollutionApi = {};
-var BASE_API_PATH = "/api/v1";
+var BASE_API_PATH = "/api/v2";
 module.exports = pollutionApi;
 
 pollutionApi.register = function(app, db) {
@@ -278,11 +278,15 @@ pollutionApi.register = function(app, db) {
     app.delete(BASE_API_PATH + "/pollution-cities", (req, res) => {
         console.log(Date() + " - DELETE /pollution-cities");
         db.find({}).toArray((err, pollutionCities) => {
-            for (var i = 0; i < pollutionCities.length; i++) {
+            if(err){
+                console.error("Error accesing to db");
+                res.sendStatus(500);
+                return;
+            }else{
                 db.remove({});
+                res.sendStatus(200);
             }
         });
-        res.sendStatus(200);
     });
 
 
