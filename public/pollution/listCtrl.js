@@ -1,7 +1,7 @@
  /* global angular */
  angular.module("pollutionApp").controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
   console.log("List Ctrl initialited");
-  var api = "/api/v1/pollution-cities";
+  var api = "/api/v2/pollution-cities";
   
    function getPollutionCities(){
       $http.get(api).then(function(response) {
@@ -45,8 +45,7 @@
     //$scope.status = "Status : " + response.status + "(All pollutions deleted correctly)";
     window.alert("Los datos se han borrado con exito");
     getPollutionCities();
-     getPollutionCities();
-      getPollutionCities();
+
    });
   };
 

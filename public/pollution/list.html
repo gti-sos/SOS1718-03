@@ -21,14 +21,14 @@
             <td><button class="button btn-primary" ng-click="addPollution()"> Add</button></td>
 
         </tr>
-        <tr ng-repeat="station in stations">
-            <td><a href="/pollution/#!/station/{{station.station}}">{{station.station}}</a></td>
-            <td>{{station.city}}</td>
-            <td>{{station.year}}</td>
-            <td>{{station.car}}</td>
-            <td>{{station.nitrous}}</td>
+        <tr ng-repeat="st in stations by $index">
+            <td><a href="/pollution/#!/st/{{st.station}}">{{st.station}}</a></td>
+            <td>{{st.city}}</td>
+            <td>{{st.year}}</td>
+            <td>{{st.car}}</td>
+            <td>{{st.nitrous}}</td>
 
-            <td><button class="button btn-danger" ng-click="deletePollution(station.station)">Delete</button></td>
+            <td><button class="button btn-danger" ng-click="deletePollution(st.station)">Delete</button></td>
         </tr>
         <tr>
             <td><button class="button btn-danger" ng-click="deleteAllPollution()">Delete all</button></td>
