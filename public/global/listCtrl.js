@@ -5,7 +5,7 @@
   
    function getGlobalWarmings(){
       $http.get(api).then(function(response) {
-       $scope.solarPlant = response.data;
+       $scope.solarPlants = response.data;
       });
    }
   

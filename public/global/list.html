@@ -2,9 +2,8 @@
 <table class="table">
     <thead>
         <tr>
-             
+            <th>name</th> 
             <th>solarPlant</th>
-            <th>name</th>
             <th>year</th>
             <th>temperature</th>
             <th>peakPower</th>
@@ -13,8 +12,9 @@
     </thead>
     <tbody>
         <tr>
-            <td><input class="form-control" ng-model="newGlobal.solarPlant" /></td>
             <td><input class="form-control" ng-model="newGlobal.name" /></td>
+            <td><input class="form-control" ng-model="newGlobal.solarPlant" /></td>
+            
             <td><input class="form-control" ng-model="newGlobal.year" /></td>
             <td><input class="form-control" ng-model="newGlobal.temperature" /></td>
             <td><input class="form-control" ng-model="newGlobal.peakPower" /></td>
@@ -22,9 +22,10 @@
             <td><button class="button btn-primary" ng-click="addGlobal()"> Add</button></td>
 
         </tr>
-        <tr ng-repeat="plant in plants track by $index">
-            <td><a href="/global/#!/solarPlant/{{plant.solarPlant}}">{{plant.solarPlant}}</a></td>
+        <tr ng-repeat="plant in solarPlants track by $index">
             <td>{{plant.name}}</td>
+            <td><a href="/global/#!/solarPlant/{{plant.solarPlant}}">{{plant.solarPlant}}</a></td>
+            
             <td>{{plant.year}}</td>
             <td>{{plant.temperature}}</td>
             <td>{{plant.peakPower}}</td>
