@@ -4,7 +4,7 @@ angular.module("pollutionApp")
     .controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location",
         function($scope, $http, $routeParams, $location) {
             console.log("Edit Ctrl initialized!");
-            var pollutionUrl = "/api/v1/pollution-cities/" + $routeParams.station;
+            var pollutionUrl = "/api/v2/pollution-cities/" + $routeParams.station;
 
 
 
