@@ -8,7 +8,8 @@ var path = require("path");
 var MongoClient = require("mongodb").MongoClient;
 
 
-var globlalWarmingsApi = require("./globlalWarmingsApi"); /////////////F05
+var globlalWarmingsApi = require("./globlalWarmingsApi/v1");
+var globlalWarmingsApi2 = require("./globlalWarmingsApi/v2");/////////////F05
 var pollutionApi =  require("./pollutionApi/v1");
 var pollutionApi2 =  require("./pollutionApi/v2");
 var port = (process.env.PORT || 1607);
@@ -217,7 +218,8 @@ MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
 
     });
     
-    globlalWarmingsApi.register(app,db1);//////////F05
+    globlalWarmingsApi.register(app,db1);
+    globlalWarmingsApi2.register(app,db1);//////////F05
     
      app.listen(port,()=>{
         
