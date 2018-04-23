@@ -218,7 +218,7 @@ MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
 
     });
     
-    //globlalWarmingsApi.register(app,db1);
+    globlalWarmingsApi.register(app,db1);
     globlalWarmingsApi2.register(app,db1);//////////F05
     
      app.listen(port,()=>{
