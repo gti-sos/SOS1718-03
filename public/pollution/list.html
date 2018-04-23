@@ -21,7 +21,7 @@
             <td><button class="button btn-primary" ng-click="addPollution()"> Add</button></td>
 
         </tr>
-        <tr ng-repeat="st in stations track by $st">
+        <tr ng-repeat="st in stations track by $station">
             <td><a href="/pollution/#!/st/{{st.station}}">{{st.station}}</a></td>
             <td>{{st.city}}</td>
             <td>{{st.year}}</td>
