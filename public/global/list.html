@@ -32,9 +32,11 @@
             <td>{{plant.year}}</td>
             <td>{{plant.temperature}}</td>
             <td>{{plant.peakPower}}</td>
-
-            <td><button class="button btn-danger" ng-click="deleteGlobal(plant.solarPlant)">Delete</button></td>
+            
         </tr>
+        <tr ng-repeat="plant in solarPlants track by $index">
+              <td><button class="button btn-danger" ng-click="deleteGlobal(plant.solarPlant)">Delete</button></td>
+        </tr>      
         <tr>
             <td><button class="button btn-danger" ng-click="deleteAllGlobal()">Delete all</button></td>
         </tr>
