@@ -33,7 +33,7 @@
   $scope.deletePollution = function(station) {
    //console.log("Pollution to be deleted: " + station);
    $http.delete(api + "/" + station).then(function(response) {
-    //$scope.status = "Status : " + response.status + "( Pollution deleted correctly)";
+    $scope.status = "Status : " + response.status + "( Pollution deleted correctly)";
     //console.log(JSON.stringify(response, null, 2))
     window.alert("El dato se ha borrado con exito");
 
@@ -43,7 +43,7 @@
 
   $scope.deleteAllPollution = function() {
    $http.delete(api).then(function(response) {
-    //$scope.status = "Status : " + response.status + "(All pollutions deleted correctly)";
+    $scope.status = "Status : " + response.status + "(All pollutions deleted correctly)";
     window.alert("Los datos se han borrado con exito");
     getPollutionCities();
 
