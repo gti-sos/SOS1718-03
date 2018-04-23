@@ -35,7 +35,7 @@
    $http.delete(api + "/" + station).then(function(response) {
     //$scope.status = "Status : " + response.status + "( Pollution deleted correctly)";
     //console.log(JSON.stringify(response, null, 2))
-   window.alert("El dato se ha borrado con exito");
+    window.alert("El dato se ha borrado con exito");
 
     getPollutionCities();
    });
