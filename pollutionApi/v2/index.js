@@ -142,7 +142,7 @@ pollutionApi.register = function(app, db) {
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2);
                     }else{
-                    res.send("Not found");
+                    res.send([]);
                     }
                 }
                 
@@ -194,7 +194,7 @@ pollutionApi.register = function(app, db) {
                     if (filteredCities.length > 0) {
                         res.send(filteredCities);
                     }else{
-                        res.send("Not found");
+                        res.send([]);
                     }
                 } 
                 
