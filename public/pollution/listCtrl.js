@@ -10,11 +10,12 @@
    }
   
   getPollutionCities();
-
+  $scope.status = "Status : (Data have been loaded correctly)";
 
   $scope.addPollution = function() {
    $http.post(api, $scope.newPollution).then(function successCallback(response) {
     $scope.status = "Status : " + response.status + "( Pollution added correctly)";
+    window.alert("El recurso se ha creado con exito!");
     getPollutionCities();
    }, function errorCallback(response) {
     console.log(response.status);
