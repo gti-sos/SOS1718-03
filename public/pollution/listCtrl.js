@@ -2,10 +2,13 @@
  angular.module("pollutionApp").controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
   console.log("List Ctrl initialited");
   var api = "/api/v2/pollution-cities";
-  
+  console.log("inicializando");
    function getPollutionCities(){
+    console.log("solicitando datos");
       $http.get(api).then(function(response) {
+       console.log("datos recibidos:" + response.data.length);
        $scope.stations = response.data;
+       console.log("datos en scope");
       });
    }
   
@@ -33,7 +36,7 @@
   $scope.deletePollution = function(station) {
    //console.log("Pollution to be deleted: " + station);
    $http.delete(api + "/" + station).then(function(response) {
-    //$scope.status = "Status : " + response.status + "( Pollution deleted correctly)";
+    $scope.status = "Status : " + response.status + "( Pollution deleted correctly)";
     //console.log(JSON.stringify(response, null, 2))
     window.alert("El dato se ha borrado con exito");
 
@@ -42,10 +45,14 @@
   };
 
   $scope.deleteAllPollution = function() {
+   console.log("Borrando datos");
    $http.delete(api).then(function(response) {
-    //$scope.status = "Status : " + response.status + "(All pollutions deleted correctly)";
+    console.log("peticion delete");
+    $scope.status = "Status : " + response.status + "(All pollutions deleted correctly)";
     window.alert("Los datos se han borrado con exito");
+    console.log("todo borrado");
     getPollutionCities();
+    console.log("mostrado");
 
    });
   };

@@ -17,7 +17,7 @@ angular.module("pollutionApp")
 
             $scope.updatePollution = function() {
                 $http.put(pollutionUrl, $scope.updatedPollution).then(function doneFilter(response) {
-                   // $scope.status = "Status : " + response.status + "(Update correctly)";
+                   $scope.status = "Status : " + response.status + "(Update correctly)";
                    // console.log(response.status);
                    window.alert("El recurso se ha editado con exito, gracias!");
                     $location.path("/");
