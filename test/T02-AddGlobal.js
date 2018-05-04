@@ -15,11 +15,11 @@ describe('Add global', function() {
                         browser
                         .driver.sleep(2000);
                         
-                        element(by.model('newGlobal.solarPlant')).sendKeys('Sevilla-Plant');
-                        element(by.model('newGlobal.name')).sendKeys('Sevilla');
-                        element(by.model('newGlobal.year')).sendKeys(2015);
-                        element(by.model('newGlobal.temperature')).sendKeys(1.5);
-                        element(by.model('newGlobal.peakPower')).sendKeys(0.8);
+                        element(by.model('newGlobal.solarPlant')).sendKeys('Parque-solar-don-alvaro');
+                        element(by.model('newGlobal.name')).sendKeys('Badajoz');
+                        element(by.model('newGlobal.year')).sendKeys(2018);
+                        element(by.model('newGlobal.temperature')).sendKeys(1.0);
+                        element(by.model('newGlobal.peakPower')).sendKeys(30);
                         
                         element(by.buttonText('Add')).click().then(function(){
                             element.all(by.repeater('plant in solarPlants')).then(function(solarPlants){

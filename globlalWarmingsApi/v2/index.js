@@ -2,6 +2,8 @@
 var globalWarmingsApi2 = {};
 var BASE_API_PATH = "/api/v2";
 
+
+
 module.exports = globalWarmingsApi2;
 
 globalWarmingsApi2.register = function (app,db){
@@ -349,7 +351,6 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
 
         res.sendStatus(200);
     });
-   
-   
+
 
 };
