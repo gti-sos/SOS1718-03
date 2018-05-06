@@ -1,5 +1,5 @@
 /* global angular */
-
+console.log(1);
 angular
     .module("appComun", ["ngRoute"])
     .config(function($routeProvider) {
