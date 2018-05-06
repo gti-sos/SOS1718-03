@@ -114,7 +114,7 @@ function getPollutionCitiesCount(){
    }
    
   $http
-   .get("/api/v2/global-warmings")
+   .get("/api/v2/pollution-cities")
    .then(function(response){
     console.log(response.data);
     Highcharts.chart('container', {
@@ -201,20 +201,20 @@ function getPollutionCitiesCount(){
       chart.draw(data, options);
     }
     
-    
-    new Chartist.Line('.ct-chart', {
-  labels: ['2008', '2014',],
-  series: [
-    [12, 9, 7, 8, 5],
-    [2, 1, 3.5, 7, 3],
-    [1, 3, 4, 5, 6]
+
+
+new Chartist.Bar('.ct-chart', {
+labels: ['Barcelona', 'Madrid', 'Valencia','Huelva'],
+series: [
+    [2347766	,3256265,170977,22469]
   ]
 }, {
-  fullWidth: false,
-  fullHeigth: false,
-  chartPadding: {
-    right: 40
-  }
+  seriesBarDistance: 10,
+  reverseData: true,
+  horizontalBars: true,
+  axisY: {
+    offset: 70
+  },
 });
 
 
