@@ -30,6 +30,7 @@
      $scope.status = "Status : ( FAIL: Pollution does not have expected fields)";
     }
     if (response.status == 409) {
+     window.alert("Pollution already exists");
      $scope.status = "Status : ( FAIL: Pollution already exists!!!)";
     }
    });
