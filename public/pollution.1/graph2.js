@@ -99,7 +99,7 @@ console.log(googleData);
     });
           google.charts.load('current', {
         'packages':['geochart'],
-        
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
          });
          
       google.charts.setOnLoadCallback(drawRegionsMap);
