@@ -16,15 +16,10 @@ $http
 for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
     
-          
-          
-          
-          //googleDataAux.push(response.data[i].solarPlant);
           googleDataAux.push(response.data[i].name);
           googleDataAux.push(parseInt(response.data[i].peakPower));
           googleDataAux.push(parseInt(response.data[i].temperature));
-          //googleDataAux.push(parseInt(response.data[i].year));
-    
+         
     
      googleData.push(googleDataAux);
 } 
@@ -104,10 +99,9 @@ console.log(googleData);
     });
           google.charts.load('current', {
         'packages':['geochart'],
-        // Note: you will need to get a mapsApiKey for your project.
-        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
         
-      });
+         });
+         
       google.charts.setOnLoadCallback(drawRegionsMap);
    
       function drawRegionsMap() {
@@ -118,7 +112,7 @@ console.log(googleData);
             ];
         
         response.data.map(function(d) {
-            var total = "peakPower:" + Number(d['peakPower']) + "," + "temperature:" + Number(d['temperature']);
+            var total = "name:" + (d['name']) + ", " + "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
             datos.push([d['name'],total]);
         });
         
@@ -135,24 +129,7 @@ console.log(googleData);
 
         chart.draw(data, options);
       }
-/*
-  google.charts.load('current', { 'packages': ['corechart'] });
-  google.charts.setOnLoadCallback(drawSeriesChart);
 
-  function drawSeriesChart() {
-
-   var data = google.visualization.arrayToDataTable(googleData);
-   var options = {
-    title: 'Peaks of maximum power that a solar plant gives off and the effect that it produces in the increase of the temperature (for years)',
-    hAxis: { title: 'peakPower' },
-    vAxis: { title: 'Temperature' },
-    bubble: { textStyle: { fontSize: 11 } }
-   };
-
-   var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-   chart.draw(data, options);
-  }
-*/
   var chart = c3.generate({
     data: {
         columns: [
