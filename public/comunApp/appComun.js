@@ -1,11 +1,12 @@
 /* global angular */
-
+console.log(1);
 angular
     .module("appComun", ["ngRoute"])
     .config(function($routeProvider) {
-        $routeProvider
+       
+            $routeProvider
             .when("/", {
-                templateUrl: "menu.html"
+                 templateUrl: "menu.html"
             })
             .when("/pollution", {
                 templateUrl: "listPollution.html",
@@ -22,5 +23,5 @@ angular
             .when("/solarPlant/:solarPlant", {
                 templateUrl: "editGlobal.html",
                 controller: "editCtrlGlobal"
-            });
+            });console.log(2);
     });
