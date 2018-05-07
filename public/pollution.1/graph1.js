@@ -81,49 +81,51 @@
 
 
 
-         googleData.push(['city','car', 'nitrous']);
-   for(var i=0;i<response.data.length;i++){
+       
+      googleData.push(['city','carr','nitrous']);
+
+
+    for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
-          //googleDataAux.push(response.data[i].station);
-          googleDataAux.push(response.data[i].city);
-          googleDataAux.push(parseInt(response.data[i].nitrous));
-          //googleDataAux.push(parseInt(response.data[i].car));
-          
-          //googleDataAux.push(parseInt(response.data[i].year))
     
-        googleData.push(googleDataAux);
-        } 
-        console.log(googleData);
-          google.charts.load('current', {
+          googleDataAux.push(response.data[i].name);
+          googleDataAux.push(parseInt(response.data[i].peakPower));
+          googleDataAux.push(parseInt(response.data[i].temperature));
+         
+    
+     googleData.push(googleDataAux);
+     
+}  
+       google.charts.load('current', {
         'packages':['geochart'],
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-      });
+         });
+         
       google.charts.setOnLoadCallback(drawRegionsMap);
-  
-  function drawRegionsMap() {
+   
+      function drawRegionsMap() {
         var datos = [
             
-                ['city' ,'car']
+                ['city','car']
             
             ];
-        console.log(datos);
+        
         response.data.map(function(d) {
-            var total = "car: " + Number(d['car']) + "," + " nitrous: " + Number(d['nitrous']);
-            datos.push(d['city'],total);
+            var total ="car:" + Number(d['car']) + ", " + "nitrous:" + Number(d['nitrous']);
+            datos.push([d['city'],total]);
         });
-        console.log(datos);
         
         var data = google.visualization.arrayToDataTable(datos);
         
-        console.log(data);
+
         var options = {
-            colorAxis: {colors: ['green','blue']},
             region : 'ES',
-            displayMode: 'markers'
+            displayMode: 'markers',
+            colorAxis: {colors: ['green','blue']}
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-        console.log(datos);
+
         chart.draw(data, options);
       }
     
