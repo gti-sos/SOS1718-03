@@ -11,7 +11,7 @@ describe('Data is loaded', function() {
     });
      it('should show some stations', function() {
         browser
-            .get('https://sos171803amfm-sandbox-sos171803amfm.c9users.io/pollution/#!/')
+            .get('http://sos1718-03.herokuapp.com/pollution.1/#!/')
             .then(function() {
                 element
                     .all(by.repeater('st in stations'))
