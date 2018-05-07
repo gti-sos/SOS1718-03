@@ -3,11 +3,38 @@
  /* global google */
  /* global c3 */
  angular.module("StatsApp").controller("graph1", ["$scope", "$http", function($scope, $http) {
-    
+    var ultimo = [];
+    var labelsAux = [];
+    var labels= [];
+    var valoresAux = [];
+    var valores = [];
   $http
    .get("/api/v2/pollution-cities")
    .then(function(response){
-    console.log(response.data);
+       
+    for(var i=0;i<response.data.length;i++){
+        var ultimoAux = [];
+        for(var j=0; j<1;j++){
+             ultimoAux.push(response.data[i].station);
+             ultimoAux.push(parseInt(response.data[i].nitrous));
+        }
+        ultimo.push(ultimoAux);
+    }  
+    
+    for(var z=0;z<response.data.length;z++){
+        labelsAux[z] = (response.data[z].city);
+    }  
+    labels = labelsAux;
+    
+    for(var z=0;z<response.data.length;z++){
+        valoresAux[z] = parseInt((response.data[z].car));
+    } 
+    
+    valores = valoresAux;
+    console.log(labels);
+    console.log(valores);
+    
+    
     Highcharts.chart('container', {
     chart: {
         type: 'column'
@@ -28,7 +55,7 @@
     yAxis: {
         min: 0,
         title: {
-            text: 'nitrous (microgramos/m^3)'
+            text: 'nitrous (µgramos/m3)'
         }
     },
     legend: {
@@ -39,14 +66,7 @@
     },
     series: [{
         name: 'Nitrous',
-        data: [
-            ['fernandez ladreda oporto', 53],
-            ['l eixample', 52],
-            ['gracia sant gervasi', 52],
-            ['escuelas aguirre', 53],
-            ['pista de silla', 46],
-            ['Huelva Station', 35]
-        ],
+        data: ultimo,
         dataLabels: {
             enabled: true,
             rotation: -90,
@@ -61,7 +81,7 @@
         }
     }]
   });
- });
+
  
  
  
@@ -93,11 +113,11 @@
     }
     
 
-
-new Chartist.Bar('.ct-chart', {
-labels: ['Barcelona', 'Madrid', 'Valencia','Huelva'],
-series: [
-    [2347766,3256265,170977,22469]
+      new Chartist.Bar('.ct-chart', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  series: [
+    [5, 4, 3, 7, 5, 10, 3],
+    [3, 2, 9, 5, 4, 6, 4]
   ]
 }, {
   seriesBarDistance: 10,
@@ -105,8 +125,8 @@ series: [
   horizontalBars: true,
   axisY: {
     offset: 70
-  },
+  }
 });
-
+ });
 
  }]);
