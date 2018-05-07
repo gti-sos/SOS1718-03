@@ -27,12 +27,7 @@
         ultimo.push(ultimoAux);
     }  
     
-    for(var z=0;z<response.data.length;z++){
-        labelsAux[z] = (response.data[z].city);
-        valoresAux[z] = parseInt(response.data[z].car);
-    }  
-    labels = labelsAux;
-    valores = valoresAux;
+    
 
     
     
@@ -83,7 +78,12 @@
     }]
   });
   
-  
+});  
+
+
+$http
+   .get("/api/v2/pollution-cities")
+   .then(function(response){
          googleData.push(['city','nitrous']);
    for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
@@ -95,7 +95,7 @@
           //googleDataAux.push(parseInt(response.data[i].year))
     
      googleData.push(googleDataAux);
-} 
+        } 
   
           google.charts.load('current', {
         'packages':['geochart'],
@@ -129,6 +129,17 @@
         chart.draw(data, options);
       }
     
+}); 
+$http
+   .get("/api/v2/pollution-cities")
+   .then(function(response){
+
+    for(var z=0;z<response.data.length;z++){
+        labelsAux[z] = (response.data[z].city);
+        valoresAux[z] = parseInt(response.data[z].car);
+    }  
+    labels = labelsAux;
+    valores = valoresAux;
 
   new Chartist.Bar('.ct-chart', {
   labels: labels,
@@ -140,9 +151,9 @@
   axisY: {
     offset: 70
   }
+    });
+
+
 });
-
-
- });
 
  }]);
