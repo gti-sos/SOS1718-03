@@ -8,7 +8,7 @@ angular.module("StatsApp")
         ["$scope", "$http", function($scope, $http) {
 var googleData = [];
 var ultimo = [];
-googleData.push(['solarPlant','peakPower','temperature']);
+googleData.push(['name','peakPower','temperature']);
 $http
    .get("/api/v2/global-warmings")
    .then(function(response) {
@@ -19,10 +19,11 @@ for(var i=0;i<response.data.length;i++){
           
           
           
-          googleDataAux.push(response.data[i].solarPlant);
+          //googleDataAux.push(response.data[i].solarPlant);
+          googleDataAux.push(response.data[i].name);
           googleDataAux.push(parseInt(response.data[i].peakPower));
           googleDataAux.push(parseInt(response.data[i].temperature));
-          //googleDataAux.push(response.data[i].name);
+            
           //googleDataAux.push(parseInt(response.data[i].year));
     
     
@@ -109,27 +110,27 @@ console.log(googleData);
         
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
-      /*
-      for(var i=0;i<response.data.length;i++){
-        var googleDataAux = [];
-    
-          
-          
-          
-          googleDataAux.push(response.data[i].solarPlant);
-          googleDataAux.push(parseInt(response.data[i].peakPower));
-         // googleDataAux.push(parseInt(response.data[i].temperature));
-          //googleDataAux.push(response.data[i].name);
-          //googleDataAux.push(parseInt(response.data[i].year));
-    
-    
-     googleData.push(googleDataAux);
-} */
+   
       function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable(googleData);
+        var datos = [
+            
+                ['name','peakPower']
+            
+            ];
+        
+        response.data.map(function(d) {
+            var total = "peakPower:" + Number(d['peakPower']) + "," + "temperature:" + Number(d['temperature']);
+            datos.push([d['name'],total]);
+        });
+        
+        var data = google.visualization.arrayToDataTable(datos);
+        
 
-        var options = {hAxis: { title: 'peakPower' },
-    vAxis: { title: 'Temperature'}};
+        var options = {
+            region : 'ES',
+            displayMode: 'markers',
+            colorAxis: {colors: ['green','blue']}
+        };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
