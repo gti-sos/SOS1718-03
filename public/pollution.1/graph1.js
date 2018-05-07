@@ -78,12 +78,9 @@
     }]
   });
   
-});  
 
 
-$http
-   .get("/api/v2/pollution-cities")
-   .then(function(response){
+
          googleData.push(['city','car', 'nitrous']);
    for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
@@ -130,10 +127,7 @@ $http
         chart.draw(data, options);
       }
     
-}); 
-$http
-   .get("/api/v2/pollution-cities")
-   .then(function(response){
+
 
     for(var z=0;z<response.data.length;z++){
         labelsAux[z] = (response.data[z].city);
