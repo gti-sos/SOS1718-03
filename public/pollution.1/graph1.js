@@ -98,7 +98,7 @@
 }  
        google.charts.load('current', {
         'packages':['geochart'],
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        'mapsApiKey': 'AIzaSyD-9tSrke72pouQMnMX-a7eZSW0jkFMBWY'
          });
          
       google.charts.setOnLoadCallback(drawRegionsMap);
