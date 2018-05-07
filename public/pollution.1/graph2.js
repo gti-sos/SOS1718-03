@@ -106,7 +106,7 @@ console.log(googleData);
       function drawRegionsMap() {
         var datos = [
             
-                ['name','peakPower','temperature']
+                ['name','peakPower']
             
             ];
         
