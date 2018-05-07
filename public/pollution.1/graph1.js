@@ -84,7 +84,7 @@
 $http
    .get("/api/v2/pollution-cities")
    .then(function(response){
-         googleData.push(['city','nitrous']);
+         googleData.push(['city','car', 'nitrous']);
    for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
           //googleDataAux.push(response.data[i].station);
@@ -99,18 +99,19 @@ $http
         console.log(googleData);
           google.charts.load('current', {
         'packages':['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
   
   function drawRegionsMap() {
         var datos = [
             
-                ['nitrous' ,'car']
+                ['city' ,'car']
             
             ];
         console.log(datos);
         response.data.map(function(d) {
-            var total = "nitrous: " + Number(d['nitrous']) + "," + " car: " + Number(d['car']);
+            var total = "car: " + Number(d['car']) + "," + " nitrous: " + Number(d['nitrous']);
             datos.push(d['city'],total);
         });
         console.log(datos);
