@@ -2,39 +2,40 @@
  /* global google */
  /* global c3 */
  /* global angular*/
+ 
 angular.module("StatsApp")
     .controller("graph2",
         ["$scope", "$http", function($scope, $http) {
 var googleData = [];
 var ultimo = [];
-googleData.push(['name', 'solarPlant', 'year', 'temperature', 'peakPower']);
-
-
+googleData.push(['solarPlant','peakPower','temperature','name','year']);
 $http
    .get("/api/v2/global-warmings")
    .then(function(response) {
 
 for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
-
-    for(var j=0; j<1;j++){
-         googleDataAux.push(response.data[i].name);
-         googleDataAux.push(response.data[i].peakPower);
-         googleDataAux.push(response.data[i].temperature);
-         googleDataAux.push(response.data[i].solarPlant);
-         googleDataAux.push(response.data[i].year);
-         
-         
-    }
-    googleData.push(googleDataAux);
+    
+          
+          
+          
+          googleDataAux.push(response.data[i].solarPlant);
+          googleDataAux.push(parseInt(response.data[i].peakPower));
+          googleDataAux.push(parseInt(response.data[i].temperature));
+          googleDataAux.push(response.data[i].name);
+          googleDataAux.push(parseInt(response.data[i].year));
+    
+    
+     googleData.push(googleDataAux);
 } 
-
+console.log(googleData);
+    
 for(i=0;i<response.data.length;i++){
     var ultimoAux = [];
-    for(j=0; j<1;j++){
+    
          ultimoAux.push(response.data[i].solarPlant);
          ultimoAux.push(parseInt(response.data[i].peakPower));
-    }
+    
     ultimo.push(ultimoAux);
 }
     
@@ -101,7 +102,7 @@ console.log(googleData);
     
     ]
     });
-});
+
   google.charts.load('current', { 'packages': ['corechart'] });
   google.charts.setOnLoadCallback(drawSeriesChart);
 
@@ -151,5 +152,5 @@ setTimeout(function () {
         ids: 'data2'
     });
 }, 2500);
-
+});
 }]);
