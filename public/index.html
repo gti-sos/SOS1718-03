@@ -1,76 +1,32 @@
-<html>
-    <head>
-         <h3>
-             Service Oriented Systems (Sistemas Orientados a Servicios) 2017/2018 at [Univeristy of Sevilla](http://www.us.es)<br />
-             List of Projects registered in the course of **Service Oriented Systems** (2017/2018)
-         </h3>
-        <title>
-            SOS1718-03
-        </title>
-    </head>
-    <body>
-        <h1>SOS1718-03</h1>
-        <ul>
-            <li>
-                <h2>Team</h2>
-            </li>
-            
-            <ul>
-                <li><h3><a href="https://github.com/josbarolm")>Jose Maria Barrero Olmedo</a></h3></li>
-                <li><h3><a href="https://github.com/adaframor")>Adan Manuel Franco Moreno </a></h3></li>
-                <li><h3><a href="https://github.com/antpergua")>Antonio José Perea Guadix </a></h3></li>
-            </ul>
-            <li>
-                <h2>Project description:</h2>
-            </li>
-            <ul>
-                <li>Relationship that exists between rising sea levels, pollution of cities and global warming</li>
-            </ul>
-            <li>
-                <h2>Repository:</h2>
-            </li>
-            <ul>
-                <li><a href="https://github.com/gti-sos/sos1718-03")>SOS1718/sos1718-03</a></li>
-            </ul>
-            <li>
-                <h2>URL:</h2>
-            </li>
-            <ul>
-                <li><a href="http://sos1718-03.herokuapp.com/")>[Heroku] </a></li>
-            </ul>
-            <li>
-                <h2>APIs local</h2>
-            </li>
-            <ul>
-                <li><h3><a href="https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities")>pollutionCities </a></h3></li>
-                <li><h3><a href="https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings")>globalWarmings </a></h3></li>
-            </ul>
-            
-            <li>
-                <h2>APIs heroku</h2>
-            </li>
-            <ul>
-                <li><h3><a href="http://sos1718-03.herokuapp.com/api/v1/pollution-cities")>pollutionCities </a></h3></li>
-                <li><h3><a href="http://sos1718-03.herokuapp.com/api/v1/global-warmings")>globalWarmings </a></h3></li>
-            </ul>
-            
-            <li>
-                <h2>Front-end</h2>
-            </li>
-            <ul>
-
-                <li><h3><a href="http://sos1718-03.herokuapp.com/pollution.1/#!/")>Pollution and Globals Warmings App</a></h3></li>
-            </ul>
-            
-            <li>
-                <h2>Analytics</h2>
-            </li>
-            <ul>
-                <li><h3><a href="http://sos1718-03.herokuapp.com/pollution.1/#!/analytics")>View analytics</a></h3></li>
-
-            </ul>
-        </ul>
-            
-    </body>
+<html ng-app="StatsApp">
+<head>
+    <title>Pollution Cities List</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="StatsApp.js"></script>
+    <script src="listCtrlPollution.js"></script>
+    <script src="listCtrlGlobal.js"></script>
+    <script src="editCtrlPollution.js"></script>
+    <script src="editCtrlGlobal.js"></script>
+    <script src="graph2.js"></script>
+    <script src="graph1.js"></script>
+    <script src="/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="/bower_components/c3/c3.min.js"></script>
+    <link href="/bower_components/c3/c3.css" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/bower_components/chartist/dist/chartist.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/chartist/dist/chartist.min.css">
+   <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+    
+</head>
+<body>
+    <div ng-view>
+    </div>
+</body>
 
 </html>
