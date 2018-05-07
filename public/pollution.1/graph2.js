@@ -23,7 +23,6 @@ for(var i=0;i<response.data.length;i++){
           googleDataAux.push(response.data[i].name);
           googleDataAux.push(parseInt(response.data[i].peakPower));
           googleDataAux.push(parseInt(response.data[i].temperature));
-            
           //googleDataAux.push(parseInt(response.data[i].year));
     
     
