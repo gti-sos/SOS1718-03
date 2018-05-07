@@ -111,7 +111,7 @@
             ];
         
         response.data.map(function(d) {
-            var total = "city: " + (d['city']) + "," + " car: " + Number(d['car']) + "," + " nitrous: " + Number(d['nitrous']);
+            var total = "city: " + (d['city']) + "," + " car: " + Number(d['car']);
             datos.push([d['city'],total]);
         });
         
