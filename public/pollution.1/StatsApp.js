@@ -7,30 +7,30 @@ app.config(function($routeProvider) {
                 templateUrl: "home.html"
             })
             .when("/pollution", {
-                templateUrl: "listPollution.html",
+                templateUrl: "/pollution.1/listPollution.html",
                 controller: "listCtrlPollution"
             })
             .when("/station/:station", {
-                templateUrl: "editPollution.html",
+                templateUrl: "/pollution.1/editPollution.html",
                 controller: "editCtrlPollution"
             })
             .when("/global", {
-                templateUrl: "listGlobal.html ",
+                templateUrl: "/pollution.1/listGlobal.html ",
                 controller: "listCtrlGlobal"
             })
             .when("/solarPlant/:solarPlant", {
-                templateUrl: "editGlobal.html",
+                templateUrl: "/pollution.1/editGlobal.html",
                 controller: "editCtrlGlobal"
             })
             .when("/analytics", {
-                templateUrl: "analytics.html"
+                templateUrl: "/pollution.1/analytics.html"
             })
             .when("/graph1", {
-                templateUrl: "graph1.html" ,
+                templateUrl: "/pollution.1/graph1.html" ,
                 controller: "graph1"
             })
             .when("/graph2", {
-                templateUrl: "graph2.html ",
+                templateUrl: "/pollution.1/graph2.html ",
                 controller: "graph2"
             });
 
