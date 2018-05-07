@@ -105,21 +105,23 @@ $http
   function drawRegionsMap() {
         var datos = [
             
-                ['city','nitrous']
+                ['nitrous' ,'car']
             
             ];
         console.log(datos);
         response.data.map(function(d) {
-            var total = "car " + (d['car']) + "," + " nitrous: " + Number(d['nitrous']);
-            datos.push([d['city'],total]);
+            var total = "nitrous: " + Number(d['nitrous']) + "," + " car: " + Number(d['car']);
+            datos.push(d['city'],total);
         });
         console.log(datos);
         
         var data = google.visualization.arrayToDataTable(datos);
         
-
+        console.log(data);
         var options = {
-            colorAxis: {colors: ['green','blue']}
+            colorAxis: {colors: ['green','blue']},
+            region : 'ES',
+            displayMode: 'markers'
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
