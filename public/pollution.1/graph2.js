@@ -97,20 +97,23 @@ console.log(googleData);
     
     ]
     });
-          google.charts.load('current', {
-        'packages':['geochart']
-         });
+        google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
          
       google.charts.setOnLoadCallback(drawRegionsMap);
    
       function drawRegionsMap() {
-        var datos = [
+        var datos = ([
             
                 ['name','peakPower']
             
-            ];
+            ]);
         
-        response.data.forEach(function(d) {
+        response.data.map(function(d) {
             var total = "name:" + (d['name']) + ", " + "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
             datos.push([d['name'],total]);
         });
