@@ -207,7 +207,7 @@ Highcharts.chart('container', {
     ['la Rioja', 30, 0.7, 'Planta solar Arnedo', 2010],
     ['Cuenca', 30, 0.7, 'Planta solar Osa de la Vega', 2010]
    ]);
-
+console.log(data);
    var options = {
     title: 'Peaks of maximum power that a solar plant gives off and the effect that it produces in the increase of the temperature (for years)',
     hAxis: { title: 'peakPower' },

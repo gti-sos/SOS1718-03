@@ -5,14 +5,43 @@
 angular.module("StatsApp")
     .controller("graph2",
         ["$scope", "$http", function($scope, $http) {
-         
+var googleData = [];
+var ultimo = [];
+googleData.push(['name', 'solarPlant', 'year', 'temperature', 'peakPower']);
+
+
 $http
    .get("/api/v2/global-warmings")
    .then(function(response) {
-    console.log(response.data);
+
+for(var i=0;i<response.data.length;i++){
+    var googleDataAux = [];
+
+    for(var j=0; j<1;j++){
+         googleDataAux.push(response.data[i].name);
+         googleDataAux.push(response.data[i].peakPower);
+         googleDataAux.push(response.data[i].temperature);
+         googleDataAux.push(response.data[i].solarPlant);
+         googleDataAux.push(response.data[i].year);
+         
+         
+    }
+    googleData.push(googleDataAux);
+} 
+
+for(i=0;i<response.data.length;i++){
+    var ultimoAux = [];
+    for(j=0; j<1;j++){
+         ultimoAux.push(response.data[i].solarPlant);
+         ultimoAux.push(parseInt(response.data[i].peakPower));
+    }
+    ultimo.push(ultimoAux);
+}
+    
+console.log(googleData);
     
    
-Highcharts.chart('container', {
+    Highcharts.chart('container', {
     chart: {
         type: 'bar'
     },
@@ -71,22 +100,14 @@ Highcharts.chart('container', {
     }
     
     ]
-  });
+    });
 });
   google.charts.load('current', { 'packages': ['corechart'] });
   google.charts.setOnLoadCallback(drawSeriesChart);
 
   function drawSeriesChart() {
 
-   var data = google.visualization.arrayToDataTable([
-    ['City', 'peakPower', 'temperature', 'solarPlant', 'year'],
-    ['Ciudad Real', 70, 0.7, 'Parque fotovoltaico puertollano', 2010],
-    ['Cuenca', 60, 0.7, 'Parque fotovoltaico Olmedilla de Alarcon', 2010],
-    ['Caceres', 34, 0.7, 'Planta solar fotovoltaica La Magascona y La Magasquilla', 2010],
-    ['la Rioja', 30, 0.7, 'Planta solar Arnedo', 2010],
-    ['Cuenca', 30, 0.7, 'Planta solar Osa de la Vega', 2010]
-   ]);
-
+   var data = google.visualization.arrayToDataTable(googleData);
    var options = {
     title: 'Peaks of maximum power that a solar plant gives off and the effect that it produces in the increase of the temperature (for years)',
     hAxis: { title: 'peakPower' },
@@ -112,17 +133,13 @@ Highcharts.chart('container', {
     donut: {
         title: "Greater solar plants"
     }
-});
+  });
 
 setTimeout(function () {
     chart.load({
-        columns: [
-            ["Parque fotovoltaico puertollano",70 ],
-            ["Parque fotovoltaico Olmedilla de Alarcon", 60],
-            ["Planta solar fotovoltaica La Magascona y La Magasquilla", 34],
-            ["Planta solar Arnedo",30],
-            ["Planta solar Osa de la Vega",30]
-        ]
+        columns: 
+            ultimo
+        
     });
 }, 1500);
 
