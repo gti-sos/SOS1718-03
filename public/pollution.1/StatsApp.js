@@ -24,6 +24,11 @@ app.config(function($routeProvider) {
             })
             .when("/analytics", {
                 templateUrl: "analytics.html"
+            })
+            .when("/graph1", {
+                templateUrl: "graph1.html" ,
+                controller: "graph1"
+
             });
 
 

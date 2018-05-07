@@ -4,7 +4,8 @@ angular
     .config(function($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "menu.html"
+                templateUrl: "list.html" ,
+                controller: "ListCtrl"
             }).when("/station/:station", {
                 templateUrl: "edit.html",
                 controller: "EditCtrl"
