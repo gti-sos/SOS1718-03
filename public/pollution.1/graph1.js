@@ -10,26 +10,12 @@
     var valoresAux = [];
     var valores = [];
     var googleData = [];
-    googleData.push(['city','nitrous','car']);
+    
 
 
   $http
    .get("/api/v2/pollution-cities")
    .then(function(response){
-       
-   for(var i=0;i<response.data.length;i++){
-    var googleDataAux = [];
-          //googleDataAux.push(response.data[i].station);
-          googleDataAux.push(response.data[i].city);
-          googleDataAux.push(parseInt(response.data[i].nitrous));
-          googleDataAux.push(parseInt(response.data[i].car));
-          
-          //googleDataAux.push(parseInt(response.data[i].year))
-    
-     googleData.push(googleDataAux);
-} 
-    
-    
     
     
     for(i=0;i<response.data.length;i++){
@@ -98,6 +84,19 @@
   });
   
   
+         googleData.push(['city','nitrous']);
+   for(var i=0;i<response.data.length;i++){
+    var googleDataAux = [];
+          //googleDataAux.push(response.data[i].station);
+          googleDataAux.push(response.data[i].city);
+          googleDataAux.push(parseInt(response.data[i].nitrous));
+          //googleDataAux.push(parseInt(response.data[i].car));
+          
+          //googleDataAux.push(parseInt(response.data[i].year))
+    
+     googleData.push(googleDataAux);
+} 
+  
           google.charts.load('current', {
         'packages':['geochart'],
       });
@@ -106,14 +105,14 @@
   function drawRegionsMap() {
         var datos = [
             
-                ['city','car']
+                ['city','nitrous']
             
             ];
         
-        /*response.data.map(function(d) {
-            var total = "city: " + (d['city']) + "," + " car: " + Number(d['car']);
+        response.data.map(function(d) {
+            var total = "city: " + (d['city']) + "," + " nitrous: " + Number(d['nitrous']);
             datos.push([d['city'],total]);
-        });*/
+        });
         
         
         var data = google.visualization.arrayToDataTable(datos);
@@ -121,6 +120,7 @@
 
         var options = {
             region : 'ES',
+            displayMode: 'markers',
             colorAxis: {colors: ['green','blue']}
         };
 
