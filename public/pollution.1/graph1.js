@@ -2,6 +2,7 @@
  /* global Highcharts */
  /* global google */
  /* global c3 */
+  /* global Chartist */
  angular.module("StatsApp").controller("graph1", ["$scope", "$http", function($scope, $http) {
     var ultimo = [];
     var labelsAux = [];
@@ -23,13 +24,9 @@
     
     for(var z=0;z<response.data.length;z++){
         labelsAux[z] = (response.data[z].city);
+        valoresAux[z] = parseInt(response.data[z].car);
     }  
     labels = labelsAux;
-    
-    for(var z=0;z<response.data.length;z++){
-        valoresAux[z] = parseInt((response.data[z].car));
-    } 
-    
     valores = valoresAux;
     console.log(labels);
     console.log(valores);
@@ -113,13 +110,10 @@
     }
     
 
-      new Chartist.Bar('.ct-chart', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  series: [
-    [5, 4, 3, 7, 5, 10, 3],
-    [3, 2, 9, 5, 4, 6, 4]
-  ]
-}, {
+  new Chartist.Bar('.ct-chart', {
+  labels: labels,
+  series: [[3256265, 2347766, 2347766, 3256265, 170977, 22469, 124556]]},
+  {
   seriesBarDistance: 10,
   reverseData: true,
   horizontalBars: true,
@@ -127,6 +121,8 @@
     offset: 70
   }
 });
+
+
  });
 
  }]);
