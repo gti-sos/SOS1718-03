@@ -1,5 +1,5 @@
 /* global angular */
-angular
+/*angular
     .module("globalApp", ["ngRoute"])
     .config(function($routeProvider) {
         $routeProvider
@@ -11,4 +11,4 @@ angular
                 controller: "EditCtrl"
             });
 
-    });
+    });*/

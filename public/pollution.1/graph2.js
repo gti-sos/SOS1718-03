@@ -8,7 +8,7 @@ angular.module("StatsApp")
         ["$scope", "$http", function($scope, $http) {
 var googleData = [];
 var ultimo = [];
-googleData.push(['solarPlant','peakPower','temperature','name','year']);
+googleData.push(['solarPlant','peakPower','temperature']);
 $http
    .get("/api/v2/global-warmings")
    .then(function(response) {
@@ -22,8 +22,8 @@ for(var i=0;i<response.data.length;i++){
           googleDataAux.push(response.data[i].solarPlant);
           googleDataAux.push(parseInt(response.data[i].peakPower));
           googleDataAux.push(parseInt(response.data[i].temperature));
-          googleDataAux.push(response.data[i].name);
-          googleDataAux.push(parseInt(response.data[i].year));
+          //googleDataAux.push(response.data[i].name);
+          //googleDataAux.push(parseInt(response.data[i].year));
     
     
      googleData.push(googleDataAux);
@@ -109,6 +109,7 @@ console.log(googleData);
         
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
+      /*
       for(var i=0;i<response.data.length;i++){
         var googleDataAux = [];
     
@@ -117,13 +118,13 @@ console.log(googleData);
           
           googleDataAux.push(response.data[i].solarPlant);
           googleDataAux.push(parseInt(response.data[i].peakPower));
-          googleDataAux.push(parseInt(response.data[i].temperature));
-          googleDataAux.push(response.data[i].name);
-          googleDataAux.push(parseInt(response.data[i].year));
+         // googleDataAux.push(parseInt(response.data[i].temperature));
+          //googleDataAux.push(response.data[i].name);
+          //googleDataAux.push(parseInt(response.data[i].year));
     
     
      googleData.push(googleDataAux);
-} 
+} */
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable(googleData);
 
