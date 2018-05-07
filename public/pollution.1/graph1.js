@@ -94,9 +94,9 @@ $http
           
           //googleDataAux.push(parseInt(response.data[i].year))
     
-     googleData.push(googleDataAux);
+        googleData.push(googleDataAux);
         } 
-  
+        console.log(googleData);
           google.charts.load('current', {
         'packages':['geochart'],
       });
@@ -108,12 +108,12 @@ $http
                 ['city','nitrous']
             
             ];
-        
+        console.log(datos);
         response.data.map(function(d) {
             var total = "city: " + (d['city']) + "," + " nitrous: " + Number(d['nitrous']);
             datos.push([d['city'],total]);
         });
-        
+        console.log(datos);
         
         var data = google.visualization.arrayToDataTable(datos);
         
@@ -123,7 +123,7 @@ $http
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
+        console.log(datos);
         chart.draw(data, options);
       }
     
