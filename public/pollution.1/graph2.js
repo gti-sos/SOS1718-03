@@ -111,7 +111,7 @@ console.log(googleData);
             ];
         
         response.data.map(function(d) {
-            var total ="peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
+            var total ="peakPower:" + Number(d['peakPower']);
             datos.push([d['name'],total]);
         });
         
