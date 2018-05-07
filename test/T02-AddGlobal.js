@@ -7,7 +7,7 @@ describe('Add global', function() {
     });
      it('should show some solarPlants', function() {
         browser
-            .get('https://http://sos1718-03.herokuapp.com/global/#!/')
+            .get('https://sos1718-03.herokuapp.com/global/#!/')
             .then(function() {
                 element
                     .all(by.repeater('plant in solarPlants'))
