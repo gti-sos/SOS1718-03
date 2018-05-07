@@ -106,11 +106,11 @@ console.log(googleData);
       function drawRegionsMap() {
         var datos = [
             
-                ['name','peakPower']
+                ['name','peakPower','temperature']
             
             ];
         
-        response.data.map(function(d) {
+        response.data.forEach(function(d) {
             var total = "name:" + (d['name']) + ", " + "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
             datos.push([d['name'],total]);
         });
