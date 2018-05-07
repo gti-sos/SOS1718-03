@@ -119,8 +119,6 @@ $http
         
 
         var options = {
-            region : 'ES',
-            displayMode: 'markers',
             colorAxis: {colors: ['green','blue']}
         };
 
