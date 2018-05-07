@@ -97,18 +97,18 @@ console.log(googleData);
     
     ]
     });
-        google.charts.load('current', {
+          google.charts.load('current', {
         'packages':['geochart']
-      });
+         });
          
       google.charts.setOnLoadCallback(drawRegionsMap);
    
       function drawRegionsMap() {
-        var datos = ([
+        var datos = [
             
                 ['name','peakPower']
             
-            ]);
+            ];
         
         response.data.map(function(d) {
             var total = "name:" + (d['name']) + ", " + "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
