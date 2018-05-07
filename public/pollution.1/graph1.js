@@ -110,7 +110,7 @@ $http
             ];
         console.log(datos);
         response.data.map(function(d) {
-            var total = "city: " + (d['city']) + "," + " nitrous: " + Number(d['nitrous']);
+            var total = "car " + (d['car']) + "," + " nitrous: " + Number(d['nitrous']);
             datos.push([d['city'],total]);
         });
         console.log(datos);
