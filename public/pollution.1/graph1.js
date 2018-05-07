@@ -10,24 +10,27 @@
     var valoresAux = [];
     var valores = [];
     var googleData = [];
-    googleData.push(['station','nitrous','car','city','year']);
+    googleData.push(['city','nitrous','car']);
 
 
   $http
    .get("/api/v2/pollution-cities")
    .then(function(response){
        
-    for(var i=0;i<response.data.length;i++){
+   for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
-          googleDataAux.push(response.data[i].station);
+          //googleDataAux.push(response.data[i].station);
+          googleDataAux.push(response.data[i].city);
           googleDataAux.push(parseInt(response.data[i].nitrous));
           googleDataAux.push(parseInt(response.data[i].car));
-          googleDataAux.push(response.data[i].city);
-          googleDataAux.push(parseInt(response.data[i].year));
-    
+          
+          //googleDataAux.push(parseInt(response.data[i].year))
     
      googleData.push(googleDataAux);
 } 
+    
+    
+    
     
     for(i=0;i<response.data.length;i++){
         var ultimoAux = [];
@@ -93,28 +96,38 @@
         }
     }]
   });
+  
+  
+          google.charts.load('current', {
+        'packages':['geochart'],
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+  
+  function drawRegionsMap() {
+        var datos = [
+            
+                ['city','car']
+            
+            ];
+        
+        response.data.map(function(d) {
+            var total = "city: " + (d['city']) + "," + " car: " + Number(d['car']) + "," + " nitrous: " + Number(d['nitrous']);
+            datos.push([d['city'],total]);
+        });
+        
+        var data = google.visualization.arrayToDataTable(datos);
+        
 
- 
- 
- 
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawSeriesChart);
+        var options = {
+            region : 'ES',
+            displayMode: 'markers',
+            colorAxis: {colors: ['green','blue']}
+        };
 
-    function drawSeriesChart() {
-console.log(googleData);
-      var data = google.visualization.arrayToDataTable(googleData);
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-      var options = {
-        title: 'Correlation between nitrous, car ' +
-               'and stations of some Spanish countries (2008-2014)',
-        hAxis: {title: 'nitrous'},
-        vAxis: {title: 'car'},
-        bubble: {textStyle: {fontSize: 11}}
-      };
-
-      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-      chart.draw(data, options);
-    }
+        chart.draw(data, options);
+      }
     
 
   new Chartist.Bar('.ct-chart', {
