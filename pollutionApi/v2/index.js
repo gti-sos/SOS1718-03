@@ -257,7 +257,7 @@ pollutionApi.register = function(app, db) {
                 db.insert(city);
                 res.sendStatus(201);
             }else{
-                res.send("Station already exist");
+                windows.alert("Station already exist");
             }
             });
            
