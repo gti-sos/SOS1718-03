@@ -110,17 +110,17 @@
             
             ];
         
-        response.data.map(function(d) {
+        /*response.data.map(function(d) {
             var total = "city: " + (d['city']) + "," + " car: " + Number(d['car']);
             datos.push([d['city'],total]);
-        });
+        });*/
+        
         
         var data = google.visualization.arrayToDataTable(datos);
         
 
         var options = {
             region : 'ES',
-            displayMode: 'markers',
             colorAxis: {colors: ['green','blue']}
         };
 
