@@ -112,7 +112,7 @@ console.log(googleData);
         
         response.data.map(function(d) {
             var total ="peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
-            datos.push([total]);
+            datos.push([d['name'],total]);
         });
         
         var data = google.visualization.arrayToDataTable(datos);
