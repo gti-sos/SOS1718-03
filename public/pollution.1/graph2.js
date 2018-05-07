@@ -98,7 +98,8 @@ console.log(googleData);
     ]
     });
           google.charts.load('current', {
-        'packages':['geochart']
+        'packages':['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
          });
          
       google.charts.setOnLoadCallback(drawRegionsMap);
@@ -111,7 +112,7 @@ console.log(googleData);
             ];
         
         response.data.map(function(d) {
-            var total = "name:" + (d['name']) + ", " + "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
+            var total ="peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
             datos.push([d['name'],total]);
         });
         
