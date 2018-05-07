@@ -4,7 +4,7 @@ var app = angular
 app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "menu.html"
+                templateUrl: "home.html"
             })
             .when("/pollution", {
                 templateUrl: "listPollution.html",
