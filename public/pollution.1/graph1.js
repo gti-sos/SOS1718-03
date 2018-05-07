@@ -98,7 +98,7 @@
 }  
        google.charts.load('current', {
         'packages':['geochart'],
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        'mapsApiKey': 'AIzaSyB2u3e-OrPN3bPcJXvmvUX4EuHS0Up_jFg'
          });
          
       google.charts.setOnLoadCallback(drawRegionsMap);
