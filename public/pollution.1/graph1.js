@@ -9,11 +9,27 @@
     var labels= [];
     var valoresAux = [];
     var valores = [];
+    var googleData = [];
+    googleData.push(['station','nitrous','car','city','year']);
+
+
   $http
    .get("/api/v2/pollution-cities")
    .then(function(response){
        
     for(var i=0;i<response.data.length;i++){
+    var googleDataAux = [];
+          googleDataAux.push(response.data[i].station);
+          googleDataAux.push(parseInt(response.data[i].nitrous));
+          googleDataAux.push(parseInt(response.data[i].car));
+          googleDataAux.push(response.data[i].city);
+          googleDataAux.push(parseInt(response.data[i].year));
+    
+    
+     googleData.push(googleDataAux);
+} 
+    
+    for(i=0;i<response.data.length;i++){
         var ultimoAux = [];
         for(var j=0; j<1;j++){
              ultimoAux.push(response.data[i].station);
@@ -28,8 +44,7 @@
     }  
     labels = labelsAux;
     valores = valoresAux;
-    console.log(labels);
-    console.log(valores);
+
     
     
     Highcharts.chart('container', {
@@ -86,22 +101,14 @@
       google.charts.setOnLoadCallback(drawSeriesChart);
 
     function drawSeriesChart() {
-
-      var data = google.visualization.arrayToDataTable([
-          ['Station', 'Car','Nitrous','City','Year'],
-          ['fernandez ladreda oporto', 3256265,60,'madrid',2014],
-          ['l eixample', 2347766 ,52,'barcelona',2014],
-          ['gracia sant gervasi',2347766,58,'barcelona',2014],
-          ['escuelas aguirre', 3256265,53, 'madrid', 2014],
-          ['pista de silla', 170977,46, 'valencia', 2014],
-          ['huelva station',22469,35, 'huelva', 2008]
-      ]);
+console.log(googleData);
+      var data = google.visualization.arrayToDataTable(googleData);
 
       var options = {
         title: 'Correlation between nitrous, car ' +
                'and stations of some Spanish countries (2008-2014)',
-        hAxis: {title: 'car'},
-        vAxis: {title: 'nitrous'},
+        hAxis: {title: 'nitrous'},
+        vAxis: {title: 'car'},
         bubble: {textStyle: {fontSize: 11}}
       };
 
@@ -112,7 +119,7 @@
 
   new Chartist.Bar('.ct-chart', {
   labels: labels,
-  series: [[3256265, 2347766, 2347766, 3256265, 170977, 22469, 124556]]},
+  series: [valores]},
   {
   seriesBarDistance: 10,
   reverseData: true,

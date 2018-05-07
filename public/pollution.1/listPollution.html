@@ -4,30 +4,30 @@
     <thead>
         <tr>
             <th>Station</th>
+            <th>Nitrous</th>
+            <th>Car</th>
             <th>City</th>
             <th>Year</th>
-            <th>Car</th>
-            <th>Nitrous</th>
 
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><input class="form-control" ng-model="newPollution.station" /></td>
+            <td><input class="form-control" ng-model="newPollution.nitrous" /></td>
+            <td><input class="form-control" ng-model="newPollution.car" /></td>
             <td><input class="form-control" ng-model="newPollution.city" /></td>
             <td><input class="form-control" ng-model="newPollution.year" /></td>
-            <td><input class="form-control" ng-model="newPollution.car" /></td>
-            <td><input class="form-control" ng-model="newPollution.nitrous" /></td>
 
             <td><button class="button btn-primary" ng-click="addPollution()"> Add</button></td>
 
         </tr>
         <tr ng-repeat="st in stations">
             <td><a href="/pollution.1/#!/station/{{st.station}}">{{st.station}}</a></td>
+            <td>{{st.nitrous}}</td>
+            <td>{{st.car}}</td>
             <td>{{st.city}}</td>
             <td>{{st.year}}</td>
-            <td>{{st.car}}</td>
-            <td>{{st.nitrous}}</td>
 
             <td><button class="button btn-danger" ng-click="deletePollution(st.station)">Delete</button></td>
         </tr>
