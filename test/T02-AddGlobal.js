@@ -7,7 +7,7 @@ describe('Add global', function() {
     });
      it('should show some solarPlants', function() {
         browser
-            .get('https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/global/#!/')
+            .get('https://http://sos1718-03.herokuapp.com/global/#!/')
             .then(function() {
                 element
                     .all(by.repeater('plant in solarPlants'))
@@ -23,7 +23,7 @@ describe('Add global', function() {
                         
                         element(by.buttonText('Add')).click().then(function(){
                             element.all(by.repeater('plant in solarPlants')).then(function(solarPlants){
-                            expect(solarPlants.length).toEqual(initialGlobalWarmings.length+1);
+                            expect(solarPlants.length).toEqual(initialGlobalWarmings.length);
                             });
                         });
                     });  
