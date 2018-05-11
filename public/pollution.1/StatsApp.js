@@ -25,6 +25,15 @@ app.config(function($routeProvider) {
             .when("/analytics", {
                 templateUrl: "/pollution.1/analytics.html"
             })
+            .when("/indexApiAdan", {
+                templateUrl: "/pollution.1/compartida.html",
+                controller: "compartidaCtrl"
+            })
+            .when("/indexApiAntonio", {
+                templateUrl: "/pollution.1/compartidaG.html",
+                controller: "compartidaCtrlG"
+            })
+            
             .when("/graph1", {
                 templateUrl: "/pollution.1/graph1.html" ,
                 controller: "graph1"
@@ -32,7 +41,6 @@ app.config(function($routeProvider) {
 
             .when("/analytics/graph2", {
                 templateUrl: "/pollution.1/graph2.html ",
-
                 controller: "graph2"
             });
 

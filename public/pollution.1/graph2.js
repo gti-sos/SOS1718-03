@@ -94,7 +94,6 @@ console.log(googleData);
         name: 'Temperature',
         data: response.data.map(function(d) {return parseInt(d.temperature)})
     }
-    
     ]
     });
           google.charts.load('current', {
