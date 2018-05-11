@@ -6,7 +6,6 @@
   "scripts": {
     "test": "protractor test/config",
     "start": "node index.js"
-    
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,7 @@
   "homepage": "https://github.com/gti-sos/sos1718-03#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "mongodb": "^3.0.5",
     "nedb": "^1.8.0"
