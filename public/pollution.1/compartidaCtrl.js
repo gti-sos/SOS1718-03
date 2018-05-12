@@ -6,73 +6,66 @@ angular.module("StatsApp")
             function($scope, $http) {
                 console.log("List Ctrl initialized!");
                 var apiPropia = "/api/v2/global-warmings";
-                var api2 = "proxyUPM/api/v1/unemployment-rates/";
+                var api2 = "proxySUS/api/v2/span-univ-stats/";
                 var api = "https://sos1718-04.herokuapp.com/api/v1/unemployment-rates/";
 
 
                 $http.get(api).then(function(response1) {
                             $http.get(apiPropia).then(function(response2) {
-                                        Highcharts.chart('Graph1', {
-                                            chart: {
-                                                type: 'area'
-                                            },
-                                            title: {
-                                                text: 'span-univ-stats & global-warmings'
-                                            },
-                                           xAxis: {
-                                                   allowDecimals: false,
-                                                   labels: {
-                                                       formatter: function() {
-                                                           return this.value; // clean, unformatted number for year
-                                                       }
-                                                   }   
+                                                Highcharts.chart('Graph1', {
+        
+                                                chart: {
+                                                    type: 'column'
                                                 },
-                                            yAxis: {
-                                                        min: 0,
+                                            
+                                                title: {
+                                                    text: 'unemployment-rates & global-warmings'
+                                                },
+                                                
+                                                xAxis: {
+                                                        categories: response2.data.map(function(d) { return (parseInt(d.year)
+                                                        +","+ response1.data.map(function(d) { return (parseInt(d.year))}))}),
                                                         title: {
-
-                                                            align: 'high'
-                                                        },
-                                                        labels: {
-                                                            overflow: 'justify'
+                                                            text: null
                                                         }
-                                                    },
-                                            tooltip:{
-                                                        pointFormat: '{plant.year}'
                                                     },
                                             
-                                              plotOptions: {
-                                                        area: {
-                                                            pointStart: response2.data.map(function(d) { return (parseInt(d.year))}),
-                                                            marker: {
-                                                                enabled: false,
-                                                                symbol: 'circle',
-                                                                radius: 2,
-                                                                states: {
-                                                                    hover: {
-                                                                        enabled: true
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                        },
-                                            series: [{
-                                                name: 'peakPower',
-                                                data: response2.data.map(function(d) { return parseInt(d.peakPower) })
-                                            }, {
-                                                name: 'temperature',
-                                                data: response2.data.map(function(d) { return parseInt(d.temperature) })
-                                            }, {
-                                                name: 'Illiterate',
-                                                data: response1.data.map(function(d) { return parseInt(d.illiterate) })
-                                            }]
-                                        });
-
-
-
-
-
-
+                                                yAxis: [{
+                                                    className: 'highcharts-color-0',
+                                                    title: {
+                                                        text: 'Primary axis'
+                                                    }
+                                                }, {
+                                                    className: 'highcharts-color-1',
+                                                    opposite: true,
+                                                    title: {
+                                                        text: 'Secondary axis'
+                                                    }
+                                                }],
+                                            
+                                                plotOptions: {
+                                                    column: {
+                                                        borderRadius: 5
+                                                    }
+                                                },
+                                            
+                                                series: [{
+                                                   
+                                                        name: 'temperature',
+                                                        data: response2.data.map(function(d) { return parseInt(d.temperature) })
+                                                    },{
+                                                        name: 'peakPower',
+                                                        data:response2.data.map(function(d) { return parseInt(d.peakPower) })
+                                                    
+                                                    },{
+                                                         name: 'Illiterate',
+                                                        data:response1.data.map(function(d) { return parseInt(d.illiterate) }) 
+                                                    }
+                                                    ]
+                                            });
+                                    });
+                           }); 
+  
 
                                         $http.get(api2).then(function(response1) {
                                             $http.get(apiPropia).then(function(response2) {
@@ -81,7 +74,7 @@ angular.module("StatsApp")
                                                         type: 'bar'
                                                     },
                                                     title: {
-                                                        text: 'GraficoProxy'
+                                                        text: 'span-univ-stats & global-warmings'
                                                     },
 
                                                     xAxis: {
@@ -91,6 +84,7 @@ angular.module("StatsApp")
                                                         }
                                                     },
                                                     yAxis: {
+                                                        
                                                         min: 0,
                                                         title: {
 
@@ -123,18 +117,20 @@ angular.module("StatsApp")
                                                         enabled: false
                                                     },
                                                     series: [{
-                                                        name: 'peakPower',
-                                                        data: response2.data.map(function(d) { return parseInt(d.peakPower) })
-                                                    }, {
+                                                        
                                                         name: 'temperature',
                                                         data: response2.data.map(function(d) { return parseInt(d.temperature) })
-                                                    }, {
-                                                        name: 'Car',
-                                                        data: response1.data.map(function(d) { return parseInt(d.car) })
+                                                    },{
+                                                        name: 'peakPower',
+                                                        data:response2.data.map(function(d) { return parseInt(d.peakPower) })
+                                                    },
+                                                    {
+                                                        name: 'Master',
+                                                        data: response1.data.map(function(d) { return parseInt(d.master) })
                                                     }]
                                                 });
                                             });
                                         });
-                                });  
-                            }); 
-                        }]);    
+                                }]);  
+                            
+                           

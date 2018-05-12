@@ -37,8 +37,8 @@ app.use(cors());
 var request = require('request');
 
 
- app.use("/proxyUPM", function(req, res) {
-    var url = "https://sos1718-04.herokuapp.com" + req.url;
+ app.use("/proxySUS", function(req, res) {
+    var url = "https://sos1718-09.herokuapp.com" + req.url;
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
