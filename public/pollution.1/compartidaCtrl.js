@@ -19,13 +19,14 @@ angular.module("StatsApp")
                                             title: {
                                                 text: 'span-univ-stats & global-warmings'
                                             },
-                                           
-                                            xAxis: {
-                                                        categories: response1.data.map(function(d) { return (parseInt(d.year)) }),
-                                                        title: {
-                                                            text: null
-                                                        }
-                                                    },
+                                           xAxis: {
+                                                   allowDecimals: false,
+                                                   labels: {
+                                                       formatter: function() {
+                                                           return this.value; // clean, unformatted number for year
+                                                       }
+                                                   }   
+                                                },
                                             yAxis: {
                                                         min: 0,
                                                         title: {
@@ -37,26 +38,24 @@ angular.module("StatsApp")
                                                         }
                                                     },
                                             tooltip:{
-                                                        pointFormat: '{}'
+                                                        pointFormat: '{plant.year}'
                                                     },
-                                            tooltip: {
-                                                pointFormat: null
-                                                     },
-                                            plotOptions: {
-                                                area: {
-                                                    pointStart: 1940,
-                                                    marker: {
-                                                        enabled: false,
-                                                        symbol: 'circle',
-                                                        radius: 2,
-                                                        states: {
-                                                            hover: {
-                                                                enabled: true
+                                            
+                                              plotOptions: {
+                                                        area: {
+                                                            pointStart: response2.data.map(function(d) { return (parseInt(d.year))}),
+                                                            marker: {
+                                                                enabled: false,
+                                                                symbol: 'circle',
+                                                                radius: 2,
+                                                                states: {
+                                                                    hover: {
+                                                                        enabled: true
+                                                                    }
+                                                                }
                                                             }
                                                         }
-                                                    }
-                                                }
-                                            },
+                                                        },
                                             series: [{
                                                 name: 'peakPower',
                                                 data: response2.data.map(function(d) { return parseInt(d.peakPower) })
