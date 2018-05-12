@@ -33,6 +33,24 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
+var request = require('request');
+
+
+ app.use("/proxyUPM", function(req, res) {
+    var url = "https://sos1718-04.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
+
+
+
+
+
+
+
+
+
+
 // -------------ADAN---------------
 var initialPollutionCities = [
     
@@ -233,6 +251,12 @@ MongoClient.connect(mdbURL1, {native_parser: true}, (err, mlabs) => {
         console.log("Server NOT READY:"+e);
     });
 });
+
+
+
+
+
+
 
 //--------------------------------------------------------------------------------
 
