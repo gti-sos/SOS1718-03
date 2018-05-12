@@ -12,6 +12,16 @@ angular.module("StatsApp")
 
                 $http.get(api).then(function(response1) {
                             $http.get(apiPropia).then(function(response2) {
+                                
+                                
+                                var ultimo = [];
+
+                                for (var i = 0; i < response2.data.length; i++) {
+                                    if (i < response1.data.length)
+                                        ultimo.push((response1.data[i].year + " " + response2.data[i].year));
+                                    else
+                                        ultimo.push(("0 " + response2.data[i].year));
+                                }
                                                 Highcharts.chart('Graph1', {
         
                                                 chart: {
@@ -23,8 +33,7 @@ angular.module("StatsApp")
                                                 },
                                                 
                                                 xAxis: {
-                                                        categories: response2.data.map(function(d) { return (parseInt(d.year)
-                                                        +","+ response1.data.map(function(d) { return (parseInt(d.year))}))}),
+                                                        categories: ultimo,
                                                         title: {
                                                             text: null
                                                         }
@@ -50,6 +59,10 @@ angular.module("StatsApp")
                                                 },
                                             
                                                 series: [{
+                                                         name: 'Illiterate',
+                                                        data:response1.data.map(function(d) { return parseInt(d.illiterate) }) 
+                                                    },
+                                                    {
                                                    
                                                         name: 'temperature',
                                                         data: response2.data.map(function(d) { return parseInt(d.temperature) })
@@ -57,9 +70,6 @@ angular.module("StatsApp")
                                                         name: 'peakPower',
                                                         data:response2.data.map(function(d) { return parseInt(d.peakPower) })
                                                     
-                                                    },{
-                                                         name: 'Illiterate',
-                                                        data:response1.data.map(function(d) { return parseInt(d.illiterate) }) 
                                                     }
                                                     ]
                                             });
@@ -69,6 +79,17 @@ angular.module("StatsApp")
 
                                         $http.get(api2).then(function(response1) {
                                             $http.get(apiPropia).then(function(response2) {
+                                                
+                                                 var ultimo = [];
+
+                                                 for (var i = 0; i < response1.data.length; i++) {
+                                                     if (i < response2.data.length)
+                                                         ultimo.push((response2.data[i].year + " " + response1.data[i].year));
+                                                     else
+                                                         ultimo.push(("0 " + response1.data[i].year));
+                                                 }
+                                                
+                                                
                                                 Highcharts.chart('Graph2', {
                                                     chart: {
                                                         type: 'bar'
@@ -78,7 +99,7 @@ angular.module("StatsApp")
                                                     },
 
                                                     xAxis: {
-                                                        categories: response2.data.map(function(d) { return (parseInt(d.year)) }),
+                                                        categories: ultimo,
                                                         title: {
                                                             text: null
                                                         }
