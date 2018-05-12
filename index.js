@@ -43,6 +43,11 @@ var request = require('request');
     req.pipe(request(url)).pipe(res);
     });
 
+ app.use("/proxyDAP", function(req, res) {
+    var url = "https://sos1718-08.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
