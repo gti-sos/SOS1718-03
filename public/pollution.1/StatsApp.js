@@ -37,6 +37,10 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/compartidaG.html",
                 controller: "compartidaCtrlG"
             })
+            .when("/indexApiAdanPro", {
+                templateUrl: "/pollution.1/compartidaG1.html",
+                controller: "compartidaCtrlG1"
+            })
             .when("/graph1", {
                 templateUrl: "/pollution.1/graph1.html" ,
                 controller: "graph1"
