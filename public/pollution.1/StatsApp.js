@@ -29,11 +29,14 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/compartida.html",
                 controller: "compartidaCtrl"
             })
+            .when("/indexApiAntonioPro", {
+                templateUrl: "/pollution.1/compartida1.html",
+                controller: "compartidaCtrl1"
+            })
             .when("/indexApiAdan", {
                 templateUrl: "/pollution.1/compartidaG.html",
                 controller: "compartidaCtrlG"
             })
-            
             .when("/graph1", {
                 templateUrl: "/pollution.1/graph1.html" ,
                 controller: "graph1"
