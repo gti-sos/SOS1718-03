@@ -8,7 +8,7 @@ angular.module("StatsApp")
             console.log("List Ctrl initialized!");
             var apiPropia = "/api/v2/pollution-cities";
             var api2 = "proxyDAP/api/v1/divorces-an";
-            var api = "https://sos1718-03.herokuapp.com/api/v1/global-warmings";
+            var api = "https://sos1718-10.herokuapp.com/api/v1/motogp-stats";
             
             
         $http.get(api).then(function(response1){
@@ -68,8 +68,8 @@ angular.module("StatsApp")
                                 name: 'nitrous',
                                 data: response2.data.map(function(d){return parseInt(d.nitrous)})
                                 },{
-                                name: 'peakPower',
-                                data: response1.data.map(function(d){return parseInt(d.peakPower)})
+                                name: 'score',
+                                data: response1.data.map(function(d){return parseInt(d.score)})
                             }]
                 });  
 
