@@ -35,57 +35,37 @@ for(i=0;i<response.data.length;i++){
 }
     
 console.log(googleData);
-    
-   
     Highcharts.chart('container', {
-    chart: {
-        type: 'bar'
-    },
+
     title: {
-        text: 'Global Warmings'
-    }, 
-    subtitle: {
-        text: 'Global warming and a possible means of how to avoid it (photovoltaic energy)'
+        text: 'Solar Employment Growth by Sector, 2010-2016'
     },
-    xAxis: {
+
+    subtitle: {
+        text: 'Source: thesolarfoundation.com'
+    },
+      xAxis: {
      
      categories : response.data.map(function(d) {
          return d.year;
-     })
-     
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Peak power (MW)',
-            align: 'high'
-        },
-        labels: {
-            overflow: 'justify'
-        }
-    },
-    
-        plotOptions: {
-        bar: {
-            dataLabels: {
-                enabled: true
-            }
-        }
-    },
+         
+        })
+     },
     legend: {
         layout: 'vertical',
         align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-        shadow: true
+        verticalAlign: 'middle'
     },
-    credits: {
-        enabled: false
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
     },
+
      series: [{
         name: 'peakPower',
         
@@ -96,6 +76,7 @@ console.log(googleData);
     }
     ]
     });
+    
           google.charts.load('current', {
         'packages':['geochart'],
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
