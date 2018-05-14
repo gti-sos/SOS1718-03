@@ -35,14 +35,25 @@ for(i=0;i<response.data.length;i++){
 }
     
 console.log(googleData);
-    Highcharts.chart('container', {
-
-    title: {
-        text: 'Solar Employment Growth by Sector, 2010-2016'
+   Highcharts.chart('container', {
+    chart: {
+        type: 'area'
     },
-
+    title: {
+        text: 'US and USSR nuclear stockpiles'
+    },
     subtitle: {
-        text: 'Source: thesolarfoundation.com'
+        text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
+            'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
+            'armscontrol.org</a>'
+    },
+    xAxis: {
+        allowDecimals: false,
+        labels: {
+            formatter: function () {
+                return this.value; // clean, unformatted number for year
+            }
+        }
     },
       xAxis: {
      
@@ -51,18 +62,32 @@ console.log(googleData);
          
         })
      },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
+    yAxis: {
+        title: {
+            text: 'Nuclear weapon states'
+        },
+        labels: {
+            formatter: function () {
+                return this.value / 1000 + 'k';
+            }
+        }
     },
-
+    tooltip: {
+        pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+    },
     plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: 2010
+        area: {
+            pointStart: 1940,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
         }
     },
 
