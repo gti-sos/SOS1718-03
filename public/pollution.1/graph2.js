@@ -51,7 +51,7 @@ console.log(googleData);
      },
    
     tooltip: {
-        pointFormat: '{series.name} <b>{point.y:,.0f}</b>'
+        pointFormat: '{series.name} <b>{point.y:,.0f}</b><br /> '
     },
   
 
