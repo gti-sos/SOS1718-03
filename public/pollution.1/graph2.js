@@ -60,7 +60,7 @@ console.log(googleData);
         }
     },
     tooltip: {
-        pointFormat: '{series.name} <b>{point.y:,.0f}</b><br/>{point.x}'
+        pointFormat: '{series.name} <b>{point.y:,.0f}</b> {series.name}<br/>{point.x}'
     },
   
 
