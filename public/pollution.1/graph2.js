@@ -51,7 +51,7 @@ console.log(googleData);
      },
    
     tooltip: {
-        pointFormat: '{series.name} <b>{point.y:,.0f}</b> <br/>{series.name1} <b>{point.x}</b>'
+        pointFormat: '{series.name} <b>{point.y:,.0f}</b>'
     },
   
 
@@ -60,7 +60,7 @@ console.log(googleData);
         
         data: response.data.map(function(d) {return parseInt(d.peakPower)})
     },{
-        name1: 'Temperature',
+        name: 'Temperature',
         data: response.data.map(function(d) {return parseInt(d.temperature)})
     }
     ]
