@@ -40,20 +40,7 @@ console.log(googleData);
         type: 'area'
     },
     title: {
-        text: 'US and USSR nuclear stockpiles'
-    },
-    subtitle: {
-        text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-            'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
-            'armscontrol.org</a>'
-    },
-    xAxis: {
-        allowDecimals: false,
-        labels: {
-            formatter: function () {
-                return this.value; // clean, unformatted number for year
-            }
-        }
+        text: 'Global Warmings'
     },
       xAxis: {
      
@@ -73,23 +60,9 @@ console.log(googleData);
         }
     },
     tooltip: {
-        pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+        pointFormat: '{series.name} <b>{point.y:,.0f}</b><br/>{point.x}'
     },
-    plotOptions: {
-        area: {
-            pointStart: 1940,
-            marker: {
-                enabled: false,
-                symbol: 'circle',
-                radius: 2,
-                states: {
-                    hover: {
-                        enabled: true
-                    }
-                }
-            }
-        }
-    },
+  
 
      series: [{
         name: 'peakPower',
