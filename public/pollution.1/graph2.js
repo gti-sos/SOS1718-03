@@ -49,18 +49,9 @@ console.log(googleData);
          
         })
      },
-    yAxis: {
-        title: {
-            text: 'Nuclear weapon states'
-        },
-        labels: {
-            formatter: function () {
-                return this.value / 1000 + 'k';
-            }
-        }
-    },
+   
     tooltip: {
-        pointFormat: '{series.name} <b>{point.y:,.0f}</b> {series.name}<br/>{point.x}'
+        pointFormat: '{series.name} <b>{point.y:,.0f}</b> <br/>{series.name1} <b>{point.x}</b>'
     },
   
 
@@ -69,7 +60,7 @@ console.log(googleData);
         
         data: response.data.map(function(d) {return parseInt(d.peakPower)})
     },{
-        name: 'Temperature',
+        name1: 'Temperature',
         data: response.data.map(function(d) {return parseInt(d.temperature)})
     }
     ]
