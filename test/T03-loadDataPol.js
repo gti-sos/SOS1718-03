@@ -5,7 +5,7 @@
 /*global element*/
 var fs = require("fs");
 var path = require("path");
-
+var config= require("./config");
 
 describe('Data is loaded', function() {
     
