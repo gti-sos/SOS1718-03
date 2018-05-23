@@ -18,7 +18,7 @@ describe('Add Pollution', function() {
                         
                         element(by.buttonText('Add')).click().then(function(){
                             element.all(by.repeater('st in stations')).then(function(stations){
-                            expect(stations.length).toEqual(initialPollutionCities.length+1);
+                            expect(stations.length).toEqual(initialPollutionCities.length);
                             });
                         });
                     });  

@@ -20,7 +20,7 @@ describe('Add global', function() {
                         
                         element(by.buttonText('Add')).click().then(function(){
                             element.all(by.repeater('plant in solarPlants')).then(function(solarPlants){
-                            expect(solarPlants.length).toEqual(initialGlobalWarmings.length+1);
+                            expect(solarPlants.length).toEqual(initialGlobalWarmings.length);
                             });
                         });
                     });  
