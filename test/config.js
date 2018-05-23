@@ -16,6 +16,6 @@ exports.config = {
     
 }
 
-exports.getAppUrl = function(){
-    return "https://"+browser.params.host+"/#!/pollution";
+exports.getAppUrl = function (){
+    return "http://"+browser.params.host+":" +browser.params.port;
 }
