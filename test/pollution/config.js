@@ -14,7 +14,7 @@ exports.config = {
         port: '8080'
     }
     
-};
+}
 
 exports.getAppUrl = function(){
     return "https://"+browser.params.host+"/#!/pollution";
