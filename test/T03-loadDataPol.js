@@ -10,7 +10,7 @@ var config= require("./config");
 describe('Data is loaded', function() {
     
     it('should show some stations', function() {
-        browser.get(config.getAppUrl()).then(function() {
+        browser.get(config.getAppUrl()+"/#!/pollution").then(function() {
                 element.all(by.repeater('st in stations')).then(function(stations) {
                        browser.takeScreenshot().then(function (png){
                             
