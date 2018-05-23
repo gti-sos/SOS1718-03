@@ -1,14 +1,9 @@
 /*global expect*/
+var config = require("./config");
 
 describe('Add Pollution', function() {
-    it('should show a new pollution', function() {
-        expect(1).toEqual(1);
-
-    });
      it('should show some stations', function() {
-        browser
-            .get('http://sos1718-03.herokuapp.com/pollution/#!/')
-            .then(function() {
+        browser.get(config.getAppUrl()).then(function() {
                 element
                     .all(by.repeater('st in stations'))
                     .then(function(initialPollutionCities) {
@@ -23,7 +18,7 @@ describe('Add Pollution', function() {
                         
                         element(by.buttonText('Add')).click().then(function(){
                             element.all(by.repeater('st in stations')).then(function(stations){
-                            expect(stations.length).toEqual(initialPollutionCities.length + 1);
+                            expect(stations.length).toEqual(initialPollutionCities.length+1);
                             });
                         });
                     });  

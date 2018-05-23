@@ -1,15 +1,13 @@
 /*global expect*/
 var fs = require("fs");
 var path = require("path");
+var config = require("./config");
+
 
 describe('Data is loaded', function() {
-    it('should show some global warmings', function() {
-        expect(1).toEqual(1);
-
-    });
      it('should show some solarPlants', function() {
         browser
-            .get('https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/global/#!/')
+            .get(config.getAppUrl())
             .then(function() {
                 element
                     .all(by.repeater('plant in solarPlants'))

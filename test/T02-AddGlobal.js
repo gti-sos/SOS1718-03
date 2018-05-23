@@ -1,13 +1,10 @@
 /*global expect*/
+var config = require("./config");
 
 describe('Add global', function() {
-    it('should show a new global warmings', function() {
-        expect(1).toEqual(1);
-
-    });
      it('should show some solarPlants', function() {
         browser
-            .get('https://sos1718-03.herokuapp.com/global/#!/')
+            .get(config.getAppUrl())
             .then(function() {
                 element
                     .all(by.repeater('plant in solarPlants'))
@@ -23,7 +20,7 @@ describe('Add global', function() {
                         
                         element(by.buttonText('Add')).click().then(function(){
                             element.all(by.repeater('plant in solarPlants')).then(function(solarPlants){
-                            expect(solarPlants.length).toEqual(initialGlobalWarmings.length);
+                            expect(solarPlants.length).toEqual(initialGlobalWarmings.length+1);
                             });
                         });
                     });  

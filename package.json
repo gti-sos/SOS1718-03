@@ -4,7 +4,9 @@
   "description": "\"my first hello\"",
   "main": "index.js",
   "scripts": {
-    "test": "protractor test/config",
+    "pretest": "test/runPhantomjs.sh",
+    "test": "protractor test/config.js",
+    "posttest": "killall phantomjs",
     "start": "node index.js"
   },
   "repository": {
