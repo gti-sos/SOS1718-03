@@ -10,7 +10,7 @@ var config= require("./config");
 describe('Data is loaded', function() {
     
     it('should show some stations', function() {
-        browser.get('https://sos1718-03.herokuapp.com/#!/pollution').then(function() {
+        browser.get(config.getAppUrl()).then(function() {
                 element.all(by.repeater('st in stations')).then(function(stations) {
                        browser.takeScreenshot().then(function (png){
                             
