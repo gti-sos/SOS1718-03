@@ -3,7 +3,7 @@ var config = require("./config");
 
 describe('Add Pollution', function() {
      it('should show some stations', function() {
-        browser.get('https://sos1718-03.herokuapp.com/#!/pollution').then(function() {
+        browser.get(config.getAppUrl()+"/#!/pollution").then(function() {
                 element
                     .all(by.repeater('st in stations'))
                     .then(function(initialPollutionCities) {
