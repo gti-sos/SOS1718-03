@@ -4,7 +4,7 @@ var config = require("./config");
 describe('Add global', function() {
      it('should show some solarPlants', function() {
         browser
-            .get(config.getAppUrl())
+            .get(config.getAppUrl()+"/#!/global")
             .then(function() {
                 element
                     .all(by.repeater('plant in solarPlants'))
