@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
 			"event": [
 				{
 					"listen": "test",
@@ -44,52 +44,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "6a66dbc7-ca0d-4d47-8147-d7fcbfcada72",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": " {\n        \"name\": \"Ciudad-Reala\",\n        \"solarPlant\": \"Parque-fotovoltaico-Puertollan\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 70\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings Copy",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
 			"event": [
 				{
 					"listen": "test",
@@ -174,7 +129,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings/Planta-solar-Arnedo Copy",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
 			"event": [
 				{
 					"listen": "test",
@@ -220,7 +175,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings/Planta-solar-Arnedo Copy",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
 			"event": [
 				{
 					"listen": "test",
@@ -266,7 +221,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings/Planta-solar-Arnedo",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
 			"event": [
 				{
 					"listen": "test",
@@ -312,7 +267,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings/Parque-fotovoltaico-Saucejo",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Saucejo",
 			"event": [
 				{
 					"listen": "test",
@@ -358,7 +313,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
 			"event": [
 				{
 					"listen": "test",
@@ -402,54 +357,9 @@
 			},
 			"response": []
 		},
+		
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f6afda25-a747-4a22-9337-467b0f53dc96",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 405\", function () {",
-							"    pm.response.to.have.status(405);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-fotovoltaico-Olmedilla-de-Alarcon\",\n        \"year\": 2015,\n        \"_id\": \"F9IRuGsynYzwb8ZD\"\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Olmedilla-de-Alarcon",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings",
-						"Parque-fotovoltaico-Olmedilla-de-Alarcon"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings/",
+			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
 			"event": [
 				{
 					"listen": "test",
