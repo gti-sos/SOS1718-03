@@ -83,6 +83,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
 
 
  //get al conjunto de todo
+ 
     app.get(BASE_API_PATH + "/global-warmings", (req, res) => {
         console.log(Date() + " - GET /global-warmings");
         var url = req.query;

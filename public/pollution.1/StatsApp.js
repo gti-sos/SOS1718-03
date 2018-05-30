@@ -50,7 +50,7 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/graph2.html ",
                 controller: "graph2"
             });
-
+            
 
     });
     
