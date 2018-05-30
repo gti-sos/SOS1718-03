@@ -22,66 +22,7 @@ angular.module("StatsApp")
                     tdDetail = {country: response1.data[i].province,visits: response1.data[i].nursing,color: "#04D215"};
                     ultimoAux.push(tdDetail);                }
                 console.log(ultimoAux);
-               /* 
-                 var ultimo = [];
-                                 
-                for(var i=0;i<response1.data.length;i++){
-                    if(i<response2.data.length)
-                        ultimo.push((response2.data[i].year+" "+response1.data[i].year));
-                    else
-                        ultimo.push(("0 "+response1.data[i].year));
-                }
-     
-     
-                     Highcharts.chart('GraficoNormal', {
-                    chart: {
-                        type: 'area'
-                    },
-                    title: {
-                        text: 'GraficoNormal'
-                    },
-                    xAxis: {
-                        categories: ultimo,
-                        tickmarkPlacement: 'on',
-                        title: {
-                            enabled: false
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Number of units'
-                        },
-                        labels: {
-                            formatter: function () {
-                                return this.value;
-                            }
-                        }
-                    },
-                    tooltip: {
-                        split: true,
-                        valueSuffix: 'und'
-                    },
-                    plotOptions: {
-                        area: {
-                            stacking: 'normal',
-                            lineColor: '#666666',
-                            lineWidth: 1,
-                            marker: {
-                                lineWidth: 1,
-                                lineColor: '#666666'
-                            }
-                        }
-                    },
-                            series: [{
-                                name: 'nitrous',
-                                data: response2.data.map(function(d){return parseInt(d.nitrous)})
-                                },{
-                                name: 'score',
-                                data: response1.data.map(function(d){return parseInt(d.score)})
-                            }]
-                });  
-*/
+               
                 var chart = AmCharts.makeChart("chartdiv", {
                     "theme": "light",
                     "type": "serial",
@@ -97,7 +38,7 @@ angular.module("StatsApp")
                         "colorField": "color",
                         "fillAlphas": 0.85,
                         "lineAlpha": 0.1,
-                        "type": "column",
+                        "type": "bar",
                         "topRadius":1,
                         "valueField": "visits"
                     }],
