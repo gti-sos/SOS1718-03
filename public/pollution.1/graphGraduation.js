@@ -24,44 +24,24 @@ angular.module("StatsApp")
                 console.log(ultimoAux);
                
                 var chart = AmCharts.makeChart("chartdiv", {
+                    "type": "pie",
                     "theme": "light",
-                    "type": "serial",
-                    "startDuration": 2,
+                    "innerRadius": "40%",
+                    "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
                     "dataProvider": ultimoAux,
-                    "valueAxes": [{
-                        "position": "left",
-                        "axisAlpha":0,
-                        "gridAlpha":0
-                    }],
-                    "graphs": [{
-                        "balloonText": "[[category]]: <b>[[value]]</b>",
-                        "colorField": "color",
-                        "fillAlphas": 0.85,
-                        "lineAlpha": 0.1,
-                        "type": "bar",
-                        "topRadius":1,
-                        "valueField": "visits"
-                    }],
-                    "depth3D": 40,
-                	"angle": 30,
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "categoryField": "country",
-                    "categoryAxis": {
-                        "gridPosition": "start",
-                        "axisAlpha":0,
-                        "gridAlpha":0
-                
+                    "balloonText": "[[value]]",
+                    "valueField": "visits",
+                    "titleField": "country",
+                    "balloon": {
+                        "drop": true,
+                        "adjustBorderColor": false,
+                        "color": "#FFFFFF",
+                        "fontSize": 16
                     },
                     "export": {
-                    	"enabled": true
-                     }
-                
-                }, 0);
-            
+                        "enabled": true
+                    }
+                });
             });
         }); 
 }]);
