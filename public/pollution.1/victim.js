@@ -1,4 +1,4 @@
- angular.module("StatsApp").controller("prueba", ["$scope", "$http", function($scope, $http) {
+ angular.module("StatsApp").controller("victim", ["$scope", "$http", function($scope, $http) {
      
      console.log("List Ctrl initialized!");
        var apiPropia = "/api/v2/global-warmings";

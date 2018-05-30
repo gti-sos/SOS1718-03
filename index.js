@@ -53,7 +53,11 @@ var request = require('request');
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
-
+app.use("/proxyVIC", function(req, res) {
+    var url = "https://sos1718-07.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 

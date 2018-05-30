@@ -50,9 +50,9 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/graph2.html ",
                 controller: "graph2"
             })
-            .when("/graphp", {
-                templateUrl: "/pollution.1/prueba.html" ,
-                controller: "prueba"
+            .when("/victim", {
+                templateUrl: "/pollution.1/victim.html" ,
+                controller: "victim"
             })    
             .when("/graphGraduation", {
                 templateUrl: "/pollution.1/graphGraduation.html ",
