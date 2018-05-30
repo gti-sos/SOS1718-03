@@ -34,21 +34,14 @@ var myConfig = {
 backgroundColor:'#FBFCFE',
  	type: "ring",
  	title: {
- 	  text: "Monthly Page Views",
+ 	  text: "homicide reports data and globalWarmings",
  	  fontFamily: 'Lato',
  	  fontSize: 14,
  	  // border: "1px solid black",
  	  padding: "15",
  	  fontColor : "#1E5D9E",
  	},
- 	subtitle: {
- 	  text: "06/10/16 - 07/11/16",
- 	  fontFamily: 'Lato',
- 	  fontSize: 12,
- 	  fontColor: "#777",
- 	  padding: "5"
- 	},
- 	plot: {
+ 	 	plot: {
  	  slice:'50%',
  	  borderWidth:0,
  	  backgroundColor:'#FBFCFE',
@@ -78,7 +71,7 @@ backgroundColor:'#FBFCFE',
  	    backgroundColor:'none',
  	    borderWidth:0,
  	    thousandsSeparator:',',
- 	    text:'<span style="color:%color">Page Url: %t</span><br><span style="color:%color">Pageviews: %v</span>',
+ 	    text:'<span style="color:%color"> %t</span><br><span style="color:%color">total amount: %v</span>',
       mediaRules:[
         {
             maxWidth:500,
