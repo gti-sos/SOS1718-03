@@ -7,7 +7,7 @@ angular.module("StatsApp")
         function($scope, $http) {
             console.log("List Ctrl initialized!");
             var apiPropia = "/api/v2/pollution-cities";
-            var api = "proxyMAR/api/v1/medical-attention-rates";
+            var api = "proxyMAR/api/v1/medical-attention-rates/";
             
             
         $http.get(api).then(function(response1){
