@@ -58,7 +58,11 @@ app.use("/proxyVIC", function(req, res) {
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
-
+app.use("/proxyUNE", function(req, res) {
+    var url = "https://sos1718-02.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
