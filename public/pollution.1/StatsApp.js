@@ -49,6 +49,10 @@ app.config(function($routeProvider) {
             .when("/analytics/graph2", {
                 templateUrl: "/pollution.1/graph2.html ",
                 controller: "graph2"
+            })
+            .when("/graphGraduation", {
+                templateUrl: "/pollution.1/graphGraduation.html ",
+                controller: "graphGraduation"
             });
             
 

@@ -1,112 +1,129 @@
 /*global angular*/
-/*global Highcharts*/
+/*global AmCharts*/
+
+
 angular.module("StatsApp")
-  .controller("compartidaCtrlG", ["$scope", "$http",
+  .controller("graphGraduation", ["$scope", "$http",
         function($scope, $http) {
             console.log("List Ctrl initialized!");
-            var api = "https://sos1718-10.herokuapp.com/api/v1/motogp-stats";
+            var apiPropia = "/api/v2/pollution-cities";
+            var api = "https://sos1718-04.herokuapp.com/api/v1/medical-attention-rates";
             
             
         $http.get(api).then(function(response1){
-            
-             var chart = AmCharts.makeChart("chartdiv", {
-    "theme": "light",
-    "type": "serial",
-    "startDuration": 2,
-    "dataProvider": [{
-        "country": "USA",
-        "visits": 4025,
-        "color": "#FF0F00"
-    }, {
-        "country": "China",
-        "visits": 1882,
-        "color": "#FF6600"
-    }, {
-        "country": "Japan",
-        "visits": 1809,
-        "color": "#FF9E01"
-    }, {
-        "country": "Germany",
-        "visits": 1322,
-        "color": "#FCD202"
-    }, {
-        "country": "UK",
-        "visits": 1122,
-        "color": "#F8FF01"
-    }, {
-        "country": "France",
-        "visits": 1114,
-        "color": "#B0DE09"
-    }, {
-        "country": "India",
-        "visits": 984,
-        "color": "#04D215"
-    }, {
-        "country": "Spain",
-        "visits": 711,
-        "color": "#0D8ECF"
-    }, {
-        "country": "Netherlands",
-        "visits": 665,
-        "color": "#0D52D1"
-    }, {
-        "country": "Russia",
-        "visits": 580,
-        "color": "#2A0CD0"
-    }, {
-        "country": "South Korea",
-        "visits": 443,
-        "color": "#8A0CCF"
-    }, {
-        "country": "Canada",
-        "visits": 441,
-        "color": "#CD0D74"
-    }, {
-        "country": "Brazil",
-        "visits": 395,
-        "color": "#754DEB"
-    }, {
-        "country": "Italy",
-        "visits": 386,
-        "color": "#DDDDDD"
-    }, {
-        "country": "Taiwan",
-        "visits": 338,
-        "color": "#333333"
-    }],
-    "valueAxes": [{
-        "position": "left",
-        "axisAlpha":0,
-        "gridAlpha":0
-    }],
-    "graphs": [{
-        "balloonText": "[[category]]: <b>[[value]]</b>",
-        "colorField": "color",
-        "fillAlphas": 0.85,
-        "lineAlpha": 0.1,
-        "type": "column",
-        "topRadius":1,
-        "valueField": "visits"
-    }],
-    "depth3D": 40,
-	"angle": 30,
-    "chartCursor": {
-        "categoryBalloonEnabled": false,
-        "cursorAlpha": 0,
-        "zoomable": false
-    },
-    "categoryField": "country",
-    "categoryAxis": {
-        "gridPosition": "start",
-        "axisAlpha":0,
-        "gridAlpha":0
-
-    },
-    "export": {
-    	"enabled": true
-     }
-
-}, 0);
+            $http.get(apiPropia).then(function(response2){
+                var ultimoAux = [];
+                for(var i=0;i<response2.data.length;i++){
+                    var tdDetail = {country: response2.data[i].city,visits: response2.data[i].nitrous,color: "#FF0F00"};
+                    ultimoAux.push(tdDetail);
+                    //ultimoAux.push("country:"+ '" '+response2.data[i].city+'"',"visits:"+ '" '+response2.data[i].nitrous+'"',"color: #FF0F00");
+                } 
+                for(i=0;i<response1.data.length;i++){
+                    tdDetail = {country: response1.data[i].province,visits: response1.data[i].nursing,color: "#04D215"};
+                    ultimoAux.push(tdDetail);                }
+                console.log(ultimoAux);
+               /* 
+                 var ultimo = [];
+                                 
+                for(var i=0;i<response1.data.length;i++){
+                    if(i<response2.data.length)
+                        ultimo.push((response2.data[i].year+" "+response1.data[i].year));
+                    else
+                        ultimo.push(("0 "+response1.data[i].year));
+                }
+     
+     
+                     Highcharts.chart('GraficoNormal', {
+                    chart: {
+                        type: 'area'
+                    },
+                    title: {
+                        text: 'GraficoNormal'
+                    },
+                    xAxis: {
+                        categories: ultimo,
+                        tickmarkPlacement: 'on',
+                        title: {
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Number of units'
+                        },
+                        labels: {
+                            formatter: function () {
+                                return this.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                        valueSuffix: 'und'
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
+                            lineWidth: 1,
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
+                        }
+                    },
+                            series: [{
+                                name: 'nitrous',
+                                data: response2.data.map(function(d){return parseInt(d.nitrous)})
+                                },{
+                                name: 'score',
+                                data: response1.data.map(function(d){return parseInt(d.score)})
+                            }]
+                });  
+*/
+                var chart = AmCharts.makeChart("chartdiv", {
+                    "theme": "light",
+                    "type": "serial",
+                    "startDuration": 2,
+                    "dataProvider": ultimoAux,
+                    "valueAxes": [{
+                        "position": "left",
+                        "axisAlpha":0,
+                        "gridAlpha":0
+                    }],
+                    "graphs": [{
+                        "balloonText": "[[category]]: <b>[[value]]</b>",
+                        "colorField": "color",
+                        "fillAlphas": 0.85,
+                        "lineAlpha": 0.1,
+                        "type": "column",
+                        "topRadius":1,
+                        "valueField": "visits"
+                    }],
+                    "depth3D": 40,
+                	"angle": 30,
+                    "chartCursor": {
+                        "categoryBalloonEnabled": false,
+                        "cursorAlpha": 0,
+                        "zoomable": false
+                    },
+                    "categoryField": "country",
+                    "categoryAxis": {
+                        "gridPosition": "start",
+                        "axisAlpha":0,
+                        "gridAlpha":0
                 
+                    },
+                    "export": {
+                    	"enabled": true
+                     }
+                
+                }, 0);
+            
+            });
         }); 
 }]);
+
+
+
