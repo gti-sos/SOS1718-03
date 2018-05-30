@@ -48,7 +48,11 @@ var request = require('request');
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
-
+ app.use("/proxyMAR", function(req, res) {
+    var url = "https://sos1718-04.herokuapp.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
