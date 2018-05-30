@@ -2,7 +2,7 @@
      
      console.log("List Ctrl initialized!");
        var apiPropia = "/api/v2/global-warmings";
-        var api2 = "proxySUS/api/v2/span-univ-stats/";
+        var api2 = "proxyVIC/api/v1/homicide-reports-data";
             
      
        $http.get(api2).then(function(response1) {
@@ -15,7 +15,7 @@
                     var a1=0;
                     var a2=0;
                      for (var i = 0; i < response1.data.length; i++) {
-                          a = a + parseInt(response1.data[i].master);
+                          a = a + parseInt(response1.data[i].victim_count);
                      }
                      ultimo.push(a);
                      for (var i = 0; i < response2.data.length; i++) {
@@ -123,7 +123,7 @@ backgroundColor:'#FBFCFE',
  	},
 	series : [{
                             
-                            text: 'Master',
+                            text: 'Victim Count',
                             values: ultimo,
                             lineColor: "#00BAF2",
                 			backgroundColor: "#00BAF2",
