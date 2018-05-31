@@ -69,6 +69,10 @@ app.config(function($routeProvider) {
             .when("/graphFootball", {
                 templateUrl: "/pollution.1/graphFootball.html" ,
                 controller: "graphFootball"
+            })
+            .when("/citybik", {
+                templateUrl: "/pollution.1/citybik.html" ,
+                controller: "citybik"
             });
 
 
