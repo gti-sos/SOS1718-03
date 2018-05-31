@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+			"name": "get all",
 			"event": [
 				{
 					"listen": "test",
@@ -44,7 +44,234 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+			"name": "post correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ff78971-3999-4f98-8c6b-6b200ebbb756",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"name\": \"Ciudad\",\n        \"solarPlant\": \"Parque-fotovoltaico-Puertollan\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 70\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post 409",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbf1b368-0234-45f0-9c55-f619d25b0c07",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Planta-solar-Osa-de-la-Vega\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 30\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83da68a2-bd71-46c7-9596-6d929f5fd9a0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"Ciudad-Real\",\n        \"solarPlant\": \"Parque-fotovoltaico-Puertollano\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 90\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Puertollano",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings",
+						"Parque-fotovoltaico-Puertollano"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put 400 (bad request)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58d6b452-233f-4d85-8875-11bfbd5ff6ec",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-foo-Olmedilla-de-Alarcon\",\n        \"year\": 2014,\n        \"_id\": \"F9IRuGsynYzwb8ZD\"\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Olmedilla-de-Alarcon",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings",
+						"Parque-fotovoltaico-Olmedilla-de-Alarcon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a9e858e-934b-4fb2-bae9-4175fb96df48",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"name\": \"Ciudad\",\n        \"solarPlant\": \"Parque-fotovoltaico-Puertollan\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 70\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get 404",
 			"event": [
 				{
 					"listen": "test",
@@ -65,7 +292,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/pepe",
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/ciudad",
 					"protocol": "https",
 					"host": [
 						"sos171803ajpg-sandbox-sos171803ajpg",
@@ -76,244 +303,14 @@
 						"api",
 						"v1",
 						"global-warmings",
-						"pepe"
+						"ciudad"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings/Planta-solar-Arnedo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "58d6b452-233f-4d85-8875-11bfbd5ff6ec",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-fotoico-Olmedilla-de-Alarcon\",\n        \"year\": 2014,\n        \"_id\": \"F9IRuGsynYzwb8ZD\"\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Olmedilla-de-Alarcon",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings",
-						"Parque-fotovoltaico-Olmedilla-de-Alarcon"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "58d6b452-233f-4d85-8875-11bfbd5ff6ec",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-fotoico-Olmedilla-de-Alarcon\",\n        \"year\": 2014,\n        \"_id\": \"F9IRuGsynYzwb8ZD\"\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Olmedilla-de-Alarcon",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings",
-						"Parque-fotovoltaico-Olmedilla-de-Alarcon"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9673bd6b-e1e3-4a26-a5eb-5aa181ef1e6c",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-fotovoltaico-Olmedilla-de-Alarcon\",\n        \"year\": 2014\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Olmedilla-de-Alarcon",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings",
-						"Parque-fotovoltaico-Olmedilla-de-Alarcon"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "683fe546-8d4b-40a4-8615-3cd1ac8933ad",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"name\": \"El-Saucejo\",\n        \"solarPlant\": \"Parque-fotovoltaico-Saucejo\",\n        \"year\": 2010\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Planta-solar-Arnedo",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings",
-						"Planta-solar-Arnedo"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Saucejo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "3c3a52d1-3f58-4113-96e8-dca70ba537a5",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": " {\n        \"name\": \"Madrid\",\n        \"solarPlant\": \"Parque-Alarcon\",\n        \"year\": 2015,\n        \"_id\": \"F9IRuGsynYzwb8ZD\"\n    }"
-				},
-				"url": {
-					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-Alarcon",
-					"protocol": "https",
-					"host": [
-						"sos171803ajpg-sandbox-sos171803ajpg",
-						"c9users",
-						"io"
-					],
-					"path": [
-						"api",
-						"v1",
-						"global-warmings",
-						"Parque-Alarcon"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+			"name": "put conjunto de recursos (405)",
 			"event": [
 				{
 					"listen": "test",
@@ -338,7 +335,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n        \"name\": \"Ciudad-Real\",\n        \"solarPlant\": \"Parque-fotovoltaico-Puertollano\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 70\n    }"
 				},
 				"url": {
 					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
@@ -357,9 +354,99 @@
 			},
 			"response": []
 		},
-		
 		{
-			"name": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+			"name": "post 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6afda25-a747-4a22-9337-467b0f53dc96",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-fotovoltaico-Olmedilla-de-Alarcon\",\n        \"year\": 2010,\n        \"temperature\": 0.7,\n        \"peakPower\": 70\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings/Parque-fotovoltaico-Olmedilla-de-Alarcon",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings",
+						"Parque-fotovoltaico-Olmedilla-de-Alarcon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7a3ca52-906a-4254-b24a-9e57f71480f3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"name\": \"Cuenca\",\n        \"solarPlant\": \"Parque-fotovoltaico-Olmedilla-de-Alarcon\",\n        \"peakPower\": 70\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all",
 			"event": [
 				{
 					"listen": "test",
@@ -404,7 +491,7 @@
 			"response": []
 		},
 		{
-			"name": "http://sos1718-03.herokuapp.com/api/v1/global-warmings loadInitialData",
+			"name": "loadInitialData",
 			"event": [
 				{
 					"listen": "test",
@@ -436,6 +523,44 @@
 						"v1",
 						"global-warmings",
 						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0bf7013-fe66-4cda-9d30-30c2f00ea810",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Global-warming list should have 5 global-warmings\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(5);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://sos171803ajpg-sandbox-sos171803ajpg.c9users.io/api/v1/global-warmings",
+					"protocol": "https",
+					"host": [
+						"sos171803ajpg-sandbox-sos171803ajpg",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"global-warmings"
 					]
 				}
 			},
