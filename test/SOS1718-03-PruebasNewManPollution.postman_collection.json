@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities",
+			"name": "Get all",
 			"event": [
 				{
 					"listen": "test",
@@ -54,7 +54,7 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities",
+			"name": "Post correcto",
 			"event": [
 				{
 					"listen": "test",
@@ -99,7 +99,52 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/san-bernardo",
+			"name": "Post 409",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "702cf9eb-8999-47ea-9b5c-1923a42baaf1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"city\": \"sevilla\",\n        \"station\": \"san-bernardo\",\n        \"year\": \"2014\",\n        \"car\": \"124564\",\n        \"nitrous\": \"45\"\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities",
+					"protocol": "https",
+					"host": [
+						"sos171803amfm-sandbox-sos171803amfm",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pollution-cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put correcto",
 			"event": [
 				{
 					"listen": "test",
@@ -145,7 +190,53 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/san-bernardo",
+			"name": "Put 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de133180-518f-45dd-b6de-4700113266ed",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"city\": \"sevilla\",\n        \"station\": \"san-bernardoooo\",\n        \"year\": \"2014\",\n        \"car\": \"124564\",\n        \"nitrous\": \"46\"\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/san-bernardo",
+					"protocol": "https",
+					"host": [
+						"sos171803amfm-sandbox-sos171803amfm",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pollution-cities",
+						"san-bernardo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detete correcto",
 			"event": [
 				{
 					"listen": "test",
@@ -191,7 +282,7 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/san-bernardo",
+			"name": "Get recurso 404",
 			"event": [
 				{
 					"listen": "test",
@@ -237,7 +328,7 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities",
+			"name": "Put 405",
 			"event": [
 				{
 					"listen": "test",
@@ -282,7 +373,7 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/san-bernardo",
+			"name": "Post 405",
 			"event": [
 				{
 					"listen": "test",
@@ -328,7 +419,53 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities",
+			"name": "Post 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be93bdeb-d985-40f5-bab6-4d78d6216e93",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"city\": \"sevilla\",\n        \"station\": \"san-bernardo\",\n        \"year\": \"2016\"\n    }"
+				},
+				"url": {
+					"raw": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/",
+					"protocol": "https",
+					"host": [
+						"sos171803amfm-sandbox-sos171803amfm",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pollution-cities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All",
 			"event": [
 				{
 					"listen": "test",
@@ -373,7 +510,7 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities/loadInitialData",
+			"name": "LoadInitialData",
 			"event": [
 				{
 					"listen": "test",
@@ -419,7 +556,7 @@
 			"response": []
 		},
 		{
-			"name": "https://sos171803amfm-sandbox-sos171803amfm.c9users.io/api/v1/pollution-cities",
+			"name": "Get all",
 			"event": [
 				{
 					"listen": "test",
