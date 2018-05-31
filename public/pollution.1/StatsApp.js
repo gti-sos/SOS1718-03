@@ -65,7 +65,11 @@ app.config(function($routeProvider) {
             .when("/unemployments", {
                 templateUrl: "/pollution.1/unemployments.html" ,
                 controller: "unemployments"
-            }) ;
+            })
+            .when("/graphFootball", {
+                templateUrl: "/pollution.1/graphFootball.html" ,
+                controller: "graphFootball"
+            });
 
 
     });

@@ -68,7 +68,11 @@ app.use("/proxyUNE", function(req, res) {
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });
-
+app.use("/proxyFOO", function(req, res) {
+    var url = "https://api.football-data.org" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });
 
 
 
