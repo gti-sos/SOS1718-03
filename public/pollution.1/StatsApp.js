@@ -81,6 +81,9 @@ app.config(function($routeProvider) {
             .when("/war", {
                 templateUrl: "/pollution.1/war.html" ,
                 controller: "war"
+            })
+            .when("/integrations", {
+                templateUrl: "/pollution.1/integrations.html"
             });
 
 
