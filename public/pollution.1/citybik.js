@@ -35,7 +35,7 @@ Highcharts.chart('container', {
     },
 
     title: {
-        text: 'Highcharts box plot styling'
+        text: 'City bik and Global warmings'
     },
 
     legend: {
@@ -45,13 +45,13 @@ Highcharts.chart('container', {
     xAxis: {
         categories: ['1', '2', '3'],
         title: {
-            text: 'Experiment No.'
+            text: ' '
         }
     },
 
     yAxis: {
         title: {
-            text: 'Observations'
+            text: ' '
         }
     },
 
