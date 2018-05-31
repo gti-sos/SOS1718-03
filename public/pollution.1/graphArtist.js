@@ -1,6 +1,6 @@
 /*global angular*/
 /*global AmCharts*/
-
+/*global dataProvider*/
 
 angular.module("StatsApp")
   .controller("graphArtist", ["$scope", "$http",
@@ -12,26 +12,19 @@ angular.module("StatsApp")
             
         $http.get(api).then(function(response1){
             $http.get(apiPropia).then(function(response2){
-                console.log(response1.data);
-                /*var children = [];
-
-                for(var i=0;i<response1.data.length;i++){
-                    var ultimoAux = [];
-                    ultimoAux.push({name: parseInt(response1.data[i].year)});
-                    ultimoAux.push({name: response1.data[i].numberOfGames});
-                    var tdDetail = {name: response1.data[i].league,children: ultimoAux};
-                    children.push(tdDetail)
-                } 
-                  for(var i=0;i<response2.data.length;i++){
-                    ultimoAux = [];
-                    ultimoAux.push({name: parseInt(response2.data[i].year)});
-                    ultimoAux.push({name: response2.data[i].nitrous});
-                    var tdDetail1 = {name:  response2.data[i].city.toUpperCase().substring(3,0),children: ultimoAux};
-                    children.push(tdDetail1)
-                } 
+                var ultimoAux = [];
+                for(var i=0;i<response2.data.length;i++){
+                    ultimoAux.push({
+                          "y": getRandomArbitrary(-25,26),
+                          "x": getRandomArbitrary(-25,26),
+                          "value": response1.data.releases[i].title,
+                          "y2": getRandomArbitrary(-25,26),
+                          "x2": getRandomArbitrary(-25,26),
+                          "value2": response2.data[i].nitrous
+                        });
+                }
                 
-                console.log(children);
-                */
+                console.log(ultimoAux);
                 
                 var chart = AmCharts.makeChart( "chartdiv", {
                         "type": "xy",
@@ -39,56 +32,7 @@ angular.module("StatsApp")
                         "balloon":{
                          "fixedPosition":true,
                         },
-                        "dataProvider": [ {
-                          "y": 10,
-                          "x": 14,
-                          "value": "hola",
-                          "y2": -5,
-                          "x2": -3,
-                          "value2": 44
-                        }, {
-                          "y": 5,
-                          "x": 3,
-                          "value": 50,
-                          "y2": -15,
-                          "x2": -8,
-                          "value2": 12
-                        }, {
-                          "y": -10,
-                          "x": 8,
-                          "value": 19,
-                          "y2": -4,
-                          "x2": 6,
-                          "value2": 35
-                        }, {
-                          "y": -6,
-                          "x": 5,
-                          "value": 65,
-                          "y2": -5,
-                          "x2": -6,
-                          "value2": 168
-                        }, {
-                          "y": 15,
-                          "x": -4,
-                          "value": 92,
-                          "y2": -10,
-                          "x2": -8,
-                          "value2": 102
-                        }, {
-                          "y": 13,
-                          "x": 1,
-                          "value": 8,
-                          "y2": -2,
-                          "x2": 0,
-                          "value2": 41
-                        }, {
-                          "y": 1,
-                          "x": 6,
-                          "value": 35,
-                          "y2": 0,
-                          "x2": -3,
-                          "value2": 16
-                        } ],
+                        "dataProvider": ultimoAux,
                         "valueAxes": [ {
                           "position": "bottom",
                           "axisAlpha": 0
@@ -128,6 +72,12 @@ angular.module("StatsApp")
                         }
                   });
                
+               
+               function getRandomArbitrary(min, max) {
+                  var random = Math.random() * (max - min) + min;
+                  return Math.round(random);
+                  
+                }
         }); 
     });     
 }]);
