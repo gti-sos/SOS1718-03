@@ -1,6 +1,5 @@
 /*global angular*/
 /*global AmCharts*/
-/*global dataProvider*/
 
 angular.module("StatsApp")
   .controller("graphArtist", ["$scope", "$http",
