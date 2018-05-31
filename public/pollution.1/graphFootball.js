@@ -12,59 +12,37 @@ angular.module("StatsApp")
             
         $http.get(api).then(function(response1){
             $http.get(apiPropia).then(function(response2){
-                var ultimoAux = [];
+                
+                var children = [];
+
                 for(var i=0;i<response1.data.length;i++){
-                    ultimoAux.push({name: response1.data[i].year});
+                    var ultimoAux = [];
+                    ultimoAux.push({name: parseInt(response1.data[i].year)});
                     ultimoAux.push({name: response1.data[i].numberOfGames});
-                    //ultimoAux.push({name: response2.data[i].nitrous});
-                    //ultimoAux.push("country:"+ '" '+response2.data[i].city+'"',"visits:"+ '" '+response2.data[i].nitrous+'"',"color: #FF0F00");
+                    var tdDetail = {name: response1.data[i].league,children: ultimoAux};
+                    children.push(tdDetail)
                 } 
-               /* for(i=0;i<response1.data.length;i++){
-                    tdDetail = {country: response1.data[i].province,visits: response1.data[i].nursing,color: "#04D215"};
-                    ultimoAux.push(tdDetail);                }*/
-                console.log(ultimoAux);
+                  for(var i=0;i<response2.data.length;i++){
+                    ultimoAux = [];
+                    ultimoAux.push({name: parseInt(response2.data[i].year)});
+                    ultimoAux.push({name: response2.data[i].nitrous});
+                    var tdDetail1 = {name:  response2.data[i].city.toUpperCase().substring(3,0),children: ultimoAux};
+                    children.push(tdDetail1)
+                } 
+                
+                console.log(children);
                 
                 
                 
                var pubs =
                 {
-                    "name": "AUT-1",
-                    "children": [
-                        {
-                            "name": "premier","children": 
-                            [
-                                {"name": "AFF-111"},
-                                {"name": "AFF-112"}
-                            ]
-                        },
-                        {
-                            "name": "premier","children": 
-                            [
-                                {"name": "AFF-111"},
-                                {"name": "AFF-112"}
-                            ]
-                        },
-                        {
-                            "name": "premier","children": 
-                            [
-                                {"name": "AFF-111"},
-                                {"name": "AFF-112"}
-                            ]
-                        },
-                        {
-                            "name": "premier","children": 
-                            [
-                                {"name": "AFF-111"},
-                                {"name": "AFF-112"}
-                            ]
-                        },
-                       
-                    ]
+                    "name": "",
+                    "children": children
                 };
                 
                 var diameter = 800;
                 
-                var margin = {top: 20, right: 120, bottom: 20, left: 120},
+                var margin = {top: 20, right: 240, bottom: 20, left: 120},
                     width = diameter,
                     height = diameter;
                     
@@ -74,7 +52,7 @@ angular.module("StatsApp")
                 
                 var tree = d3.layout.tree()
                     .size([360, diameter / 2 - 80])
-                    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 10) / a.depth; });
+                    .separation(function(a, b) { return (a.parent == b.parent ? 4 : 10) / a.depth; });
                 
                 var diagonal = d3.svg.diagonal.radial()
                     .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
@@ -89,10 +67,10 @@ angular.module("StatsApp")
                 root.x0 = height / 2;
                 root.y0 = 0;
                 
-                //root.children.forEach(collapse); // start with all children collapsed
+                root.children.forEach(collapse); // start with all children collapsed
                 update(root);
                 
-                d3.select(self.frameElement).style("height", "800px");
+                d3.select(self.frameElement).style("height", "1600px");
                 
                 function update(source) {
                 
