@@ -14,11 +14,11 @@ angular.module("StatsApp")
                 var ultimoAux = [];
                 for(var i=0;i<response2.data.length;i++){
                     ultimoAux.push({
-                          "y": -i*2,
-                          "x": -i*2,
+                          "y": getRandomArbitrary(-25,26),
+                          "x": getRandomArbitrary(-25,26),
                           "value": response1.data.releases[i].title,
-                          "y2": i*2,
-                          "x2": i*2,
+                          "y2": getRandomArbitrary(-25,26),
+                          "x2": getRandomArbitrary(-25,26),
                           "value2": response2.data[i].nitrous
                         });
                 }
