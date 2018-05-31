@@ -73,6 +73,10 @@ app.config(function($routeProvider) {
             .when("/citybik", {
                 templateUrl: "/pollution.1/citybik.html" ,
                 controller: "citybik"
+            })
+            .when("/graphArtist", {
+                templateUrl: "/pollution.1/graphArtist.html" ,
+                controller: "graphArtist"
             });
 
 

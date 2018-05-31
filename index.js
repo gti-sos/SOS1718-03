@@ -78,7 +78,12 @@ app.use("/proxyCIT", function(req, res) {
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });    
-    
+app.use("/proxyART", function(req, res) {
+    var url = "https://api.discogs.com" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });    
+        
 
 
 
