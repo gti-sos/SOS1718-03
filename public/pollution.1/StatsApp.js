@@ -77,6 +77,10 @@ app.config(function($routeProvider) {
             .when("/graphArtist", {
                 templateUrl: "/pollution.1/graphArtist.html" ,
                 controller: "graphArtist"
+            })
+            .when("/war", {
+                templateUrl: "/pollution.1/war.html" ,
+                controller: "war"
             });
 
 

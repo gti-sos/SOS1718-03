@@ -83,7 +83,11 @@ app.use("/proxyART", function(req, res) {
     console.log('piped: '+req.baseUrl + req.url);
     req.pipe(request(url)).pipe(res);
     });    
-        
+app.use("/proxyWAR", function(req, res) {
+    var url = "https://swapi.co" + req.url;
+    console.log('piped: '+req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+    });        
 
 
 
