@@ -6,7 +6,7 @@ angular.module("StatsApp")
         function($scope, $http) {
             console.log("List Ctrl initialized!");
             var apiPropia = "/api/v2/pollution-cities";
-            var api = "proxyART/artists/1/releases";
+            var api = "https://api.discogs.com/artists/1/releases";
             
             
         $http.get(api).then(function(response1){
