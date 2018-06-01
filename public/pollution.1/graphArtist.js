@@ -1,6 +1,6 @@
 /*global angular*/
 /*global AmCharts*/
-/*
+
 angular.module("StatsApp")
   .controller("graphArtist", ["$scope", "$http",
         function($scope, $http) {
@@ -85,9 +85,9 @@ angular.module("StatsApp")
 }]);
 
 
-*/
 
 
+/*
 angular.module("StatsApp")
   .controller("graphArtist", ["$scope", "$http",
         function($scope, $http) {
@@ -272,3 +272,4 @@ angular.module("StatsApp")
     });     
 }]);
 
+*/
