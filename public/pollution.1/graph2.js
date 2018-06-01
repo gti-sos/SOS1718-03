@@ -5,129 +5,130 @@
 
  angular.module("StatsApp")
      .controller("graph2", ["$scope", "$http", function($scope, $http) {
-         var googleData = [];
-         var ultimo = [];
-         googleData.push(['name', 'peakPower', 'temperature']);
-         $http
-             .get("/api/v2/global-warmings")
-             .then(function(response) {
-
-                 for (var i = 0; i < response.data.length; i++) {
-                     var googleDataAux = [];
-
-                     googleDataAux.push(response.data[i].name);
-                     googleDataAux.push(parseInt(response.data[i].peakPower));
-                     googleDataAux.push(parseInt(response.data[i].temperature));
+             var googleData = [];
 
 
-                     googleData.push(googleDataAux);
-                 }
-                 console.log(googleData);
 
-                 for (i = 0; i < response.data.length; i++) {
-                     var ultimoAux = [];
+             googleData.push(['name', 'peakPower', 'temperature']);
+             $http
+                 .get("/api/v2/global-warmings")
+                 .then(function(response) {
 
-                     ultimoAux.push(response.data[i].solarPlant);
-                     ultimoAux.push(parseInt(response.data[i].peakPower));
+                         for (var i = 0; i < response.data.length; i++) {
+                             var googleDataAux = [];
 
-                     ultimo.push(ultimoAux);
-                 }
-
-                 console.log(googleData);
-                 Highcharts.chart('container', {
-                     chart: {
-                         type: 'area'
-                     },
-                     title: {
-                         text: 'Global Warmings'
-                     },
-                     xAxis: {
-
-                         categories: response.data.map(function(d) {
-                             return d.year;
-
-                         })
-                     },
-
-                     tooltip: {
-                         pointFormat: '{series.name} <b>{point.y:,.0f}</b><br /> '
-                     },
+                             googleDataAux.push(response.data[i].name);
+                             googleDataAux.push(parseInt(response.data[i].peakPower));
+                             googleDataAux.push(parseInt(response.data[i].temperature));
 
 
-                     series: [{
-                         name: 'peakPower',
-
-                         data: response.data.map(function(d) { return parseInt(d.peakPower) })
-                     }, {
-                         name: 'Temperature',
-                         data: response.data.map(function(d) { return parseInt(d.temperature) })
-                     }]
-                 });
-
-                 google.charts.load('current', {
-                     'packages': ['geochart'],
-                     'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-                 });
-
-                 google.charts.setOnLoadCallback(drawRegionsMap);
-
-                 function drawRegionsMap() {
-                     var datos = [
-
-                         ['name', 'peakPower']
-
-                     ];
-
-                     response.data.map(function(d) {
-                         var total = "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
-                         datos.push([d['name'], total]);
-                     });
-
-                     var data = google.visualization.arrayToDataTable(datos);
+                             googleData.push(googleDataAux);
+                         }
+                         console.log(googleData);
 
 
-                     var options = {
-                         region: 'ES',
-                         displayMode: 'markers',
-                         colorAxis: { colors: ['green', 'blue'] }
-                     };
+                         console.log(googleData);
+                         Highcharts.chart('container', {
+                             chart: {
+                                 type: 'area'
+                             },
+                             title: {
+                                 text: 'Global Warmings'
+                             },
+                             xAxis: {
 
-                     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+                                 categories: response.data.map(function(d) {
+                                     return d.year;
 
-                     chart.draw(data, options);
-                 }
+                                 })
+                             },
 
-                 var chart = c3.generate({
-                     data: {
-                         columns: [
-                             ['data1', 30],
-                             ['data2', 120],
-                         ],
-                         type: 'donut',
-                         onclick: function(d, i) { console.log("onclick", d, i); },
-                         onmouseover: function(d, i) { console.log("onmouseover", d, i); },
-                         onmouseout: function(d, i) { console.log("onmouseout", d, i); }
-                     },
-                     donut: {
-                         title: "Greater solar plants"
-                     }
-                 });
+                             tooltip: {
+                                 pointFormat: '{series.name} <b>{point.y:,.0f}</b><br /> '
+                             },
 
-                 setTimeout(function() {
-                     chart.load({
-                         columns: ultimo
 
-                     });
-                 }, 1500);
+                             series: [{
+                                 name: 'peakPower',
+                                 data: response.data.map(function(d) { return parseInt(d.peakPower) })
+                             }, {
+                                 name: 'Temperature',
+                                 data: response.data.map(function(d) { return parseInt(d.temperature) })
+                             }]
+                         });
 
-                 setTimeout(function() {
-                     chart.unload({
-                         ids: 'data1'
-                     });
-                     chart.unload({
-                         ids: 'data2'
-                     });
-                 }, 2500);
-             });
-     }]);
+                         google.charts.load('current', {
+                             'packages': ['geochart'],
+                             'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+                         });
+
+                         google.charts.setOnLoadCallback(drawRegionsMap);
+
+                         function drawRegionsMap() {
+                             var datos = [
+
+                                 ['name', 'peakPower']
+
+                             ];
+
+                             response.data.map(function(d) {
+                                 var total = "peakPower:" + Number(d['peakPower']) + ", " + "temperature:" + Number(d['temperature']);
+                                 datos.push([d['name'], total]);
+                             });
+
+                             var data = google.visualization.arrayToDataTable(datos);
+
+
+                             var options = {
+                                 region: 'ES',
+                                 displayMode: 'markers',
+                                 colorAxis: { colors: ['green', 'blue'] }
+                             };
  
+                             var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                             chart.draw(data, options);
+                             }
+
+                             var ultimo = [];
+                             var lista = {};
+                             console.log(ultimo);
+                             for (var i = 0; i < response.data.length; i++) {
+
+                                 lista = { y: parseInt(response.data[i].peakPower), label: response.data[i].solarPlant };
+                                 ultimo.push(lista);
+
+                                 console.log(ultimo);
+                             }
+                             console.log(ultimo);
+
+                             
+
+                                 var chart = new CanvasJS.Chart("chartContainer", {
+                                     animationEnabled: true,
+                                     title: {
+                                         text: "SolarPlant",
+                                         horizontalAlign: "left"
+                                     },
+                                     data: [{
+                                         type: "doughnut",
+                                         startAngle: 60,
+                                         //innerRadius: 60,
+                                         indexLabelFontSize: 17,
+                                         indexLabel: "{label} - #percent%",
+                                         toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+                                         dataPoints: 
+                                           ultimo
+                                         
+
+                                     }]
+                                 });
+                                 chart.render();
+
+                            
+                         
+                 
+                 
+                     
+                });
+     }]);     

@@ -1,0 +1,43 @@
+{
+  "name": "angular-c3",
+  "main": "c3-chart.js",
+  "version": "0.0.7",
+  "homepage": "https://github.com/maseh87/c3-chart",
+  "authors": [
+    "Mason <maseh87@gmail.com>"
+  ],
+  "description": "Angular directive to utilize c3 charts",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "package.json",
+    "README.md",
+    ".gitignore",
+    ".bowerrc",
+    ".jshintrc",
+    "karma.conf.js",
+    "gulpfile.js"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular-mocks": "~1.2.24",
+    "d3": "~3.4.11",
+    "c3": "~0.3.0",
+    "angular": "~1.2.24"
+  },
+  "_release": "0.0.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.7",
+    "commit": "eba39453332f90994db9a8d811f3a3c60e98f869"
+  },
+  "_source": "https://github.com/maseh87/c3-chart.git",
+  "_target": "^0.0.7",
+  "_originalSource": "angular-c3",
+  "_direct": true
+}
