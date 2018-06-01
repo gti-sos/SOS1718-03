@@ -142,14 +142,14 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2[0]);
                     }else{
-                    res.send("Not found");
+                    res.send([]);
                     }
                 }else{
                      if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
                     res.send(aux2);
                     }else{
-                    res.send("Not found");
+                    res.send([]);
                     }
                 }
                
@@ -197,13 +197,13 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     if (filteredCities.length > 0) {
                         res.send(filteredCities[0]);
                     }else{
-                        res.send("Not found");
+                        res.send([]);
                     }
                 }else{
                     if (filteredCities.length > 0) {
                         res.send(filteredCities);
                     }else{
-                        res.send("Not found");
+                        res.send([]);
                     }
                 } 
             });
