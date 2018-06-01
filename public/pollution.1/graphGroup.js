@@ -18,13 +18,13 @@ angular.module("StatsApp")
       ultimoAux.push(tdDetail);
      }
      for (i = 0; i < response1.data.length; i++) {
-      tdDetail = { country: response1.data[i].city, visits: response1.data[i].peakPower, color: "#04D215" };
+      tdDetail = { country: response1.data[i].name, visits: response1.data[i].peakPower, color: "#04D215" };
       ultimoAux.push(tdDetail);
      }
      console.log(ultimoAux);
 
 
-/*
+
      var chart = AmCharts.makeChart("chartdiv", {
       "theme": "none",
       "type": "serial",
@@ -58,7 +58,7 @@ angular.module("StatsApp")
        "enabled": true
       }
 
-     });*/
+     });/*
      var chart = AmCharts.makeChart("chartdiv", {
          "type": "pie",
          "theme": "light",
@@ -77,7 +77,7 @@ angular.module("StatsApp")
          "export": {
              "enabled": true
          }
-     });
+     });*/
     });
    });
   }
