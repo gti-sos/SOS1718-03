@@ -45,7 +45,6 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/graph1.html" ,
                 controller: "graph1"
             })
-
             .when("/graph2", {
                 templateUrl: "/pollution.1/graph2.html ",
                 controller: "graph2"
@@ -81,6 +80,10 @@ app.config(function($routeProvider) {
             .when("/war", {
                 templateUrl: "/pollution.1/war.html" ,
                 controller: "war"
+            })
+            .when("/graphGroup", {
+                templateUrl: "/pollution.1/graphGroup.html" ,
+                controller: "graphGroup"
             })
             .when("/integrations", {
                 templateUrl: "/pollution.1/integrations.html"
