@@ -26,40 +26,6 @@ angular.module("StatsApp")
 
 
      var chart = AmCharts.makeChart("chartdiv", {
-      "theme": "none",
-      "type": "serial",
-      "startDuration": 2,
-      "dataProvider": ultimoAux,
-      "valueAxes": [{
-       "position": "left",
-       "title": "Visitors"
-      }],
-      "graphs": [{
-       "balloonText": "[[category]]: <b>[[value]]</b>",
-       "fillColorsField": "color",
-       "fillAlphas": 1,
-       "lineAlpha": 0.1,
-       "type": "column",
-       "valueField": "visits"
-      }],
-      "depth3D": 20,
-      "angle": 30,
-      "chartCursor": {
-       "categoryBalloonEnabled": false,
-       "cursorAlpha": 0,
-       "zoomable": false
-      },
-      "categoryField": "country",
-      "categoryAxis": {
-       "gridPosition": "start",
-       "labelRotation": 90
-      },
-      "export": {
-       "enabled": true
-      }
-
-     });/*
-     var chart = AmCharts.makeChart("chartdiv", {
          "type": "pie",
          "theme": "light",
          "innerRadius": "40%",
@@ -77,7 +43,7 @@ angular.module("StatsApp")
          "export": {
              "enabled": true
          }
-     });*/
+     });
     });
    });
   }
