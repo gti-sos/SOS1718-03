@@ -45,8 +45,7 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/graph1.html" ,
                 controller: "graph1"
             })
-
-            .when("/analytics/graph2", {
+            .when("/graph2", {
                 templateUrl: "/pollution.1/graph2.html ",
                 controller: "graph2"
             })
