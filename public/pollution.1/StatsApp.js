@@ -82,6 +82,10 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/war.html" ,
                 controller: "war"
             })
+            .when("/graphGroup", {
+                templateUrl: "/pollution.1/graphGroup.html" ,
+                controller: "graphGroup"
+            })
             .when("/integrations", {
                 templateUrl: "/pollution.1/integrations.html"
             });

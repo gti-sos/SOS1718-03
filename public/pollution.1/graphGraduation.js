@@ -13,14 +13,15 @@ angular.module("StatsApp")
         $http.get(api).then(function(response1){
             $http.get(apiPropia).then(function(response2){
                 var ultimoAux = [];
-                for(var i=0;i<response2.data.length;i++){
-                    var tdDetail = {country: response2.data[i].city,visits: response2.data[i].nitrous,color: "#FF0F00"};
+                for (var i = 0; i < response2.data.length; i++) {
+                    var tdDetail = { country: response2.data[i].city, visits: response2.data[i].nitrous, color: "#FF0F00" };
                     ultimoAux.push(tdDetail);
                     //ultimoAux.push("country:"+ '" '+response2.data[i].city+'"',"visits:"+ '" '+response2.data[i].nitrous+'"',"color: #FF0F00");
-                } 
-                for(i=0;i<response1.data.length;i++){
-                    tdDetail = {country: response1.data[i].province,visits: response1.data[i].nursing,color: "#04D215"};
-                    ultimoAux.push(tdDetail);                }
+                }
+                for (i = 0; i < response1.data.length; i++) {
+                    tdDetail = { country: response1.data[i].province, visits: response1.data[i].nursing, color: "#04D215" };
+                    ultimoAux.push(tdDetail);
+                }
                 console.log(ultimoAux);
                
                 var chart = AmCharts.makeChart("chartdiv", {
