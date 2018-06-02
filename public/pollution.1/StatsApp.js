@@ -98,6 +98,10 @@ app.config(function($routeProvider) {
             .when("/graphWorld", {
                 templateUrl: "/pollution.1/graphWorld.html" ,
                 controller: "graphWorld"
+            })
+            .when("/motogp", {
+                templateUrl: "/pollution.1/motogpchampions.html" ,
+                controller: "motogpchampions"
             });
 
 
