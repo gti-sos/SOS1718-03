@@ -1,7 +1,7 @@
  /* global angular*/
  /* global anychart*/
 
- angular.module("StatsApp").controller("motogpchampions", ["$scope", "$http", function($scope, $http) {
+ angular.module("StatsApp").controller("hospitalstats", ["$scope", "$http", function($scope, $http) {
 
   console.log("List Ctrl initialized!");
   var apiPropia = "/api/v2/global-warmings";
@@ -12,22 +12,46 @@
    $http.get(apiPropia).then(function(response2) {
 
     var ultimo = [];
-    var ultimo1 = [];
 
-
-    //He tenido que  dar tan solo dos vueltas al bucle ya que nuestra grafica recoge 5 datos y no mostraba los mios.  
-    for (var i = 0; i < 2; i++) {
-
-     ultimo.push(response1.data[i].stadium);
-     ultimo1.push(response1.data[i].first);
+    for (var i = 0; i < response1.data.length; i++) {
+     var ultimoAux = [];
+     ultimoAux.push(response1.data[i].country);
+     ultimoAux.push(response1.data[i].bed);
+     ultimoAux.push(response1.data[i].expense);
+     ultimo.push(ultimoAux);
 
     }
     for (var i = 0; i < response2.data.length; i++) {
+     var ultimoAux1 = [];
+     ultimoAux1.push(response2.data[i].name);
+     ultimoAux1.push(response2.data[i].temperature);
+     ultimoAux1.push(response2.data[i].peakPower);
+     ultimo.push(ultimoAux1);
 
-     ultimo.push(response2.data[i].name);
-     ultimo1.push(response2.data[i].peakPower);
 
     }
+    console.log(ultimo);
+
+
+    /*
+        for (i = 0; i < response1.data.length; i++) {
+
+         var lista = {
+          'x': 0,
+          'bed': 1,
+          'expense': 2
+         };
+         
+         for (i = 0; i < response2.data.length; i++) {
+
+         var lista = {
+          'x': 0,
+          'peakPower': 1,
+          'temperature': 2
+         };
+
+
+        }*/
 
     anychart.onDocumentReady(function() {
      // create column chart
@@ -37,16 +61,9 @@
      chart.title('Cherry Chart');
 
      // create data set on our data
-     var dataSet = anychart.data.set([
-      ['Apr 2016', 29, 37],
-      ['May 2016', 15, 43],
-      ['Jun 2016', 29, 47],
-      ['Jul 2016', 12, 27],
-      ['Aug 2016', 20, 33],
-      ['Sep 2016', 35, 44],
-      ['Okt 2016', 20, 31],
-      ['Nov 2016', 44, 51]
-     ]);
+     var dataSet = anychart.data.set(
+      ultimo
+     );
 
      // set chart padding
      chart.padding().top(50);

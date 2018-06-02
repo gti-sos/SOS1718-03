@@ -99,9 +99,9 @@ app.config(function($routeProvider) {
                 templateUrl: "/pollution.1/graphWorld.html" ,
                 controller: "graphWorld"
             })
-            .when("/motogp", {
-                templateUrl: "/pollution.1/motogpchampions.html" ,
-                controller: "motogpchampions"
+            .when("/hospital", {
+                templateUrl: "/pollution.1/hospitalstats.html" ,
+                controller: "hospitalstats"
             })
             .when("/graphTvfees", {
                 templateUrl: "/pollution.1/graphTvfees.html" ,
