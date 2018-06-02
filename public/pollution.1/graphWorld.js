@@ -13,10 +13,10 @@ angular.module("StatsApp")
       $http.get(api).then(function(response1) {
         $http.get(apiPropia).then(function(response2) {
           var ultimoAux = [];
-          for (var i = 0; i < response1.data.length; i++) {
+          for (var i = 0; i < 5; i++) {
             ultimoAux.push({ y: response1.data[i].sale, label: response1.data[i].artist });
           }
-          for (var i = 0; i < response2.data.length; i++) {
+          for (var i = 0; i < 5; i++) {
             ultimoAux.push({ y: response2.data[i].nitrous, label: response2.data[i].city });
           }
 
