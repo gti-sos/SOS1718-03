@@ -90,6 +90,10 @@ app.config(function($routeProvider) {
             })
             .when("/about", {
                 templateUrl: "/pollution.1/about.html"
+            })
+            .when("/basketball", {
+                templateUrl: "/pollution.1/basketball.html" ,
+                controller: "basketball"
             });
 
 
