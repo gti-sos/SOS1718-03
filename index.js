@@ -97,7 +97,6 @@ app.use("/proxyTRA", function(req, res) {
 
 
 
-
 // -------------ADAN---------------
 var initialPollutionCities = [
 
