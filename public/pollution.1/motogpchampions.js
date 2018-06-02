@@ -1,11 +1,11 @@
  /* global angular*/
  /* global anychart*/
 
- angular.module("StatsApp").controller("basketball", ["$scope", "$http", function($scope, $http) {
+ angular.module("StatsApp").controller("motogpchampions", ["$scope", "$http", function($scope, $http) {
 
   console.log("List Ctrl initialized!");
   var apiPropia = "/api/v2/global-warmings";
-  var api2 = "https://sos1718-13.herokuapp.com/api/v1/motogpchamps";
+  var api2 = "https://sos1718-12.herokuapp.com/api/v1/hospital-stats";
 
 
   $http.get(api2).then(function(response1) {

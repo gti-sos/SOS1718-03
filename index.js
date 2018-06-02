@@ -92,7 +92,6 @@ app.use("/proxyWAR", function(req, res) {
 
 
 
-
 // -------------ADAN---------------
 var initialPollutionCities = [
     
