@@ -1,4 +1,5 @@
  /* global angular*/
+ /* global anychart*/
 
  angular.module("StatsApp").controller("basketball", ["$scope", "$http", function($scope, $http) {
 
@@ -158,8 +159,8 @@
        .arcToByEndPoint(leftX, this.low, columnWidth * 2, columnWidth * 2, true, true)
        // close by connecting the last point with the first straight line
        .close();
-     };
-    };
+     }
+    }
    });
   });
  }]);
