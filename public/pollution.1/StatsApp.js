@@ -98,6 +98,10 @@ app.config(function($routeProvider) {
             .when("/graphWorld", {
                 templateUrl: "/pollution.1/graphWorld.html" ,
                 controller: "graphWorld"
+            })
+            .when("/graphTvfees", {
+                templateUrl: "/pollution.1/graphTvfees.html" ,
+                controller: "graphTvfees"
             });
 
 
