@@ -94,6 +94,10 @@ app.config(function($routeProvider) {
             .when("/basketball", {
                 templateUrl: "/pollution.1/basketball.html" ,
                 controller: "basketball"
+            })
+            .when("/graphWorld", {
+                templateUrl: "/pollution.1/graphWorld.html" ,
+                controller: "graphWorld"
             });
 
 
