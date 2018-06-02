@@ -1,35 +1,35 @@
- /* global Highcharts */
  /* global angular*/
 
  angular.module("StatsApp").controller("basketball", ["$scope", "$http", function($scope, $http) {
 
      console.log("List Ctrl initialized!");
      var apiPropia = "/api/v2/global-warmings";
-     var api2 = "proxyCIT/v2/networks";
+     var api2 = "https://sos1718-11.herokuapp.com/api/v2/basketball-stats";
 
 
      $http.get(api2).then(function(response1) {
          $http.get(apiPropia).then(function(response2) {
 
              var ultimo = [];
+             var ultimo1 = [];
 
-             for (var i = 0; i < 5; i++) {
 
-                 ultimo.push([-50, 100, response1.data.networks[i].location.latitude, 100, 200]);
+            //He tenido que  dar tan solo dos vueltas al bucle ya que nuestra grafica recoge 5 datos y no mostraba los mios.  
+             for (var i = 0; i < 2; i++) {
+
+                 ultimo.push(response1.data[i].stadium);
+                 ultimo1.push(response1.data[i].first);
 
              }
-             for (var i = 0; i < 5; i++) {
+             for (var i = 0; i < response2.data.length; i++) {
 
-                 ultimo.push([-50, 100, response2.data[i].peakPower, 100, 200]);
+                 ultimo.push(response2.data[i].name);
+                 ultimo1.push(response2.data[i].peakPower);
 
              }
 
-
-
-
-
-             var names = ['Temazepam', 'Guaifenesin', 'Salicylic Acid', 'Fluoride', 'Zinc Oxide', 'Acetaminophen'];
-             var data = [23, 34, 67, 93, 56, 100];
+             var names = ultimo;
+             var data = ultimo1;
              var dataSet = anychart.data.set(data);
              var palette = anychart.palettes.distinctColors().items(['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
 
@@ -96,8 +96,8 @@
                  makeBarWithBar(gauge, 20, 4, 17, true);
 
                  gauge.margin(50);
-                 gauge.title().text('Medicine manufacturing progress' +
-                     '<br/><span style="color:#929292; font-size: 12px;">(ACME CORPORATION)</span>').useHtml(true);
+                 gauge.title().text('Integration with api basketball' +
+                     '<br/><span style="color:#929292; font-size: 12px;">(stadium and first)</span>').useHtml(true);
                  gauge.title()
                      .enabled(true)
                      .hAlign('center')
