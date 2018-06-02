@@ -102,6 +102,10 @@ app.config(function($routeProvider) {
             .when("/motogp", {
                 templateUrl: "/pollution.1/motogpchampions.html" ,
                 controller: "motogpchampions"
+            })
+            .when("/graphTvfees", {
+                templateUrl: "/pollution.1/graphTvfees.html" ,
+                controller: "graphTvfees"
             });
 
 
