@@ -140,6 +140,8 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     boolean = true;
                     return (solarPlant == c.solarPlant);
                     });
+                    
+                    
                 }if (boolean == true){
                      if (filteredCities.length > 0) {
                     aux2 = filteredCities.slice(offset, offset + limit);
@@ -262,11 +264,13 @@ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
             return;
         }else{
             db.find({}).toArray((err, globalWarmings) => {
-
+            
             var filteredCities = globalWarmings.filter((c) => {
                 return (c.solarPlant == city.solarPlant);
+                
             });
-
+            
+            console.log(filteredCities);
             if (err) {
                 console.error(" Error accesing DB");
                 res.sendStatus(500);
@@ -275,6 +279,7 @@ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
             if (filteredCities.length==0){
                 db.insert(city);
                 res.sendStatus(201);
+                
             }else{
                 res.sendStatus(409);
             }
