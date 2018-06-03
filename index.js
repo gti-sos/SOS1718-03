@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 var path = require("path");
 
-
+console.log("a10");
 
 var MongoClient = require("mongodb").MongoClient;
 
@@ -155,6 +155,7 @@ MongoClient.connect(mdbURL, { native_parser: true }, (err, mlabs) => {
         console.error("Error accesing DB" + err);
         process.exit(1);
     }
+console.log("a11");
 
     console.error("Connected to DB");
     var dataBase = mlabs.db("sos1718-03");
@@ -163,6 +164,7 @@ MongoClient.connect(mdbURL, { native_parser: true }, (err, mlabs) => {
 
 
     db.find({}).toArray((err, pollutionCities) => {
+console.log("a12");
 
         if (pollutionCities.length == 0) {
             console.log("Empty DB");
@@ -178,6 +180,7 @@ MongoClient.connect(mdbURL, { native_parser: true }, (err, mlabs) => {
     pollutionApi2.register(app, db);
 
     app.listen(port, () => {
+console.log("a13");
 
         console.log(" Server ready on port " + port + "!");
 
@@ -277,6 +280,7 @@ MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
         console.error("Error accesing DB" + err);
         process.exit(1);
     }
+console.log("a14");
 
     console.error("Connected to DB");
     var dataBase = mlabs.db("sos1718-ajpg-sandbox");
@@ -291,6 +295,8 @@ MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
             db1.insert(initialGlobalWarmings);
         }
         else {
+            console.log("a15");
+
             console.log("DB initialized with " + globalWarmings.length + " globalWarmings");
         }
 
@@ -302,6 +308,7 @@ MongoClient.connect(mdbURL1, { native_parser: true }, (err, mlabs) => {
     app.listen(port, () => {
 
         console.log(" Server ready on port " + port + "!");
+console.log("a16");
 
     }).on("error", (e) => {
         console.log("Server NOT READY:" + e);

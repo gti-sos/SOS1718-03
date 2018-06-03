@@ -10,14 +10,14 @@ globalWarmingsApi2.register = function (app,db){
     
     console.log("Registering for globalWarmingsApi2.... ");
     
-
+console.log("a");
 app.get("/test", function (req, res){
     res.send("test");
 });
 
-
+console.log("a0");
 app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
-    
+console.log("a1");    
      var inicializacion = [ 
     
     {"name"  :  "Ciudad-Real",
@@ -58,14 +58,14 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
     "peakPower" : 30
         
      }];
-    
+   console.log("a2"); 
     
      db.find({}).toArray((err, globalWarmings)=> {
             
             if (err) {
                 res.sendStatus(500);
             }
-            else {
+            else {console.log("a3");
               
                 if (globalWarmings.length > 0) {
                     res.send('The database has already been initialized: ' + globalWarmings.length + 'elements');
@@ -76,11 +76,11 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     res.sendStatus(201); 
                     console.log("DataBase initialized.");
                 }
-            }
+            console.log("a4");}
     });
 });
 
-
+console.log("a5");
 
  //get al conjunto de todo
  
@@ -107,7 +107,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     res.sendStatus(500);
                     return;
                 }
-                
+                console.log("a6");
                 var filteredCities = globalWarmings.filter((c) => {
                     delete c._id;
                     return c;
@@ -171,6 +171,7 @@ app.get(BASE_API_PATH + "/global-warmings/loadInitialData", (req, res) =>{
                     delete c._id;
                     return c;
                 });
+                console.log("a7");
                 if (year){
                     filteredCities = filteredCities.filter((c) => {
                     return (year == c.year);
@@ -232,7 +233,7 @@ app.get(BASE_API_PATH + "/global-warmings/docs", (req, res) => {
             var filteredCities = globalWarmings.filter((c) => {
                 return (c.solarPlant == solarPlant);
             });
-
+            console.log("a8");
             if (err) {
                 console.error(" Error accesing DB");
                 res.sendStatus(500);
@@ -358,5 +359,5 @@ app.put(BASE_API_PATH+"/global-warmings",(req,res)=>{
         res.sendStatus(200);
     });
 
-
+console.log("a9");
 };

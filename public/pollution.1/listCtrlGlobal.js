@@ -6,7 +6,7 @@
 
 
 
-  console.log(2);
+  
   var api = "/api/v2/global-warmings";
   var search = "?";
   var offset = -10;
