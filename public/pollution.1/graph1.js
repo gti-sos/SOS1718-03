@@ -88,9 +88,9 @@
     for(var i=0;i<response.data.length;i++){
     var googleDataAux = [];
     
-          googleDataAux.push(response.data[i].name);
-          googleDataAux.push(parseInt(response.data[i].peakPower));
-          googleDataAux.push(parseInt(response.data[i].temperature));
+          googleDataAux.push(response.data[i].city);
+          googleDataAux.push(parseInt(response.data[i].car));
+          googleDataAux.push(parseInt(response.data[i].nitrous));
          
     
      googleData.push(googleDataAux);
