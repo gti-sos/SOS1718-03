@@ -304,7 +304,7 @@ app.get(BASE_API_PATH + "/pollution-cities/docs", (req, res) => {
     });
 
 
-
+console.log("adan");
 
     //PUT a un conjunto
     app.put(BASE_API_PATH + "/pollution-cities", (req, res) => {
